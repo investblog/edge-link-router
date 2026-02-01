@@ -156,11 +156,12 @@ class StatsPage {
 									</td>
 									<td>
 										<?php
+										$full_url    = $this->build_full_target_url( $link );
 										$display_url = strlen( $link->target_url ) > 50
 											? substr( $link->target_url, 0, 50 ) . '...'
 											: $link->target_url;
 										?>
-										<a href="<?php echo esc_url( $link->target_url ); ?>" target="_blank" rel="noopener" title="<?php echo esc_attr( $link->target_url ); ?>">
+										<a href="<?php echo esc_url( $link->target_url ); ?>" target="_blank" rel="noopener" title="<?php echo esc_attr( $full_url ); ?>">
 											<?php echo esc_html( $display_url ); ?>
 										</a>
 									</td>
@@ -243,5 +244,25 @@ class StatsPage {
 			}
 		</style>
 		<?php
+	}
+
+	/**
+	 * Build full target URL with UTM parameters.
+	 *
+	 * @param \CFELR\Core\Models\Link $link Link object.
+	 * @return string Full URL with UTM if configured.
+	 */
+	private function build_full_target_url( $link ): string {
+		$url     = $link->target_url;
+		$options = $link->options ?? array();
+
+		if ( ! empty( $options['append_utm'] ) && is_array( $options['append_utm'] ) ) {
+			$utm_params = array_filter( $options['append_utm'] );
+			if ( ! empty( $utm_params ) ) {
+				$url = add_query_arg( $utm_params, $url );
+			}
+		}
+
+		return $url;
 	}
 }
