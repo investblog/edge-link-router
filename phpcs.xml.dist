@@ -44,6 +44,12 @@
 
         <!-- Array alignment warnings are noisy -->
         <exclude name="WordPress.Arrays.MultipleStatementAlignment"/>
+
+        <!-- We use table names from $wpdb->prefix which is safe -->
+        <exclude name="WordPress.DB.PreparedSQL.InterpolatedNotPrepared"/>
+
+        <!-- Comment spacing is stylistic -->
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
     </rule>
 
     <rule ref="WordPress.WP.I18n">
