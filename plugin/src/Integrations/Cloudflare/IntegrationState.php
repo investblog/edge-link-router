@@ -50,12 +50,10 @@ class IntegrationState {
 
 		$table = $wpdb->prefix . 'cfelr_integrations';
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$row = $wpdb->get_row(
-			$wpdb->prepare(
-				"SELECT state_json FROM {$table} WHERE provider = %s",
-				'cloudflare'
-			)
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
+			$wpdb->prepare( "SELECT state_json FROM {$table} WHERE provider = %s", 'cloudflare' )
 		);
 
 		if ( ! $row || empty( $row->state_json ) ) {
@@ -119,12 +117,10 @@ class IntegrationState {
 
 		$state_json = wp_json_encode( $state );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$existing = $wpdb->get_var(
-			$wpdb->prepare(
-				"SELECT id FROM {$table} WHERE provider = %s",
-				'cloudflare'
-			)
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
+			$wpdb->prepare( "SELECT id FROM {$table} WHERE provider = %s", 'cloudflare' )
 		);
 
 		if ( $existing ) {

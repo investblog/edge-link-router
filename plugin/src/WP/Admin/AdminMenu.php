@@ -60,13 +60,13 @@ class AdminMenu {
 		}
 
 		// Links page actions.
-		if ( $page === self::MENU_SLUG ) {
+		if ( self::MENU_SLUG === $page ) {
 			$links_page = new Pages\LinksPage();
 			$links_page->handle_early_actions();
 		}
 
 		// Integrations page actions.
-		if ( $page === self::MENU_SLUG . '-integrations' ) {
+		if ( self::MENU_SLUG . '-integrations' === $page ) {
 			$integrations_page = new Pages\IntegrationsPage();
 			$integrations_page->handle_early_actions();
 		}
@@ -177,6 +177,7 @@ class AdminMenu {
 				'nonce'   => wp_create_nonce( 'wp_rest' ),
 				'i18n'    => array(
 					'confirmDelete'     => __( 'Are you sure you want to delete this link?', 'edge-link-router' ),
+					/* translators: %d: number of selected links */
 					'confirmBulkDelete' => __( 'Are you sure you want to delete %d selected link(s)? This action cannot be undone.', 'edge-link-router' ),
 					'confirmClearLogs'  => __( 'Are you sure you want to clear all logs? This action cannot be undone.', 'edge-link-router' ),
 					'error'             => __( 'An error occurred. Please try again.', 'edge-link-router' ),

@@ -22,7 +22,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(composer run:*)",
+      "Bash(vendor/bin/phpcs:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run list:*)"
     ]
   }
 }

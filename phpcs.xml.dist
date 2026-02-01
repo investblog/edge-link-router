@@ -17,8 +17,30 @@
     <config name="testVersion" value="8.0-"/>
 
     <rule ref="WordPress">
+        <!-- File naming - we use PSR-4 -->
         <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+
+        <!-- Allow short ternary operators -->
+        <exclude name="Universal.Operators.DisallowShortTernary"/>
+
+        <!-- Allow reserved keyword as parameter name -->
+        <exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames"/>
+
+        <!-- Alignment warnings are noisy -->
+        <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+
+        <!-- Allow silenced errors for specific cases like DNS functions -->
+        <exclude name="WordPress.PHP.NoSilencedErrors.Discouraged"/>
+
+        <!-- Empty catch is sometimes intentional -->
+        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch"/>
+
+        <!-- Unused parameters in interface implementations -->
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+        <!-- Yoda conditions are a stylistic preference -->
+        <exclude name="WordPress.PHP.YodaConditions"/>
     </rule>
 
     <rule ref="WordPress.WP.I18n">

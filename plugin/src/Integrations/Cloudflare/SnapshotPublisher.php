@@ -89,8 +89,8 @@ class SnapshotPublisher implements PublisherInterface {
 			$this->log_event(
 				'warning',
 				sprintf(
-					/* translators: %d: number of links */
-					__( 'Publishing %d links exceeds the recommended limit of %d.', 'edge-link-router' ),
+					/* translators: 1: number of links being published, 2: recommended limit */
+					__( 'Publishing %1$d links exceeds the recommended limit of %2$d.', 'edge-link-router' ),
 					$links_count,
 					self::SOFT_LINK_LIMIT
 				)

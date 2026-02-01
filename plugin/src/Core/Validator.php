@@ -192,7 +192,7 @@ class Validator {
 			$target_host = wp_parse_url( $url, PHP_URL_HOST );
 			$target_path = wp_parse_url( $url, PHP_URL_PATH );
 
-			if ( $target_host === $host && $target_path === "/{$prefix}/{$slug}" ) {
+			if ( $host === $target_host && "/{$prefix}/{$slug}" === $target_path ) {
 				$errors[] = __( 'Target URL cannot point to the same redirect (infinite loop).', 'edge-link-router' );
 			}
 		}
