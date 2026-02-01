@@ -1,27 +1,32 @@
 === Edge Link Router ===
-Contributors: yourname
-Tags: redirect, links, shortlinks, cloudflare, edge
+Contributors: 301st
+Donate link: https://301.st
+Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
 Requires at least: 6.0
-Tested up to: 6.4
+Tested up to: 6.7
 Requires PHP: 8.0
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Simple redirect management with optional Cloudflare edge acceleration.
+Simple redirect management with optional Cloudflare edge acceleration. Create short links, track clicks, add UTM parameters.
 
 == Description ==
 
 Edge Link Router is a WordPress plugin for managing redirect links (`/go/your-slug`) with optional edge acceleration via Cloudflare Workers.
 
+Built by [301.st](https://301.st) — your redirect management experts.
+
 = Features =
 
-* **Works immediately** - Redirects work right after activation, no configuration required
-* **Simple management** - Create, edit, and manage redirects from WordPress admin
-* **Optional edge mode** - Accelerate redirects with Cloudflare Workers (optional, not required)
-* **Fail-safe design** - Edge mode falls back to WordPress if anything goes wrong
-* **Privacy-focused** - Only aggregated statistics, no personal data collected
-* **CSV import/export** - Bulk manage your redirects
+* **Works immediately** — Redirects work right after activation, no configuration required
+* **Simple management** — Create, edit, and manage redirects from WordPress admin
+* **UTM tracking** — Automatically append UTM parameters to your target URLs
+* **Click statistics** — Track clicks with 30-day retention (privacy-focused, no PII)
+* **CSV import/export** — Bulk manage your redirects
+* **REST API** — Full programmatic access for developers
+* **Dashboard widget** — Quick stats at a glance
+* **Optional edge mode** — Accelerate redirects with Cloudflare Workers
 
 = How It Works =
 
@@ -30,14 +35,26 @@ Edge Link Router is a WordPress plugin for managing redirect links (`/go/your-sl
 3. Your redirects work immediately at `/go/your-slug`
 4. (Optional) Connect Cloudflare for edge acceleration
 
+= Testing Your Redirects =
+
+Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to verify your redirects are working correctly and see the full redirect chain.
+
 = Edge Mode (Optional) =
 
 If you use Cloudflare, you can enable edge mode to handle redirects at Cloudflare's edge network, before requests reach your WordPress server. This is completely optional and the plugin works perfectly without it.
 
 Edge mode features:
+
 * Faster redirects (handled at edge)
 * Reduced server load
 * Automatic fallback to WordPress if edge fails
+
+= Links =
+
+* [Project Home](https://301.st)
+* [Documentation](https://301.st/docs)
+* [Redirect Inspector Extension](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)
+* [GitHub Repository](https://github.com/investblog/edge-link-router)
 
 == Installation ==
 
@@ -51,6 +68,14 @@ Edge mode features:
 
 No. The plugin works perfectly with just WordPress. Cloudflare integration is optional for users who want edge acceleration.
 
+= What redirect types are supported? =
+
+The plugin supports 301 (permanent), 302 (temporary), 307 (temporary, preserve method), and 308 (permanent, preserve method) redirects.
+
+= Can I add UTM parameters automatically? =
+
+Yes! Each redirect can have its own UTM parameters (source, medium, campaign) that are automatically appended to the target URL.
+
 = What happens if Cloudflare edge fails? =
 
 The plugin is designed with a "fail-open" approach. If edge has any issues, requests automatically fall back to WordPress handling. Your redirects keep working.
@@ -59,6 +84,18 @@ The plugin is designed with a "fail-open" approach. If edge has any issues, requ
 
 No personal data is collected. Statistics are aggregated (total clicks per day) with no IP addresses, user agents, or cookies stored.
 
+= How can I verify my redirects work correctly? =
+
+Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to see the full redirect chain and HTTP status codes.
+
+== Screenshots ==
+
+1. Links management screen
+2. Edit link with UTM parameters
+3. Click statistics dashboard
+4. Settings page
+5. Cloudflare integration
+
 == Changelog ==
 
 = 1.0.0 =
@@ -66,11 +103,14 @@ No personal data is collected. Statistics are aggregated (total clicks per day) 
 * WP-only redirect handling
 * Links CRUD management
 * CSV import/export
+* UTM parameter support
 * Aggregated click statistics
+* Dashboard widget
 * Cloudflare edge integration
 * Diagnostic tools
+* REST API
 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release.
+Initial release. Welcome to Edge Link Router!

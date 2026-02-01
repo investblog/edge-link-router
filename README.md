@@ -2,6 +2,8 @@
 
 Simple redirect management WordPress plugin with optional Cloudflare edge acceleration.
 
+**[Home](https://301.st)** · **[WordPress Plugin](https://wordpress.org/plugins/edge-link-router/)** · **[Chrome Extension](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)**
+
 ## Features
 
 - **WP-only mode** — Works immediately without external services
@@ -20,9 +22,17 @@ Simple redirect management WordPress plugin with optional Cloudflare edge accele
 
 ## Installation
 
+### From GitHub
+
 1. Download the latest release ZIP from [Releases](https://github.com/investblog/edge-link-router/releases)
 2. Go to **Plugins → Add New → Upload Plugin**
 3. Upload the ZIP file and activate
+
+### From WordPress.org
+
+1. Go to **Plugins → Add New**
+2. Search for "Edge Link Router"
+3. Click **Install Now** and then **Activate**
 
 ## Usage
 
@@ -42,6 +52,10 @@ Your redirect will be available at `https://yoursite.com/go/promo`
 ### Changing the prefix
 
 By default, redirects use the `/go/` prefix. Change it in **Link Router → Settings**.
+
+### Testing redirects
+
+Use [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to verify your redirects are working correctly and see the full redirect chain.
 
 ## Development
 
@@ -63,6 +77,13 @@ npm run lint:php
 # Build release ZIP
 npm run build
 ```
+
+## Links
+
+- **Project Home:** [301.st](https://301.st)
+- **WordPress.org:** [Plugin Page](https://wordpress.org/plugins/edge-link-router/)
+- **Chrome Extension:** [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)
+- **Author:** [301st on WordPress.org](https://profiles.wordpress.org/301st/)
 
 ## License
 
