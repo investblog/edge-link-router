@@ -289,6 +289,7 @@ class LinksPage {
 		}
 
 		$importer = new Importer();
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- file upload array, validated in importer
 		$results  = $importer->import_uploaded( $_FILES['csv_file'] );
 
 		set_transient( 'cfelr_import_results', $results, 60 );
@@ -555,8 +556,8 @@ class LinksPage {
 						printf(
 							/* translators: %1$d: created count, %2$d: updated count, %3$d: error count */
 							esc_html__( 'Import complete: %1$d created, %2$d updated, %3$d errors.', 'edge-link-router' ),
-							$results['created'],
-							$results['updated'],
+							(int) $results['created'],
+							(int) $results['updated'],
 							count( $results['errors'] )
 						);
 						?>

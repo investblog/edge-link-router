@@ -275,7 +275,11 @@ class IntegrationsPage {
 
 								<ul class="cfelr-diagnostics-list">
 									<?php foreach ( $auth_checks as $check ) : ?>
-										<?php if ( str_starts_with( $check['name'], '_' ) ) continue; ?>
+										<?php
+										if ( str_starts_with( $check['name'], '_' ) ) {
+											continue;
+										}
+										?>
 										<li>
 											<div class="cfelr-check-status cfelr-check-<?php echo esc_attr( $check['status'] ); ?>">
 												<?php $this->render_status_icon( $check['status'] ); ?>

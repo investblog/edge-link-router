@@ -240,24 +240,20 @@ class DashboardWidget {
 		// Query 1: Get links count (total and enabled in one query).
 		$links_table = $wpdb->prefix . 'cfelr_links';
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$counts = $wpdb->get_row(
-			"SELECT
-				COUNT(*) as total,
-				SUM(CASE WHEN enabled = 1 THEN 1 ELSE 0 END) as enabled
-			FROM {$links_table}"
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
+			"SELECT COUNT(*) as total, SUM(CASE WHEN enabled = 1 THEN 1 ELSE 0 END) as enabled FROM {$links_table}"
 		);
 
 		// Query 2: Get today's clicks.
 		$clicks_table = $wpdb->prefix . 'cfelr_clicks_daily';
 		$today        = gmdate( 'Y-m-d' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$today_clicks = $wpdb->get_var(
-			$wpdb->prepare(
-				"SELECT COALESCE(SUM(clicks), 0) FROM {$clicks_table} WHERE day = %s",
-				$today
-			)
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
+			$wpdb->prepare( "SELECT COALESCE(SUM(clicks), 0) FROM {$clicks_table} WHERE day = %s", $today )
 		);
 
 		// Get cached health status (no SQL/HTTP).

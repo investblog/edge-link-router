@@ -99,7 +99,7 @@ class StatsPage {
 					printf(
 						/* translators: %d: number of days */
 						esc_html__( 'Top Links (Last %d Days)', 'edge-link-router' ),
-						$days
+						(int) $days
 					);
 					?>
 				</h2>
