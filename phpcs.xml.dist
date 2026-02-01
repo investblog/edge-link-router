@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="Edge Link Router">
+    <description>PHP CodeSniffer configuration for Edge Link Router plugin.</description>
+
+    <file>./plugin</file>
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*.min.js</exclude-pattern>
+    <exclude-pattern>*.min.css</exclude-pattern>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <config name="minimum_wp_version" value="6.0"/>
+    <config name="testVersion" value="8.0-"/>
+
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="edge-link-router"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="cfelr"/>
+                <element value="CFELR"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

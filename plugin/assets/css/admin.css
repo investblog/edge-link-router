@@ -1,0 +1,912 @@
+/**
+ * Edge Link Router - Admin Styles
+ *
+ * All styles scoped to .cfelr-admin to avoid global conflicts.
+ */
+
+/* Cards */
+.cfelr-admin .cfelr-card {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 20px;
+	margin: 20px 0;
+}
+
+.cfelr-admin .cfelr-card h2 {
+	margin-top: 0;
+	padding-top: 0;
+	border-bottom: 1px solid #dcdcde;
+	padding-bottom: 10px;
+}
+
+/* Health Badges */
+.cfelr-admin .cfelr-health-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.cfelr-admin .cfelr-health-badge .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.cfelr-admin .cfelr-health-wp-only {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.cfelr-admin .cfelr-health-active {
+	background: #d4edda;
+	color: #155724;
+}
+
+.cfelr-admin .cfelr-health-degraded {
+	background: #fff3cd;
+	color: #856404;
+}
+
+/* Status indicators */
+.cfelr-admin .cfelr-status-ok {
+	color: #00a32a;
+}
+
+.cfelr-admin .cfelr-status-warn {
+	color: #dba617;
+}
+
+.cfelr-admin .cfelr-status-fail {
+	color: #d63638;
+}
+
+/* Placeholder boxes */
+.cfelr-admin .cfelr-placeholder {
+	background: #f6f7f7;
+	border: 1px dashed #c3c4c7;
+	border-radius: 4px;
+	padding: 15px;
+	margin: 15px 0;
+}
+
+.cfelr-admin .cfelr-placeholder ul {
+	margin: 10px 0 0 20px;
+}
+
+/* Log entries */
+.cfelr-admin .cfelr-log-type {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.cfelr-admin .cfelr-log-type-reconcile {
+	background: #e7f5ff;
+	color: #0073aa;
+}
+
+.cfelr-admin .cfelr-log-type-publish {
+	background: #d4edda;
+	color: #155724;
+}
+
+.cfelr-admin .cfelr-log-type-stats_cleanup {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+/* Diagnostics checklist */
+.cfelr-admin .cfelr-diagnostics-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cfelr-admin .cfelr-diagnostics-list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.cfelr-admin .cfelr-diagnostics-list li:last-child {
+	border-bottom: none;
+}
+
+.cfelr-admin .cfelr-check-status {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cfelr-admin .cfelr-check-status .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.cfelr-admin .cfelr-check-ok .dashicons {
+	color: #00a32a;
+}
+
+.cfelr-admin .cfelr-check-warn .dashicons {
+	color: #dba617;
+}
+
+.cfelr-admin .cfelr-check-fail .dashicons {
+	color: #d63638;
+}
+
+.cfelr-admin .cfelr-check-content {
+	flex-grow: 1;
+}
+
+.cfelr-admin .cfelr-check-name {
+	font-weight: 500;
+	margin-bottom: 4px;
+}
+
+.cfelr-admin .cfelr-check-message {
+	color: #646970;
+	font-size: 13px;
+}
+
+.cfelr-admin .cfelr-check-hint {
+	margin-top: 8px;
+	padding: 8px;
+	background: #fff8e5;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+/* Buttons */
+.cfelr-admin .button-cfelr-primary {
+	background: #0073aa;
+	border-color: #0073aa;
+	color: #fff;
+}
+
+.cfelr-admin .button-cfelr-primary:hover,
+.cfelr-admin .button-cfelr-primary:focus {
+	background: #005a87;
+	border-color: #005a87;
+	color: #fff;
+}
+
+/* Form sections */
+.cfelr-admin .cfelr-form-section {
+	margin-bottom: 20px;
+}
+
+.cfelr-admin .cfelr-form-section label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.cfelr-admin .cfelr-form-section .description {
+	color: #646970;
+	font-size: 13px;
+	margin-top: 5px;
+}
+
+/* Form elements */
+.cfelr-admin .cfelr-url-prefix {
+	background: #f0f0f1;
+	border: 1px solid #8c8f94;
+	border-right: none;
+	padding: 0 8px;
+	line-height: 28px;
+	color: #50575e;
+	border-radius: 4px 0 0 4px;
+	font-family: monospace;
+	font-size: 13px;
+}
+
+.cfelr-admin .cfelr-url-prefix + input {
+	border-radius: 0 4px 4px 0;
+}
+
+.cfelr-admin .form-table th {
+	width: 180px;
+}
+
+.cfelr-admin .required {
+	color: #d63638;
+}
+
+/* Test results */
+.cfelr-admin .cfelr-test-result {
+	margin-top: 20px;
+	padding: 15px;
+	background: #f6f7f7;
+	border-radius: 4px;
+}
+
+.cfelr-admin .cfelr-test-result h4 {
+	margin-top: 0;
+}
+
+.cfelr-admin .cfelr-test-output {
+	background: #1d2327;
+	color: #50c878;
+	padding: 15px;
+	border-radius: 4px;
+	overflow-x: auto;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+/* Notice inline */
+.cfelr-admin .notice.inline {
+	margin: 5px 0;
+}
+
+/* Code elements */
+.cfelr-admin code {
+	background: #f0f0f1;
+	padding: 2px 6px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+/* ========================================
+   Links List Table
+   Design tokens scoped to plugin
+   ======================================== */
+
+.cfelr-admin {
+	--cfelr-radius: 10px;
+	--cfelr-radius-sm: 8px;
+	--cfelr-pad-y: 10px;
+	--cfelr-pad-x: 12px;
+	--cfelr-muted: #646970;
+	--cfelr-border: rgba(0, 0, 0, 0.08);
+	--cfelr-surface: #fff;
+	--cfelr-surface-2: #f6f7f7;
+	--cfelr-hover: #f0f6fc;
+	--cfelr-focus: var(--wp-admin-theme-color, #2271b1);
+}
+
+/* Table baseline */
+.cfelr-admin .wp-list-table.cfelr-links-table {
+	border: 1px solid var(--cfelr-border);
+	border-radius: var(--cfelr-radius);
+	overflow: hidden;
+	background: var(--cfelr-surface);
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table thead th,
+.cfelr-admin .wp-list-table.cfelr-links-table tfoot th {
+	background: var(--cfelr-surface-2);
+	border-bottom: 1px solid var(--cfelr-border);
+	font-weight: 600;
+	color: #1d2327;
+	padding: 10px var(--cfelr-pad-x);
+	vertical-align: middle;
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table tfoot th {
+	border-top: 1px solid var(--cfelr-border);
+	border-bottom: 0;
+}
+
+/* Row density */
+.cfelr-admin .wp-list-table.cfelr-links-table td {
+	padding: var(--cfelr-pad-y) var(--cfelr-pad-x);
+	vertical-align: middle;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table tbody tr:hover td {
+	background: var(--cfelr-hover);
+}
+
+/* Checkbox column */
+.cfelr-admin .wp-list-table.cfelr-links-table th.check-column,
+.cfelr-admin .wp-list-table.cfelr-links-table td.check-column {
+	width: 42px;
+	padding-left: 12px;
+	padding-right: 8px;
+}
+
+/* Column widths */
+.cfelr-admin .wp-list-table.cfelr-links-table .column-slug {
+	width: 240px;
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table .column-status_code {
+	width: 120px;
+	text-align: left;
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table .column-enabled {
+	width: 80px;
+	text-align: center;
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table .column-clicks {
+	width: 100px;
+	text-align: right;
+}
+
+.cfelr-admin .wp-list-table.cfelr-links-table .column-created_at {
+	width: 120px;
+	white-space: nowrap;
+}
+
+/* ----------------------------------------
+   Slug cell
+   ---------------------------------------- */
+.cfelr-admin .cfelr-slug {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+
+.cfelr-admin .cfelr-slug__main {
+	min-width: 0;
+}
+
+.cfelr-admin .cfelr-slug__title {
+	display: block;
+	font-weight: 600;
+	color: #1d2327;
+	text-decoration: none;
+	line-height: 1.3;
+}
+
+.cfelr-admin .cfelr-slug__title:hover {
+	color: var(--cfelr-focus);
+}
+
+.cfelr-admin .cfelr-slug__path {
+	display: block;
+	margin-top: 2px;
+	font-size: 12px;
+	color: var(--cfelr-muted);
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 180px;
+}
+
+/* Copy button */
+.cfelr-admin .cfelr-copy {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 6px;
+	border: 1px solid var(--cfelr-border);
+	background: #fff;
+	color: #50575e;
+	cursor: pointer;
+	transition: all 0.15s;
+}
+
+.cfelr-admin .cfelr-copy:hover {
+	border-color: rgba(0, 0, 0, 0.18);
+	color: var(--cfelr-focus);
+}
+
+.cfelr-admin .cfelr-copy:focus {
+	outline: 2px solid rgba(34, 113, 177, 0.35);
+	outline-offset: 2px;
+}
+
+.cfelr-admin .cfelr-copy.cfelr-copied {
+	color: #008a20;
+	border-color: rgba(0, 163, 42, 0.3);
+}
+
+/* ----------------------------------------
+   Target URL cell
+   ---------------------------------------- */
+.cfelr-admin .cfelr-target {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+}
+
+.cfelr-admin .cfelr-target a {
+	display: block;
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: var(--cfelr-focus);
+	text-decoration: none;
+}
+
+.cfelr-admin .cfelr-target a:hover {
+	text-decoration: underline;
+}
+
+/* ----------------------------------------
+   Status badge (pill style from 301-ui)
+   ---------------------------------------- */
+.cfelr-admin .cfelr-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	border: 1px solid transparent;
+	font-size: 12px;
+	font-weight: 500;
+	white-space: nowrap;
+	line-height: 1.4;
+}
+
+.cfelr-admin .cfelr-badge__code {
+	font-weight: 700;
+}
+
+.cfelr-admin .cfelr-badge__label {
+	opacity: 0.85;
+}
+
+/* Permanent redirects (301, 308) - neutral/muted */
+.cfelr-admin .cfelr-badge--301,
+.cfelr-admin .cfelr-badge--308 {
+	background: rgba(100, 105, 112, 0.08);
+	border-color: rgba(100, 105, 112, 0.25);
+	color: #50575e;
+}
+
+/* Temporary redirects (302, 307) - warning/yellow */
+.cfelr-admin .cfelr-badge--302,
+.cfelr-admin .cfelr-badge--307 {
+	background: rgba(255, 179, 71, 0.12);
+	border-color: rgba(255, 179, 71, 0.45);
+	color: #996800;
+}
+
+/* ----------------------------------------
+   Enabled icon
+   ---------------------------------------- */
+.cfelr-admin .cfelr-enabled {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: rgba(0, 163, 42, 0.12);
+	color: #008a20;
+}
+
+.cfelr-admin .cfelr-enabled .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+.cfelr-admin .cfelr-enabled--off {
+	background: rgba(100, 105, 112, 0.12);
+	color: var(--cfelr-muted);
+}
+
+/* ----------------------------------------
+   Clicks & Created
+   ---------------------------------------- */
+.cfelr-admin .wp-list-table.cfelr-links-table .column-clicks {
+	font-variant-numeric: tabular-nums;
+}
+
+/* Row hover for actions */
+.cfelr-admin .wp-list-table.cfelr-links-table .row-actions {
+	padding-top: 4px;
+}
+
+/* Hide text Copy action on desktop - we have icon button */
+.cfelr-admin .wp-list-table.cfelr-links-table .row-actions .copy {
+	display: none;
+}
+
+/* Period selector */
+.cfelr-admin .cfelr-period-selector {
+	display: flex;
+	gap: 5px;
+}
+
+/* UTM Fields */
+.cfelr-admin .cfelr-utm-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-width: 400px;
+}
+
+.cfelr-admin .cfelr-utm-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.cfelr-admin .cfelr-utm-row label {
+	width: 100px;
+	flex-shrink: 0;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+	color: #50575e;
+}
+
+.cfelr-admin .cfelr-utm-row input {
+	flex: 1;
+	max-width: 250px;
+}
+
+/* ========================================
+   Loading Spinner
+   ======================================== */
+
+.cfelr-spinner {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #0073aa;
+	border-radius: 50%;
+	animation: cfelr-spin 0.8s linear infinite;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+@keyframes cfelr-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* Button with spinner */
+.cfelr-admin button:disabled .cfelr-spinner {
+	border-top-color: #a7aaad;
+}
+
+/* ========================================
+   Empty States
+   ======================================== */
+
+.cfelr-admin .cfelr-empty-state {
+	text-align: center;
+	padding: 40px 20px;
+	background: #f9f9f9;
+	border: 1px dashed #c3c4c7;
+	border-radius: 4px;
+	margin: 20px 0;
+}
+
+.cfelr-admin .cfelr-empty-state .dashicons {
+	font-size: 48px;
+	width: 48px;
+	height: 48px;
+	color: #c3c4c7;
+	margin-bottom: 15px;
+}
+
+.cfelr-admin .cfelr-empty-state h3 {
+	margin: 0 0 10px 0;
+	font-size: 18px;
+	color: #1d2327;
+}
+
+.cfelr-admin .cfelr-empty-state p {
+	color: #646970;
+	margin: 0 0 20px 0;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cfelr-admin .cfelr-empty-state .button {
+	margin-top: 5px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media screen and (max-width: 782px) {
+	/* Cards */
+	.cfelr-admin .cfelr-card {
+		padding: 15px;
+	}
+
+	.cfelr-admin .cfelr-diagnostics-list li {
+		flex-direction: column;
+	}
+
+	.cfelr-admin .form-table th {
+		width: auto;
+	}
+
+	.cfelr-admin .cfelr-url-prefix {
+		display: block;
+		border-radius: 4px;
+		border-right: 1px solid #8c8f94;
+		margin-bottom: 5px;
+	}
+
+	.cfelr-admin .cfelr-url-prefix + input {
+		border-radius: 4px;
+	}
+
+	/* UTM fields stack */
+	.cfelr-admin .cfelr-utm-fields {
+		max-width: 100%;
+	}
+
+	.cfelr-admin .cfelr-utm-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
+	}
+
+	.cfelr-admin .cfelr-utm-row label {
+		width: auto;
+	}
+
+	.cfelr-admin .cfelr-utm-row input {
+		width: 100%;
+		max-width: none;
+	}
+
+	/* ----------------------------------------
+	   Top header controls
+	   ---------------------------------------- */
+	.cfelr-admin .tablenav.top {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		align-items: center;
+		margin-bottom: 12px;
+	}
+
+	.cfelr-admin .tablenav .bulkactions {
+		display: none;
+	}
+
+	.cfelr-admin .tablenav .tablenav-pages {
+		margin: 0;
+		float: none;
+	}
+
+	.cfelr-admin .search-box {
+		width: 100%;
+		display: flex;
+		gap: 6px;
+	}
+
+	.cfelr-admin .search-box input[type="search"] {
+		flex: 1;
+		min-width: 0;
+	}
+
+	/* ----------------------------------------
+	   Table → Card-based layout
+	   ---------------------------------------- */
+	.cfelr-admin .wp-list-table.cfelr-links-table {
+		border: none;
+		border-radius: 0;
+		background: transparent;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table thead,
+	.cfelr-admin .wp-list-table.cfelr-links-table tfoot {
+		display: none;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table tbody {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table tr {
+		display: block;
+		background: var(--cfelr-surface);
+		border: 1px solid var(--cfelr-border);
+		border-radius: var(--cfelr-radius);
+		overflow: hidden;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table tr:hover td {
+		background: transparent;
+	}
+
+	/* Hide checkbox column */
+	.cfelr-admin .wp-list-table.cfelr-links-table .check-column,
+	.cfelr-admin .wp-list-table.cfelr-links-table th.check-column,
+	.cfelr-admin .wp-list-table.cfelr-links-table td.check-column {
+		display: none !important;
+	}
+
+	/* All cells become block rows */
+	.cfelr-admin .wp-list-table.cfelr-links-table td {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 14px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+		text-align: left !important;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table td:last-child {
+		border-bottom: 0;
+	}
+
+	/* Label from data-colname */
+	.cfelr-admin .wp-list-table.cfelr-links-table td::before {
+		content: attr(data-colname);
+		display: block;
+		flex: 0 0 90px;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		color: var(--cfelr-muted);
+	}
+
+	/* ----------------------------------------
+	   Slug cell — card header
+	   ---------------------------------------- */
+	.cfelr-admin .wp-list-table.cfelr-links-table td.column-slug {
+		display: block;
+		background: var(--cfelr-surface-2);
+		padding: 12px 14px;
+		border-bottom: 1px solid var(--cfelr-border);
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table td.column-slug::before {
+		display: none;
+	}
+
+	.cfelr-admin .cfelr-slug {
+		display: block;
+		width: 100%;
+	}
+
+	.cfelr-admin .cfelr-slug__main {
+		display: block;
+		padding-right: 30px; /* space for WP toggle */
+	}
+
+	.cfelr-admin .cfelr-slug__title {
+		font-size: 15px;
+	}
+
+	.cfelr-admin .cfelr-slug__path {
+		display: block;
+		max-width: none;
+	}
+
+	/* Hide copy button in header - will show in row-actions */
+	.cfelr-admin .cfelr-slug > .cfelr-copy {
+		display: none;
+	}
+
+	/* ----------------------------------------
+	   Row actions — buttons without separators
+	   ---------------------------------------- */
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions {
+		position: static !important;
+		visibility: visible !important;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		padding-top: 10px;
+		margin-top: 0;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions span {
+		padding: 0;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions span::after {
+		display: none;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 14px;
+		font-size: 13px;
+		line-height: 1;
+		border-radius: 6px;
+		background: var(--cfelr-surface);
+		border: 1px solid var(--cfelr-border);
+		text-decoration: none;
+		color: #1d2327;
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions a:hover {
+		background: var(--cfelr-hover);
+		border-color: rgba(0, 0, 0, 0.15);
+	}
+
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions .submitdelete {
+		color: #d63638;
+	}
+
+	/* Show Copy action on mobile */
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions .copy {
+		display: inline-flex;
+	}
+
+	/* Copy feedback for text action */
+	.cfelr-admin .wp-list-table.cfelr-links-table .row-actions .cfelr-copy-action.cfelr-copied {
+		background: rgba(0, 163, 42, 0.1);
+		border-color: rgba(0, 163, 42, 0.3);
+		color: #008a20;
+	}
+
+	/* ----------------------------------------
+	   Badge & URL adjustments
+	   ---------------------------------------- */
+	.cfelr-admin .cfelr-target a {
+		white-space: normal;
+		word-break: break-all;
+	}
+
+	.cfelr-admin .cfelr-badge {
+		font-size: 11px;
+		padding: 3px 8px;
+	}
+
+	/* Enabled indicator */
+	.cfelr-admin td.column-enabled::before {
+		flex: 0 0 90px;
+	}
+
+	/* Clicks column */
+	.cfelr-admin .cfelr-clicks {
+		font-weight: 600;
+	}
+
+	.cfelr-admin .cfelr-clicks-zero {
+		color: var(--cfelr-muted);
+		font-weight: 400;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.cfelr-admin .cfelr-empty-state {
+		padding: 30px 15px;
+	}
+
+	.cfelr-admin .wrap > h1 {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		align-items: center;
+	}
+
+	.cfelr-admin .wrap > h1 .page-title-action {
+		margin: 0;
+		padding: 4px 8px;
+		font-size: 12px;
+	}
+
+	/* Even smaller label column on very small screens */
+	.cfelr-admin .wp-list-table.cfelr-links-table td::before {
+		flex: 0 0 70px;
+		font-size: 10px;
+	}
+}

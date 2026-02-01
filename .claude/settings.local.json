@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(composer install:*)",
+      "Bash(npm run env:start:*)",
+      "Bash(systeminfo:*)",
+      "Bash(npm ls:*)",
+      "Bash(docker images:*)",
+      "Bash(npm run wp:plugin:activate:*)",
+      "Bash(npm run wp:cli:*)",
+      "Bash(npm run wp:rewrite:flush:*)",
+      "Bash(docker exec:*)",
+      "Bash(curl:*)",
+      "Bash(php -l:*)",
+      "WebSearch",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh repo create:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
