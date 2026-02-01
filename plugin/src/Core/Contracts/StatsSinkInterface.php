@@ -1,9 +1,4 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Stats Sink Interface.
  *
@@ -11,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 namespace CFELR\Core\Contracts;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Interface for recording click statistics.

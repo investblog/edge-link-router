@@ -1,9 +1,4 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Cloudflare API Client.
  *
@@ -11,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 namespace CFELR\Integrations\Cloudflare;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Client for Cloudflare API operations.

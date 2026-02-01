@@ -1,9 +1,4 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Links List Table.
  *
@@ -11,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 namespace CFELR\WP\Admin;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 use CFELR\WP\Repository\WPLinkRepository;
 use CFELR\WP\Repository\WPStatsRepository;

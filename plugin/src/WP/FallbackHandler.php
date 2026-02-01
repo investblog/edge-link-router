@@ -1,9 +1,4 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Fallback Handler.
  *
@@ -11,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 namespace CFELR\WP;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Fallback handler for when rewrite rules don't work.
