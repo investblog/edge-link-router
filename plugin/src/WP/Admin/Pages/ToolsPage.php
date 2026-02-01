@@ -277,7 +277,6 @@ class ToolsPage {
 	 * @return string
 	 */
 	private function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? 'go';
+		return SettingsPage::get_prefix();
 	}
 }

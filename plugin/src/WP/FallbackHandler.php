@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\WP\Admin\Pages\SettingsPage;
+
 /**
  * Fallback handler for when rewrite rules don't work.
  * Parses REQUEST_URI directly to catch redirect requests.
@@ -19,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class FallbackHandler {
 
 	/**
-	 * Default prefix.
+	 * Default prefix (deprecated, use SettingsPage::get_prefix()).
 	 *
 	 * @var string
 	 */
@@ -125,7 +127,6 @@ class FallbackHandler {
 	 * @return string
 	 */
 	private function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? self::DEFAULT_PREFIX;
+		return SettingsPage::get_prefix();
 	}
 }

@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\WP\Admin\Pages\SettingsPage;
+
 /**
  * Handles WordPress rewrite rules for redirect URLs.
  */
@@ -25,7 +27,7 @@ class RewriteHandler {
 	public const QUERY_VAR = 'cfelr_go';
 
 	/**
-	 * Default prefix.
+	 * Default prefix (deprecated, use SettingsPage::get_prefix()).
 	 *
 	 * @var string
 	 */
@@ -173,7 +175,6 @@ class RewriteHandler {
 	 * @return string
 	 */
 	public function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? self::DEFAULT_PREFIX;
+		return SettingsPage::get_prefix();
 	}
 }

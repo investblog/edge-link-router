@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\WP\Admin\Pages\SettingsPage;
+
 /**
  * Helper class to manage Cloudflare integration state.
  */
@@ -218,9 +220,8 @@ class IntegrationState {
 	 * @return string Route pattern like "example.com/go/*".
 	 */
 	public function get_route_pattern(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		$prefix   = $settings['prefix'] ?? 'go';
-		$host     = wp_parse_url( home_url(), PHP_URL_HOST );
+		$prefix = SettingsPage::get_prefix();
+		$host   = wp_parse_url( home_url(), PHP_URL_HOST );
 
 		return $host . '/' . $prefix . '/*';
 	}
@@ -231,8 +232,7 @@ class IntegrationState {
 	 * @return string
 	 */
 	public function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? 'go';
+		return SettingsPage::get_prefix();
 	}
 
 	/**

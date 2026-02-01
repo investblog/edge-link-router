@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use CFELR\Core\Models\Link;
 use CFELR\Core\Validator;
+use CFELR\WP\Admin\Pages\SettingsPage;
 use CFELR\WP\Repository\WPLinkRepository;
 
 /**
@@ -355,7 +356,6 @@ class Importer {
 	 * @return string
 	 */
 	private function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? 'go';
+		return SettingsPage::get_prefix();
 	}
 }

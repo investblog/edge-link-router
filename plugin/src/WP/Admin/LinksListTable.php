@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\WP\Admin\Pages\SettingsPage;
 use CFELR\WP\Repository\WPLinkRepository;
 use CFELR\WP\Repository\WPStatsRepository;
 
@@ -390,7 +391,6 @@ class LinksListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	private function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? 'go';
+		return SettingsPage::get_prefix();
 	}
 }

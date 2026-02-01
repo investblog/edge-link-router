@@ -702,8 +702,7 @@ docs,https://docs.example.com,301,1,1,"{""utm_source"":""website""}",Documentati
 	 * @return string
 	 */
 	private function get_prefix(): string {
-		$settings = get_option( 'cfelr_settings', array() );
-		return $settings['prefix'] ?? 'go';
+		return SettingsPage::get_prefix();
 	}
 
 	/**

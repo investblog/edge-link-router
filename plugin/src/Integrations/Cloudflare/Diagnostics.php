@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\WP\Admin\Pages\SettingsPage;
+
 /**
  * Diagnostic checks for Cloudflare integration.
  */
@@ -25,7 +27,7 @@ class Diagnostics {
 	public const STATUS_FAIL = 'fail';
 
 	/**
-	 * Default prefix.
+	 * Current prefix.
 	 *
 	 * @var string
 	 */
@@ -53,8 +55,7 @@ class Diagnostics {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$settings     = get_option( 'cfelr_settings', array() );
-		$this->prefix = $settings['prefix'] ?? 'go';
+		$this->prefix = SettingsPage::get_prefix();
 	}
 
 	/**

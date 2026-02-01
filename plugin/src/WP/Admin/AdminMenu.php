@@ -75,6 +75,12 @@ class AdminMenu {
 			$integrations_page = new Pages\IntegrationsPage();
 			$integrations_page->handle_early_actions();
 		}
+
+		// Settings page actions.
+		if ( self::MENU_SLUG . '-settings' === $page ) {
+			$settings_page = new Pages\SettingsPage();
+			$settings_page->handle_early_actions();
+		}
 	}
 
 	/**
@@ -132,6 +138,16 @@ class AdminMenu {
 			self::CAPABILITY,
 			self::MENU_SLUG . '-tools',
 			array( $this, 'render_tools_page' )
+		);
+
+		// Settings submenu.
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Settings', 'edge-link-router' ),
+			__( 'Settings', 'edge-link-router' ),
+			self::CAPABILITY,
+			self::MENU_SLUG . '-settings',
+			array( $this, 'render_settings_page' )
 		);
 
 		// Logs submenu.
@@ -241,6 +257,16 @@ class AdminMenu {
 	 */
 	public function render_logs_page(): void {
 		$page = new Pages\LogsPage();
+		$page->render();
+	}
+
+	/**
+	 * Render Settings page.
+	 *
+	 * @return void
+	 */
+	public function render_settings_page(): void {
+		$page = new Pages\SettingsPage();
 		$page->render();
 	}
 }
