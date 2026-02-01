@@ -50,6 +50,21 @@
 
         <!-- Comment spacing is stylistic -->
         <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
+
+        <!-- Allow fopen/fclose for CSV streaming to php://output -->
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_fopen"/>
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_fclose"/>
+
+        <!-- Allow assignment in while condition for fgetcsv pattern -->
+        <exclude name="Generic.CodeAnalysis.AssignmentInCondition"/>
+
+        <!-- False positives for complex prepare() queries -->
+        <exclude name="WordPress.DB.PreparedSQLPlaceholders"/>
+    </rule>
+
+    <!-- Template files have local variables that look global -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+        <exclude-pattern>*/templates/*</exclude-pattern>
     </rule>
 
     <rule ref="WordPress.WP.I18n">
