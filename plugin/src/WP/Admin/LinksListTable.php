@@ -262,7 +262,7 @@ class LinksListTable extends \WP_List_Table {
 	 */
 	public function column_target_url( $item ): string {
 		$url      = $item->target_url;
-		$full_url = $this->build_full_target_url( $item );
+		$full_url = $item->get_full_target_url();
 
 		return sprintf(
 			'<div class="cfelr-target"><a href="%s" target="_blank" rel="noopener noreferrer" title="%s">%s</a></div>',
@@ -270,29 +270,6 @@ class LinksListTable extends \WP_List_Table {
 			esc_attr( $full_url ),
 			esc_html( $url )
 		);
-	}
-
-	/**
-	 * Build full target URL with UTM parameters.
-	 *
-	 * @param object $item Link object.
-	 * @return string
-	 */
-	private function build_full_target_url( $item ): string {
-		$url = $item->target_url;
-
-		// Get options from Link object.
-		$options = $item->options ?? array();
-
-		// Append UTM parameters if configured.
-		if ( ! empty( $options['append_utm'] ) && is_array( $options['append_utm'] ) ) {
-			$utm_params = array_filter( $options['append_utm'] );
-			if ( ! empty( $utm_params ) ) {
-				$url = add_query_arg( $utm_params, $url );
-			}
-		}
-
-		return $url;
 	}
 
 	/**

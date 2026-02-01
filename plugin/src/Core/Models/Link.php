@@ -122,6 +122,24 @@ class Link {
 	}
 
 	/**
+	 * Get full target URL with UTM parameters appended.
+	 *
+	 * @return string
+	 */
+	public function get_full_target_url(): string {
+		$url = $this->target_url;
+
+		if ( ! empty( $this->options['append_utm'] ) && is_array( $this->options['append_utm'] ) ) {
+			$utm_params = array_filter( $this->options['append_utm'] );
+			if ( ! empty( $utm_params ) ) {
+				$url = add_query_arg( $utm_params, $url );
+			}
+		}
+
+		return $url;
+	}
+
+	/**
 	 * Convert to snapshot format for edge.
 	 *
 	 * @return array
