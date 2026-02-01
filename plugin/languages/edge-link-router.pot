@@ -1,0 +1,1672 @@
+# Copyright (C) 2026 301.st
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Edge Link Router 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/edge-link-router\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-02-01T22:44:06+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: edge-link-router\n"
+
+#. Plugin Name of the plugin
+#: edge-link-router.php
+#: src/WP/Admin/AdminMenu.php:94
+msgid "Edge Link Router"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: edge-link-router.php
+msgid "https://github.com/investblog/edge-link-router"
+msgstr ""
+
+#. Description of the plugin
+#: edge-link-router.php
+msgid "Simple redirect management with optional Cloudflare edge acceleration. Works immediately in WP-only mode, edge is optional."
+msgstr ""
+
+#. Author of the plugin
+#: edge-link-router.php
+msgid "301.st"
+msgstr ""
+
+#. Author URI of the plugin
+#: edge-link-router.php
+msgid "https://301.st"
+msgstr ""
+
+#: edge-link-router.php:124
+msgid "Sample link created on plugin activation. Feel free to edit or delete."
+msgstr ""
+
+#: src/Core/Validator.php:104
+msgid "Slug is required."
+msgstr ""
+
+#. translators: %d: maximum slug length
+#: src/Core/Validator.php:112
+#, php-format
+msgid "Slug must be %d characters or less."
+msgstr ""
+
+#: src/Core/Validator.php:120
+msgid "Slug can only contain lowercase letters, numbers, hyphens, and underscores."
+msgstr ""
+
+#: src/Core/Validator.php:125
+msgid "This slug is reserved and cannot be used."
+msgstr ""
+
+#: src/Core/Validator.php:170
+msgid "Target URL is required."
+msgstr ""
+
+#. translators: %d: maximum URL length
+#: src/Core/Validator.php:178
+#, php-format
+msgid "Target URL must be %d characters or less."
+msgstr ""
+
+#: src/Core/Validator.php:186
+msgid "Target URL must use http or https scheme."
+msgstr ""
+
+#: src/Core/Validator.php:192
+msgid "Target URL is not valid."
+msgstr ""
+
+#: src/Core/Validator.php:201
+msgid "Target URL cannot point to the same redirect (infinite loop)."
+msgstr ""
+
+#. translators: %s: list of allowed status codes
+#: src/Core/Validator.php:221
+#, php-format
+msgid "Status code must be one of: %s."
+msgstr ""
+
+#: src/Core/Validator.php:239
+msgid "Options must be an array."
+msgstr ""
+
+#: src/Core/Validator.php:245
+msgid "UTM parameters must be an array."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:210
+msgid "No matching zone found for this domain."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:453
+#: src/Integrations/Cloudflare/Client.php:565
+msgid "API token not configured."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:471
+msgid "Request timed out. Please try again later."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:504
+msgid "Rate limit exceeded. Please try again later."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:516
+msgid "Rate limited. Please try again later."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Client.php:530
+#: src/Integrations/Cloudflare/Client.php:603
+msgid "Unknown error"
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: src/Integrations/Cloudflare/Client.php:537
+#: src/Integrations/Cloudflare/Client.php:610
+#, php-format
+msgid "API error: HTTP %d"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:67
+msgid "Missing required configuration. Run diagnostics first."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:90
+msgid "Edge mode enabled."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:92
+msgid "Edge mode enabled successfully."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:111
+#: src/Integrations/Cloudflare/Deployer.php:113
+msgid "Edge mode disabled."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:162
+msgid "Account ID not configured."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:185
+msgid "Zone ID not configured."
+msgstr ""
+
+#. translators: %s: route pattern
+#: src/Integrations/Cloudflare/Deployer.php:204
+#, php-format
+msgid "Route %s is already in use by another Worker."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:214
+msgid "Failed to create route."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:285
+msgid "Edge mode is not enabled."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Deployer.php:297
+#: src/WP/Admin/Pages/IntegrationsPage.php:683
+msgid "Snapshot republished successfully."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:120
+msgid "API Token Required"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:122
+msgid "Please configure your Cloudflare API token first."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:163
+msgid "Cloudflare Nameservers"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:172
+msgid "DNS lookup not available on this server. Cannot verify nameservers."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:192
+msgid "Could not retrieve NS records."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:193
+msgid "DNS lookup failed. This may be a temporary issue or DNS configuration problem."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:212
+msgid "Domain is using Cloudflare nameservers."
+msgstr ""
+
+#. translators: %s: list of nameservers
+#: src/Integrations/Cloudflare/Diagnostics.php:217
+#, php-format
+msgid "Domain is not using Cloudflare nameservers. Current NS: %s"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:220
+msgid "Edge features require Cloudflare. You can still use Cloudflare in CNAME/partial setup mode."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:235
+msgid "Cloudflare HTTP Headers"
+msgstr ""
+
+#. translators: %s: error message
+#: src/Integrations/Cloudflare/Diagnostics.php:256
+#, php-format
+msgid "Could not connect to site: %s"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:259
+msgid "Ensure your site is accessible over HTTPS."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:272
+msgid "Site is being served through Cloudflare."
+msgstr ""
+
+#. translators: %s: CF-Ray header value
+#: src/Integrations/Cloudflare/Diagnostics.php:277
+#, php-format
+msgid "(CF-Ray: %s)"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:283
+msgid "Cloudflare headers not detected. Site may not be proxied through Cloudflare."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:284
+msgid "Ensure your DNS record has the orange cloud (proxied) enabled in Cloudflare."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:299
+msgid "Cloudflare Trace Endpoint"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:317
+msgid "Could not reach Cloudflare trace endpoint."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:318
+msgid "This endpoint is only available when traffic is proxied through Cloudflare."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:337
+msgid "Cloudflare trace endpoint is accessible."
+msgstr ""
+
+#. translators: %s: Cloudflare datacenter code
+#: src/Integrations/Cloudflare/Diagnostics.php:342
+#, php-format
+msgid "(Datacenter: %s)"
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: src/Integrations/Cloudflare/Diagnostics.php:350
+#, php-format
+msgid "Cloudflare trace endpoint returned HTTP %d."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:353
+msgid "This may indicate the site is not proxied through Cloudflare."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:368
+msgid "HTTPS Availability"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:391
+msgid "SSL certificate error."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:392
+msgid "Ensure your SSL certificate is valid. Cloudflare provides free SSL certificates."
+msgstr ""
+
+#. translators: %s: error message
+#: src/Integrations/Cloudflare/Diagnostics.php:397
+#, php-format
+msgid "Could not connect via HTTPS: %s"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:400
+msgid "Edge mode requires HTTPS. Ensure your site is accessible over HTTPS."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:410
+msgid "Site is accessible over HTTPS."
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: src/Integrations/Cloudflare/Diagnostics.php:415
+#, php-format
+msgid "HTTPS request returned HTTP %d."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:418
+msgid "Ensure your site responds correctly to HTTPS requests."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:432
+msgid "Redirect Prefix Availability"
+msgstr ""
+
+#. translators: %s: prefix
+#: src/Integrations/Cloudflare/Diagnostics.php:445
+#, php-format
+msgid "\"%s\" is a reserved WordPress path."
+msgstr ""
+
+#. translators: %1$s: prefix, %2$s: post type
+#: src/Integrations/Cloudflare/Diagnostics.php:455
+#: src/WP/Admin/Pages/SettingsPage.php:177
+#, php-format
+msgid "A %2$s with slug \"%1$s\" already exists."
+msgstr ""
+
+#. translators: %1$s: prefix, %2$s: post type name
+#: src/Integrations/Cloudflare/Diagnostics.php:467
+#: src/WP/Admin/Pages/SettingsPage.php:189
+#, php-format
+msgid "Post type \"%2$s\" uses the slug \"%1$s\"."
+msgstr ""
+
+#. translators: %1$s: prefix, %2$s: taxonomy name
+#: src/Integrations/Cloudflare/Diagnostics.php:480
+#: src/WP/Admin/Pages/SettingsPage.php:202
+#, php-format
+msgid "Taxonomy \"%2$s\" uses the slug \"%1$s\"."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:490
+msgid "Consider using a different prefix to avoid conflicts. You can change it in the plugin settings."
+msgstr ""
+
+#. translators: %s: prefix
+#: src/Integrations/Cloudflare/Diagnostics.php:494
+#, php-format
+msgid "Prefix \"/%s/\" is available and has no conflicts."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:512
+msgid "Cloudflare Zone Match"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:522
+msgid "Could not find a Cloudflare zone for this domain."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:523
+msgid "Ensure the domain is added to your Cloudflare account and the API token has Zone:Read permission."
+msgstr ""
+
+#. translators: %1$s: zone name, %2$s: zone ID
+#: src/Integrations/Cloudflare/Diagnostics.php:536
+#, php-format
+msgid "Zone found: %1$s (ID: %2$s)"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:555
+msgid "Proxied DNS Record"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:562
+msgid "Zone information not available."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:570
+msgid "No DNS record found for this hostname."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:571
+msgid "Ensure an A, AAAA, or CNAME record exists for this hostname."
+msgstr ""
+
+#. translators: %s: DNS record type
+#: src/Integrations/Cloudflare/Diagnostics.php:579
+#, php-format
+msgid "DNS record (%s) is proxied through Cloudflare."
+msgstr ""
+
+#. translators: %s: DNS record type
+#: src/Integrations/Cloudflare/Diagnostics.php:586
+#, php-format
+msgid "DNS record (%s) is not proxied (grey cloud)."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:589
+msgid "Enable the proxy (orange cloud) in Cloudflare DNS settings. Workers only work with proxied records."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:604
+msgid "API Token Status"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:613
+msgid "Could not verify API token."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:614
+msgid "Check that your API token is valid and not expired."
+msgstr ""
+
+#. translators: %s: token status
+#: src/Integrations/Cloudflare/Diagnostics.php:621
+#, php-format
+msgid "API token is not active (status: %s)."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:624
+msgid "Create a new API token in Cloudflare dashboard."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:633
+msgid "API token is active but expires soon."
+msgstr ""
+
+#. translators: %s: expiration date
+#: src/Integrations/Cloudflare/Diagnostics.php:636
+#, php-format
+msgid "Token expires on %s. Consider creating a new one."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:644
+msgid "API token is valid and active."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:659
+msgid "Worker Route Availability"
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:667
+msgid "Could not check routes without zone information."
+msgstr ""
+
+#. translators: %s: route pattern
+#: src/Integrations/Cloudflare/Diagnostics.php:682
+#, php-format
+msgid "Route pattern \"%s\" is already in use."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:688
+msgid "Route is already configured for this plugin."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Diagnostics.php:690
+msgid "Another Worker is using this route. You may need to remove it first or use a different prefix."
+msgstr ""
+
+#. translators: %s: route pattern
+#: src/Integrations/Cloudflare/Diagnostics.php:695
+#, php-format
+msgid "Route pattern \"%s\" is available."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:70
+#: src/Integrations/Cloudflare/Health.php:92
+msgid "Edge mode not configured."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:103
+msgid "Edge mode not enabled."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:115
+msgid "Account ID missing. Run diagnostics."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:127
+msgid "Worker script not found. WP fallback active."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:139
+msgid "Zone ID missing. Run diagnostics."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:151
+msgid "Worker route not found. WP fallback active."
+msgstr ""
+
+#: src/Integrations/Cloudflare/Health.php:161
+msgid "Edge mode is active and healthy."
+msgstr ""
+
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:74
+msgid "Edge publishing not ready. Configure API token and run diagnostics first."
+msgstr ""
+
+#. translators: %1$s: current size, %2$s: limit size
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:83
+#, php-format
+msgid "Bundle size (%1$s) exceeds the limit (%2$s). Reduce the number of links or URL lengths."
+msgstr ""
+
+#. translators: 1: number of links being published, 2: recommended limit
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:98
+#, php-format
+msgid "Publishing %1$d links exceeds the recommended limit of %2$d."
+msgstr ""
+
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:108
+msgid "Account ID not available. Run authorized diagnostics first."
+msgstr ""
+
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:116
+msgid "Failed to generate Worker script."
+msgstr ""
+
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:124
+msgid "Failed to upload Worker script."
+msgstr ""
+
+#. translators: %d: number of links
+#: src/Integrations/Cloudflare/SnapshotPublisher.php:136
+#, php-format
+msgid "Snapshot published successfully with %d links."
+msgstr ""
+
+#: src/Integrations/ThreeOhOneSt/StubClient.php:49
+#: src/Integrations/ThreeOhOneSt/StubHealth.php:30
+msgid "301.st integration is not available yet."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:95
+msgid "Link Router"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:106
+#: src/WP/Admin/AdminMenu.php:107
+#: src/WP/Admin/DashboardWidget.php:87
+#: src/WP/Admin/Pages/LinksPage.php:321
+msgid "Links"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:116
+#: src/WP/Admin/Pages/StatsPage.php:61
+msgid "Statistics"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:117
+msgid "Stats"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:126
+#: src/WP/Admin/AdminMenu.php:127
+#: src/WP/Admin/Pages/IntegrationsPage.php:99
+msgid "Integrations"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:136
+#: src/WP/Admin/AdminMenu.php:137
+#: src/WP/Admin/Pages/ToolsPage.php:33
+msgid "Tools"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:146
+#: src/WP/Admin/AdminMenu.php:147
+#: src/WP/Admin/Pages/SettingsPage.php:226
+msgid "Settings"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:156
+#: src/WP/Admin/AdminMenu.php:157
+#: src/WP/Admin/Pages/LogsPage.php:67
+msgid "Logs"
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:200
+msgid "Are you sure you want to delete this link?"
+msgstr ""
+
+#. translators: %d: number of selected links
+#: src/WP/Admin/AdminMenu.php:202
+#, php-format
+msgid "Are you sure you want to delete %d selected link(s)? This action cannot be undone."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:203
+msgid "Are you sure you want to clear all logs? This action cannot be undone."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:204
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:205
+msgid "Running..."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:206
+msgid "Testing..."
+msgstr ""
+
+#: src/WP/Admin/AdminMenu.php:207
+msgid "Copied!"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:58
+msgid "Edge Link Router — Status"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:79
+msgid "Mode"
+msgstr ""
+
+#. translators: %1$s: enabled count, %2$s: total count
+#: src/WP/Admin/DashboardWidget.php:92
+#, php-format
+msgid "%1$s enabled / %2$s total"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:102
+msgid "Clicks Today"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:112
+msgid "Last edge publish"
+msgstr ""
+
+#. translators: %s: human-readable time diff
+#: src/WP/Admin/DashboardWidget.php:116
+#, php-format
+msgid "Published %s ago"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:123
+msgid "Last health check"
+msgstr ""
+
+#. translators: %s: human-readable time diff
+#: src/WP/Admin/DashboardWidget.php:127
+#, php-format
+msgid "Checked %s ago"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:139
+msgid "Open Links"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:142
+#: src/WP/Admin/Pages/IntegrationsPage.php:249
+msgid "Run Diagnostics"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:213
+#: src/WP/Admin/Pages/IntegrationsPage.php:718
+#: src/WP/Admin/Pages/LogsPage.php:78
+msgid "WP Only"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:217
+#: src/WP/Admin/Pages/IntegrationsPage.php:723
+#: src/WP/Admin/Pages/LogsPage.php:79
+msgid "Edge Active"
+msgstr ""
+
+#: src/WP/Admin/DashboardWidget.php:221
+#: src/WP/Admin/Pages/IntegrationsPage.php:728
+#: src/WP/Admin/Pages/LogsPage.php:80
+msgid "Edge Degraded"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:67
+#: src/WP/Admin/Pages/LinksPage.php:422
+#: src/WP/Admin/Pages/StatsPage.php:123
+#: src/WP/Admin/Pages/ToolsPage.php:195
+msgid "Slug"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:68
+#: src/WP/Admin/Pages/LinksPage.php:438
+#: src/WP/Admin/Pages/StatsPage.php:124
+#: src/WP/Admin/Pages/ToolsPage.php:196
+msgid "Target URL"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:69
+#: src/WP/Admin/Pages/LinksPage.php:465
+msgid "Status"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:70
+#: src/WP/Admin/LinksListTable.php:311
+#: src/WP/Admin/Pages/LinksPage.php:469
+#: src/WP/Admin/Pages/ToolsPage.php:269
+msgid "Enabled"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:71
+msgid "Clicks (30d)"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:72
+msgid "Created"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:118
+msgid "Enable"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:119
+msgid "Disable"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:120
+#: src/WP/Admin/LinksListTable.php:234
+msgid "Delete"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:207
+msgid "Copy"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:212
+msgid "Edit"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:217
+#: src/WP/Admin/Pages/ToolsPage.php:61
+msgid "Test"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:249
+msgid "Copy link"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:250
+msgid "Copy link to clipboard"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:284
+#: src/WP/Admin/LinksListTable.php:287
+msgid "Permanent"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:285
+#: src/WP/Admin/LinksListTable.php:286
+msgid "Temporary"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:312
+msgid "Link is enabled"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:318
+#: src/WP/Admin/Pages/ToolsPage.php:270
+msgid "Disabled"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:319
+msgid "Link is disabled"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:348
+msgid "ago"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:379
+msgid "No links yet"
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:380
+msgid "Create your first redirect link to get started. Links can redirect visitors to any URL with optional UTM tracking."
+msgstr ""
+
+#: src/WP/Admin/LinksListTable.php:382
+#: src/WP/Admin/Pages/LinksPage.php:363
+msgid "Add New Link"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:105
+msgid "Cloudflare Edge"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:107
+msgid "Accelerate your redirects with Cloudflare Workers. Redirects happen at the edge, before reaching your WordPress server."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:117
+#: src/WP/Admin/Pages/LogsPage.php:74
+msgid "Edge Status"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:120
+msgid "Route Pattern"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:124
+msgid "Last Publish"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:131
+#: src/WP/Admin/Pages/IntegrationsPage.php:144
+#: src/WP/Admin/Pages/LogsPage.php:104
+msgid "Never"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:137
+msgid "Last Health Check"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:158
+msgid "Republish Snapshot"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:164
+msgid "Are you sure you want to disable edge mode?"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:166
+msgid "Disable Edge"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:175
+msgid "Domain Configuration"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:178
+msgid "Detected Domain"
+msgstr ""
+
+#. translators: %s: alias domain
+#: src/WP/Admin/Pages/IntegrationsPage.php:187
+#, php-format
+msgid "Alias: %s"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:196
+msgid "Home URL"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:204
+msgid "Diagnostics"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:212
+msgid "All checks passed"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:213
+#: src/WP/Admin/Pages/IntegrationsPage.php:274
+msgid "Some warnings detected"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:214
+#: src/WP/Admin/Pages/IntegrationsPage.php:275
+msgid "Issues detected"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:231
+#: src/WP/Admin/Pages/IntegrationsPage.php:297
+msgid "Tip:"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:242
+msgid "Run diagnostics to check if your site is ready for Cloudflare edge integration."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:249
+msgid "Run Again"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:256
+msgid "Cloudflare API Token"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:263
+msgid "API token configured."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:269
+msgid "Cloudflare API Checks"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:273
+msgid "All API checks passed"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:311
+msgid "Re-check API"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:311
+msgid "Check API Connection"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:319
+msgid "Remove the API token to disconnect from Cloudflare."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:321
+msgid "Are you sure you want to remove the API token?"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:322
+msgid "Remove Token"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:328
+msgid "How to create an API token:"
+msgstr ""
+
+#. translators: %s: link to Cloudflare dashboard
+#: src/WP/Admin/Pages/IntegrationsPage.php:334
+#, php-format
+msgid "Go to %s (User API Tokens page)"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:339
+msgid "Click \"Create Token\""
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:340
+msgid "Find \"Edit Cloudflare Workers\" template and click \"Use template\""
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:342
+msgid "In \"Zone Resources\", select \"Specific zone\" → your domain"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:345
+msgid "Add two more permissions (click \"+ Add more\"):"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:347
+msgid "Zone / Zone / Read"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:348
+msgid "Zone / DNS / Read"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:351
+msgid "Click \"Continue to summary\" → \"Create Token\""
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:352
+msgid "Copy the token (it is shown only once!)"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:357
+msgid "Required permissions summary"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:362
+msgid "Permission"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:363
+msgid "Level"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:368
+msgid "Workers Scripts: Edit"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:369
+msgid "Account"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:372
+msgid "Workers Routes: Edit"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:373
+#: src/WP/Admin/Pages/IntegrationsPage.php:377
+#: src/WP/Admin/Pages/IntegrationsPage.php:381
+msgid "Zone"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:376
+msgid "Zone: Read"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:380
+msgid "DNS: Read"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:386
+msgid "Account-level permissions apply to your entire Cloudflare account. Zone-level permissions can be restricted to a specific domain."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:393
+msgid "Open Cloudflare Dashboard"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:403
+msgid "API Token"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:408
+msgid "Your token will be encrypted before storage."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:415
+msgid "Save Token"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:425
+#: src/WP/Admin/Pages/IntegrationsPage.php:462
+msgid "Enable Edge Mode"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:435
+msgid "Configure your API token first."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:437
+msgid "Run public diagnostics first."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:439
+msgid "Fix the public diagnostic issues first."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:441
+msgid "Run API diagnostics first."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:443
+msgid "Fix the API diagnostic issues first."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:452
+msgid "All checks passed. Ready to enable edge mode."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:473
+msgid "301.st Integration"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:475
+msgid "Advanced routing features: geo-targeting, A/B testing, multi-domain management, and detailed analytics."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:478
+msgid "Coming in a future release. Features will include:"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:480
+msgid "Sync links to 301.st"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:481
+msgid "Advanced routing rules"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:482
+msgid "Detailed click analytics"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:483
+msgid "Geo-targeting and A/B testing"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:487
+msgid "Learn more about 301.st"
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:587
+#: src/WP/Admin/Pages/IntegrationsPage.php:616
+#: src/WP/Admin/Pages/IntegrationsPage.php:634
+#: src/WP/Admin/Pages/IntegrationsPage.php:659
+#: src/WP/Admin/Pages/IntegrationsPage.php:676
+#: src/WP/Admin/Pages/LinksPage.php:91
+#: src/WP/Admin/Pages/LinksPage.php:102
+#: src/WP/Admin/Pages/LinksPage.php:113
+#: src/WP/Admin/Pages/LinksPage.php:200
+#: src/WP/Admin/Pages/LinksPage.php:287
+#: src/WP/Admin/Pages/LogsPage.php:204
+#: src/WP/Admin/Pages/SettingsPage.php:101
+#: src/WP/Admin/Pages/ToolsPage.php:127
+#: src/WP/Admin/Pages/ToolsPage.php:153
+#: src/WP/Admin/Pages/ToolsPage.php:233
+msgid "Security check failed."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:594
+msgid "Please enter an API token."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:600
+msgid "API token appears to be invalid."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:609
+msgid "Failed to save API token."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:627
+msgid "Failed to enable edge mode."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:645
+msgid "Failed to disable edge mode."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:670
+msgid "API token removed."
+msgstr ""
+
+#: src/WP/Admin/Pages/IntegrationsPage.php:685
+msgid "Failed to republish snapshot."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:240
+msgid "A link with this slug already exists."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:291
+msgid "Please select a CSV file to import."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:323
+msgid "Add New"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:326
+#: src/WP/Admin/Pages/LinksPage.php:594
+msgid "Import"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:329
+msgid "Export"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:337
+msgid "Search Links"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:377
+#: src/WP/REST/LinksController.php:170
+msgid "Link not found."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:392
+msgid "Edit Link"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:431
+#: src/WP/Admin/Pages/SettingsPage.php:275
+msgid "Only lowercase letters, numbers, hyphens, and underscores allowed."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:444
+msgid "The URL visitors will be redirected to."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:451
+msgid "Redirect Type"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:472
+msgid "Disabled links will return a 404 error."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:478
+msgid "Options"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:483
+msgid "Pass through query string"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:486
+msgid "Append the original query string to the target URL."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:492
+#: src/WP/Admin/Pages/ToolsPage.php:205
+msgid "UTM Parameters"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:509
+msgid "Optional. Added to target URL for Google Analytics tracking."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:516
+msgid "Notes"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:521
+msgid "Internal notes (not visible to visitors)."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:528
+msgid "Update Link"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:528
+msgid "Create Link"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:529
+#: src/WP/Admin/Pages/LinksPage.php:595
+msgid "Cancel"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:549
+msgid "Import Links"
+msgstr ""
+
+#. translators: %1$d: created count, %2$d: updated count, %3$d: error count
+#: src/WP/Admin/Pages/LinksPage.php:563
+#, php-format
+msgid "Import complete: %1$d created, %2$d updated, %3$d errors."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:572
+msgid "View errors"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:584
+msgid "Upload CSV File"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:599
+msgid "CSV Format"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:600
+msgid "The CSV file must include a header row with the following columns:"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:603
+msgid "Example:"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:609
+msgid "Note: append_utm_json should be a JSON object or empty. Use double quotes inside JSON."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:637
+msgid "Link created successfully."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:642
+msgid "Link updated successfully."
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:647
+msgid "Link deleted successfully."
+msgstr ""
+
+#. translators: %d: number of links
+#: src/WP/Admin/Pages/LinksPage.php:661
+#, php-format
+msgid "%d link enabled."
+msgid_plural "%d links enabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of links
+#: src/WP/Admin/Pages/LinksPage.php:666
+#, php-format
+msgid "%d link disabled."
+msgid_plural "%d links disabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of links
+#: src/WP/Admin/Pages/LinksPage.php:671
+#, php-format
+msgid "%d link deleted."
+msgid_plural "%d links deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/WP/Admin/Pages/LinksPage.php:690
+msgid "Permanent Redirect"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:691
+msgid "Temporary Redirect (default)"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:692
+msgid "Temporary Redirect (strict)"
+msgstr ""
+
+#: src/WP/Admin/Pages/LinksPage.php:693
+msgid "Permanent Redirect (strict)"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:71
+msgid "Status Summary"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:98
+msgid "Last Reconcile"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:110
+msgid "Next Scheduled"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:117
+msgid "Not scheduled"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:125
+msgid "Recent activity logs (last 50 entries)."
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:130
+msgid "No log entries yet"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:131
+msgid "Logs will appear here when the system performs health checks, publishes to the edge, or cleans up stats. Check back after some activity."
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:137
+msgid "Time"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:138
+msgid "Type"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:139
+msgid "Message"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:173
+msgid "Clear Logs"
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:209
+#: src/WP/Admin/Pages/ToolsPage.php:132
+msgid "Permission denied."
+msgstr ""
+
+#: src/WP/Admin/Pages/LogsPage.php:215
+msgid "Logs cleared successfully."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:107
+msgid "Prefix is locked by CFELR_PREFIX constant."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:115
+msgid "Prefix cannot be empty."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:141
+msgid "Settings saved."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:155
+msgid "Prefix must be 50 characters or less."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:160
+msgid "Prefix can only contain lowercase letters, numbers, hyphens, and underscores."
+msgstr ""
+
+#. translators: %s: prefix
+#: src/WP/Admin/Pages/SettingsPage.php:167
+#, php-format
+msgid "\"%s\" is a reserved WordPress path and cannot be used."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:231
+msgid "Redirect Prefix"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:234
+msgid "The URL prefix used for all redirect links. Default is \"go\"."
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:243
+msgid "Prefix"
+msgstr ""
+
+#. translators: %s: constant value
+#: src/WP/Admin/Pages/SettingsPage.php:268
+#, php-format
+msgid "Prefix is locked by CFELR_PREFIX constant: \"%s\""
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:280
+msgid "Current redirect URL format:"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:290
+msgid "Save Settings"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:299
+msgid "Advanced: Prefix Override"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:301
+msgid "For developers, the prefix can be overridden using:"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:305
+msgid "Constant (highest priority, locks UI):"
+msgstr ""
+
+#: src/WP/Admin/Pages/SettingsPage.php:309
+msgid "Filter:"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:67
+msgid "Last 7 days"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:68
+msgid "Last 30 days"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:69
+msgid "Last 90 days"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:83
+msgid "Summary"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:86
+msgid "Total Clicks"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:90
+#: src/WP/Admin/Pages/ToolsPage.php:268
+msgid "Total Links"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:94
+msgid "Active Links"
+msgstr ""
+
+#. translators: %d: number of days
+#: src/WP/Admin/Pages/StatsPage.php:106
+#, php-format
+msgid "Top Links (Last %d Days)"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:115
+msgid "No click data yet"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:116
+msgid "Statistics will appear here once your links start receiving clicks. Share your links to see traffic data."
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:122
+msgid "Rank"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:125
+msgid "Clicks"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:126
+msgid "Share"
+msgstr ""
+
+#: src/WP/Admin/Pages/StatsPage.php:183
+msgid "Visual Overview"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:37
+#: src/WP/Admin/Pages/ToolsPage.php:42
+msgid "Flush Rewrite Rules"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:38
+msgid "If your redirect URLs are not working, try flushing the rewrite rules."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:50
+msgid "Test Redirect"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:51
+msgid "Enter a slug to test the redirect resolution without actually redirecting."
+msgstr ""
+
+#. translators: %s: debug URL example
+#: src/WP/Admin/Pages/ToolsPage.php:72
+#, php-format
+msgid "Tip: You can also test redirects by visiting %s as an admin to see debug JSON."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:81
+msgid "Force Re-publish Snapshot"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:82
+msgid "Force republish all links to the Cloudflare edge worker."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:91
+msgid "Edge mode is not enabled. Enable it on the Integrations page first."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:94
+#: src/WP/Admin/Pages/ToolsPage.php:100
+msgid "Force Re-publish"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:109
+msgid "Quick Stats"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:139
+msgid "Rewrite rules flushed successfully."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:160
+msgid "Please enter a slug to test."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:169
+msgid "Test Result:"
+msgstr ""
+
+#. translators: %s: slug
+#: src/WP/Admin/Pages/ToolsPage.php:175
+#, php-format
+msgid "Slug \"%s\" not found or disabled. This would return a 404."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:185
+msgid "Handler"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:188
+msgid "Edge (Cloudflare Worker)"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:189
+msgid "WP serves as fallback if edge fails"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:192
+msgid "WordPress Only"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:197
+msgid "Status Code"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:198
+msgid "Link ID"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:201
+msgid "Passthrough Query"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:201
+msgid "Yes"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:214
+msgid "Open Redirect"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:215
+msgid "View Debug JSON"
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:240
+msgid "Edge mode is not configured."
+msgstr ""
+
+#: src/WP/Admin/Pages/ToolsPage.php:249
+msgid "Snapshot published successfully."
+msgstr ""
+
+#: src/WP/CSV/Importer.php:90
+msgid "Could not open CSV file."
+msgstr ""
+
+#: src/WP/CSV/Importer.php:98
+msgid "CSV file is empty or invalid."
+msgstr ""
+
+#: src/WP/CSV/Importer.php:161
+msgid "No file uploaded."
+msgstr ""
+
+#: src/WP/CSV/Importer.php:168
+msgid "Please upload a CSV file."
+msgstr ""
+
+#. translators: %s: column name
+#: src/WP/CSV/Importer.php:189
+#, php-format
+msgid "Missing required column: %s"
+msgstr ""
+
+#. translators: %d: row number
+#: src/WP/CSV/Importer.php:223
+#, php-format
+msgid "Row %d: slug and target_url are required."
+msgstr ""
+
+#. translators: %d: row number
+#: src/WP/CSV/Importer.php:236
+#, php-format
+msgid "Row %d: invalid status code, using 302."
+msgstr ""
+
+#. translators: %d: row number
+#: src/WP/CSV/Importer.php:261
+#, php-format
+msgid "Row %d: invalid UTM JSON, skipping UTM parameters."
+msgstr ""
+
+#. translators: %1$d: row number, %2$s: errors
+#: src/WP/CSV/Importer.php:287
+#, php-format
+msgid "Row %1$d: %2$s"
+msgstr ""
+
+#: src/WP/REST/DiagnosticsController.php:109
+msgid "Not yet implemented."
+msgstr ""
+
+#: src/WP/REST/IntegrationsController.php:171
+#: src/WP/REST/IntegrationsController.php:182
+#: src/WP/REST/IntegrationsController.php:193
+#: src/WP/REST/IntegrationsController.php:204
+#: src/WP/REST/LinksController.php:181
+#: src/WP/REST/LinksController.php:192
+#: src/WP/REST/LinksController.php:203
+msgid "Not implemented yet."
+msgstr ""
+
+#: src/WP/REST/LinksController.php:214
+msgid "Current page of the collection."
+msgstr ""
+
+#: src/WP/REST/LinksController.php:220
+msgid "Maximum number of items per page."
+msgstr ""
+
+#: src/WP/REST/LinksController.php:227
+msgid "Limit results to those matching a string."
+msgstr ""
+
+#: src/WP/REST/LinksController.php:231
+msgid "Sort collection by attribute."
+msgstr ""
+
+#: src/WP/REST/LinksController.php:237
+msgid "Order sort attribute ascending or descending."
+msgstr ""
+
+#: src/WP/REST/StatsController.php:55
+msgid "Number of days to include."
+msgstr ""
