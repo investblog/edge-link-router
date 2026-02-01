@@ -309,6 +309,10 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+.cfelr-admin .wp-list-table.cfelr-links-table tbody tr:nth-child(odd) td {
+	background: var(--cfelr-surface-2);
+}
+
 .cfelr-admin .wp-list-table.cfelr-links-table tbody tr:hover td {
 	background: var(--cfelr-hover);
 }
