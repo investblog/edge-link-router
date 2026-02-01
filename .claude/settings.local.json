@@ -26,7 +26,8 @@
       "Bash(composer run:*)",
       "Bash(vendor/bin/phpcs:*)",
       "Bash(gh run view:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(python -c:*)"
     ]
   }
 }

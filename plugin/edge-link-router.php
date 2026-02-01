@@ -155,8 +155,7 @@ register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\cfelr_deactivate' );
  * Initialize the plugin.
  */
 function cfelr_init() {
-	// Load text domain.
-	load_plugin_textdomain( 'edge-link-router', false, dirname( CFELR_PLUGIN_BASENAME ) . '/languages' );
+	// Note: load_plugin_textdomain() not needed since WP 4.6 for WordPress.org hosted plugins.
 
 	// Check and run migrations if needed.
 	$migration = new WP\Migration();
