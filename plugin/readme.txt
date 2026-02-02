@@ -5,7 +5,7 @@ Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.4 =
+* Fixed constant redefinition warning during updates
+
 = 1.0.3 =
 * Route pattern mismatch detection and warning
 * "Fix Route Now" button to repair mismatched routes
@@ -123,6 +126,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Fixed constant redefinition warning during updates.
 
 = 1.0.3 =
 Route mismatch detection and fail-open mode for better reliability.
