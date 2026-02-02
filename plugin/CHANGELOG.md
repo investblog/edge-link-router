@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2025-02-02
+
+### Changed
+- Simplified Cloudflare API token setup instructions (use Custom Token with 4 permissions)
+
 ### Added
-- Nothing yet
+- Edge mode notice on Stats page with link to Cloudflare metrics
 
 ## [1.0.1] - 2025-02-02
 
@@ -83,6 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/investblog/edge-link-router/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/investblog/edge-link-router/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/investblog/edge-link-router/releases/tag/v1.0.0
