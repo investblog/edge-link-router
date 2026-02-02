@@ -2,8 +2,6 @@
   "name": "edge-link-router-dev",
   "private": true,
   "scripts": {
-    "build": "powershell -ExecutionPolicy Bypass -File build.ps1",
-    "build:unix": "rm -f edge-link-router.zip && cd plugin && zip -r ../edge-link-router.zip . -x '*.DS_Store'",
     "env:start": "wp-env start",
     "env:stop": "wp-env stop",
     "env:destroy": "wp-env destroy",
