@@ -5,7 +5,7 @@ Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.9 =
+* Worker: remove all trailing slashes, trim target URL
+
 = 1.0.8 =
 * Worker: dynamic prefix from SNAPSHOT (not hardcoded in regex)
 * Worker: pre-decode length check to prevent DoS
@@ -142,6 +145,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.9 =
+Minor polish: slash normalization, target trim.
 
 = 1.0.8 =
 Worker improvements: dynamic prefix, better validation.

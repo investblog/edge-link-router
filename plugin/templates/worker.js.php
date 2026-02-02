@@ -72,8 +72,8 @@ export default {
 				return fetch(request);
 			}
 
-			// Extract slug part (after prefix)
-			const slugRaw = url.pathname.slice(prefix.length).replace(/\/$/, '');
+			// Extract slug part (after prefix, remove all trailing slashes)
+			const slugRaw = url.pathname.slice(prefix.length).replace(/\/+$/, '');
 
 			// Early length check BEFORE decode (prevent DoS via huge encoded string)
 			if (!slugRaw || slugRaw.length > MAX_SLUG_LENGTH * 3) {
@@ -101,10 +101,10 @@ export default {
 				return fetch(request);
 			}
 
-			let target = rule.target_url;
+			let target = (rule.target_url || '').trim();
 
 			// Validate target URL protocol (security: prevent open redirect)
-			if (!/^https?:\/\//i.test(target)) {
+			if (!target || !/^https?:\/\//i.test(target)) {
 				return fetch(request);
 			}
 
