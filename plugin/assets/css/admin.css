@@ -78,27 +78,55 @@
 	margin: 10px 0 0 20px;
 }
 
-/* Log entries */
+/* Log entries - pill style matching 301.st badges */
 .cfelr-admin .cfelr-log-type {
-	display: inline-block;
-	padding: 2px 8px;
-	border-radius: 3px;
-	font-size: 12px;
-	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	padding: 4px 10px;
+	border-radius: 999px;
+	border: 1px solid transparent;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	white-space: nowrap;
 }
 
+/* Info/neutral - blue */
 .cfelr-admin .cfelr-log-type-reconcile {
-	background: #e7f5ff;
+	background: rgba(0, 115, 170, 0.1);
+	border-color: rgba(0, 115, 170, 0.3);
 	color: #0073aa;
 }
 
-.cfelr-admin .cfelr-log-type-publish {
-	background: #d4edda;
-	color: #155724;
+/* Success - green */
+.cfelr-admin .cfelr-log-type-publish,
+.cfelr-admin .cfelr-log-type-republish,
+.cfelr-admin .cfelr-log-type-enable_edge {
+	background: rgba(0, 163, 42, 0.1);
+	border-color: rgba(0, 163, 42, 0.3);
+	color: #008a20;
 }
 
+/* Warning/removal - red */
+.cfelr-admin .cfelr-log-type-disable_edge,
+.cfelr-admin .cfelr-log-type-error {
+	background: rgba(214, 54, 56, 0.1);
+	border-color: rgba(214, 54, 56, 0.3);
+	color: #d63638;
+}
+
+/* Change/info - purple */
+.cfelr-admin .cfelr-log-type-prefix_change {
+	background: rgba(120, 90, 170, 0.1);
+	border-color: rgba(120, 90, 170, 0.3);
+	color: #6b5b95;
+}
+
+/* Muted - gray */
 .cfelr-admin .cfelr-log-type-stats_cleanup {
-	background: #f0f0f1;
+	background: rgba(100, 105, 112, 0.08);
+	border-color: rgba(100, 105, 112, 0.25);
 	color: #50575e;
 }
 
@@ -313,8 +341,15 @@
 	background: var(--cfelr-surface-2);
 }
 
-.cfelr-admin .wp-list-table.cfelr-links-table tbody tr:hover td {
+.cfelr-admin .wp-list-table.cfelr-links-table tbody tr:hover td,
+.cfelr-admin .wp-list-table.cfelr-links-table tbody tr:hover th {
 	background: var(--cfelr-hover);
+}
+
+/* Generic WP tables in cfelr-admin - ensure consistent hover */
+.cfelr-admin .wp-list-table tbody tr:hover td,
+.cfelr-admin .wp-list-table tbody tr:hover th.check-column {
+	background: #f0f6fc;
 }
 
 /* Checkbox column */

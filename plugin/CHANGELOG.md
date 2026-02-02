@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.11] - 2025-02-02
+
+### Changed
+- Readme: improved description, reduced tags to 5, added Privacy Policy section
+- Admin: unified log badge styles (pill design)
+- Admin: fixed table row hover on checkbox column
+
+### Added
+- WordPress.org assets: banners, icons (optimized with pngquant)
+
 ## [1.0.10] - 2025-02-02
 
 ### Added
@@ -152,7 +162,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.10...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.11...HEAD
+[1.0.11]: https://github.com/investblog/edge-link-router/compare/v1.0.10...v1.0.11
 [1.0.10]: https://github.com/investblog/edge-link-router/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/investblog/edge-link-router/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/investblog/edge-link-router/compare/v1.0.7...v1.0.8

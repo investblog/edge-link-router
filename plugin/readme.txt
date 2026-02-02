@@ -1,11 +1,11 @@
 === Edge Link Router ===
 Contributors: 301st
 Donate link: https://301.st
-Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
+Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,48 +13,37 @@ Simple redirect management with optional Cloudflare edge acceleration. Create sh
 
 == Description ==
 
-Edge Link Router is a WordPress plugin for managing redirect links (`/go/your-slug`) with optional edge acceleration via Cloudflare Workers.
+**Simple redirect management that works immediately.** Create `/go/your-slug` redirects in WordPress admin — no configuration required. Optionally accelerate with Cloudflare Workers.
 
 Built by [301.st](https://301.st) — your redirect management experts.
 
-= Features =
+= What It Does =
 
-* **Works immediately** — Redirects work right after activation, no configuration required
-* **Simple management** — Create, edit, and manage redirects from WordPress admin
-* **UTM tracking** — Automatically append UTM parameters to your target URLs
-* **Click statistics** — Track clicks with 30-day retention (privacy-focused, no PII)
-* **CSV import/export** — Bulk manage your redirects
-* **REST API** — Full programmatic access for developers
-* **Dashboard widget** — Quick stats at a glance
-* **Optional edge mode** — Accelerate redirects with Cloudflare Workers
+* **Instant redirects** — Works right after activation. No setup, no external services needed.
+* **Full control** — 301/302/307/308 codes, UTM auto-append, query passthrough.
+* **CSV import/export** — Migrate affiliate links between sites in seconds.
 
 = How It Works =
 
-1. Install and activate the plugin
-2. Create redirect rules in **Link Router > Links**
-3. Your redirects work immediately at `/go/your-slug`
-4. (Optional) Connect Cloudflare for edge acceleration
+1. **WordPress handles everything by default** — Redirects work via WP rewrite rules
+2. **Enable edge mode (optional)** — Connect Cloudflare for sub-millisecond redirects
+3. **Fail-open design** — If edge fails, WordPress takes over. Redirects never break.
+
+= Privacy First =
+
+* Aggregated click stats only (daily totals)
+* No IP addresses, no cookies, no User-Agent
+* GDPR compliant — no consent required
 
 = Testing Your Redirects =
 
 Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to verify your redirects are working correctly and see the full redirect chain.
 
-= Edge Mode (Optional) =
-
-If you use Cloudflare, you can enable edge mode to handle redirects at Cloudflare's edge network, before requests reach your WordPress server. This is completely optional and the plugin works perfectly without it.
-
-Edge mode features:
-
-* Faster redirects (handled at edge)
-* Reduced server load
-* Automatic fallback to WordPress if edge fails
-
 = Links =
 
 * [Project Home](https://301.st)
-* [Documentation](https://301.st/docs)
-* [Redirect Inspector Extension](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)
-* [GitHub Repository](https://github.com/investblog/edge-link-router)
+* [GitHub](https://github.com/investblog/edge-link-router)
+* [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) — free Chrome extension
 
 == Installation ==
 
@@ -97,6 +86,11 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 5. Cloudflare integration
 
 == Changelog ==
+
+= 1.0.11 =
+* Improved readme for WordPress.org submission
+* Unified admin badge styles
+* Added plugin assets (banners, icons)
 
 = 1.0.10 =
 * Worker: add snapshot version headers for debugging (X-CFELR-Snapshot-Version, X-CFELR-Snapshot-Updated)
@@ -149,6 +143,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Upgrade Notice ==
 
+= 1.0.11 =
+Ready for WordPress.org: improved readme, plugin assets.
+
 = 1.0.10 =
 Added snapshot version headers for debugging.
 
@@ -178,3 +175,7 @@ Improved Cloudflare setup instructions and edge statistics notice.
 
 = 1.0.0 =
 Initial release. Welcome to Edge Link Router!
+
+== Privacy Policy ==
+
+This plugin optionally connects to Cloudflare API (api.cloudflare.com) when edge mode is enabled. Your Cloudflare API token is stored encrypted (libsodium/AES-256). No user data is transmitted to external services. Click statistics are aggregated daily totals only — no IP addresses, cookies, or personal data collected.
