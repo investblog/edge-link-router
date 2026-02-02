@@ -43,30 +43,62 @@ class Exporter {
 		$repository = new WPLinkRepository();
 		$links      = $repository->get_all( array( 'limit' => 10000 ) );
 
-		$output = fopen( 'php://temp', 'r+' );
+		$lines = array();
 
-		// Write header.
-		fputcsv( $output, self::COLUMNS );
+		// Header row.
+		$lines[] = $this->array_to_csv_line( self::COLUMNS );
 
-		// Write rows.
+		// Data rows.
 		foreach ( $links as $link ) {
 			$row = array(
 				$link->slug,
 				$link->target_url,
-				$link->status_code,
+				(string) $link->status_code,
 				$link->enabled ? '1' : '0',
 				! empty( $link->options['passthrough_query'] ) ? '1' : '0',
 				! empty( $link->options['append_utm'] ) ? wp_json_encode( $link->options['append_utm'] ) : '',
 				$link->options['notes'] ?? '',
 			);
-			fputcsv( $output, $row );
+			$lines[] = $this->array_to_csv_line( $row );
 		}
 
-		rewind( $output );
-		$csv = stream_get_contents( $output );
-		fclose( $output );
+		return implode( "\r\n", $lines ) . "\r\n";
+	}
 
-		return $csv;
+	/**
+	 * Convert array to CSV line with proper escaping.
+	 *
+	 * @param array $fields Array of field values.
+	 * @return string CSV formatted line.
+	 */
+	private function array_to_csv_line( array $fields ): string {
+		$escaped = array();
+
+		foreach ( $fields as $field ) {
+			$escaped[] = $this->escape_csv_field( (string) $field );
+		}
+
+		return implode( ',', $escaped );
+	}
+
+	/**
+	 * Escape a single CSV field value.
+	 *
+	 * @param string $field Field value.
+	 * @return string Escaped field value.
+	 */
+	private function escape_csv_field( string $field ): string {
+		// If field contains special characters, wrap in quotes and escape internal quotes.
+		if (
+			false !== strpos( $field, '"' ) ||
+			false !== strpos( $field, ',' ) ||
+			false !== strpos( $field, "\n" ) ||
+			false !== strpos( $field, "\r" )
+		) {
+			return '"' . str_replace( '"', '""', $field ) . '"';
+		}
+
+		return $field;
 	}
 
 	/**

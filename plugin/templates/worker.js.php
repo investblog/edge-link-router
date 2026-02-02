@@ -6,9 +6,9 @@
  *
  * @package EdgeLinkRouter
  *
- * Variables available:
- * @var array  $links  Associative array of slug => link data.
- * @var string $prefix URL prefix (e.g., 'go').
+ * Variables available (prefixed per WP coding standards):
+ * @var array  $cfelr_links  Associative array of slug => link data.
+ * @var string $cfelr_prefix URL prefix (e.g., 'go').
  *
  * Edge Hardening Requirements:
  * - Target URL must be absolute http(s):// (no relative URLs)
@@ -27,32 +27,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Default values if not provided.
-$links  = $links ?? array();
-$prefix = $prefix ?? 'go';
+$cfelr_links  = $cfelr_links ?? array();
+$cfelr_prefix = $cfelr_prefix ?? 'go';
 
 // Generate snapshot JSON.
-$snapshot = array(
+$cfelr_snapshot = array(
 	'version'    => 1,
 	'updated_at' => gmdate( 'c' ),
-	'prefix'     => $prefix,
-	'links'      => $links,
+	'prefix'     => $cfelr_prefix,
+	'links'      => $cfelr_links,
 );
 
-$snapshot_json = wp_json_encode( $snapshot, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+$cfelr_snapshot_json = wp_json_encode( $cfelr_snapshot, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 ?>
 /**
  * Edge Link Router - Cloudflare Worker
  *
  * Generated: <?php echo esc_js( gmdate( 'c' ) ); ?>
 
- * Links count: <?php echo count( $links ); ?>
+ * Links count: <?php echo count( $cfelr_links ); ?>
 
  *
  * This Worker handles redirect requests at the edge.
  * If a rule is not found or an error occurs, it falls back to the origin (WP).
  */
 
-const SNAPSHOT = <?php echo $snapshot_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
+const SNAPSHOT = <?php echo $cfelr_snapshot_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
 
 // Hardening constants (must match WP Validator)
 const VALID_CODES = [301, 302, 307, 308];

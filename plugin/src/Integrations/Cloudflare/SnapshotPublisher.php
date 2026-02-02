@@ -167,6 +167,10 @@ class SnapshotPublisher implements PublisherInterface {
 	 * @return string JavaScript code.
 	 */
 	public function generate_worker_script( array $links, string $prefix = 'go' ): string {
+		// Set prefixed variables for template (to satisfy WP coding standards).
+		$cfelr_links  = $links;
+		$cfelr_prefix = $prefix;
+
 		// Load template.
 		ob_start();
 		include CFELR_PLUGIN_DIR . 'templates/worker.js.php';
