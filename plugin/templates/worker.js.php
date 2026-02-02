@@ -153,6 +153,8 @@ export default {
 				headers: {
 					'Location': target,
 					'X-Handled-By': 'cfelr-edge',
+					'X-CFELR-Snapshot-Version': String(SNAPSHOT.version),
+					'X-CFELR-Snapshot-Updated': SNAPSHOT.updated_at,
 					'Cache-Control': 'no-store'
 				}
 			});
