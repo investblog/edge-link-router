@@ -340,6 +340,10 @@ class Client {
 	/**
 	 * Create a Worker route.
 	 *
+	 * Creates route with failure_mode="fail_open" so that if the Worker fails
+	 * or request limits are exceeded, requests bypass the Worker and proceed
+	 * to WordPress (fail-open design).
+	 *
 	 * @param string $zone_id     Zone ID.
 	 * @param string $pattern     Route pattern.
 	 * @param string $script_name Worker script name.
@@ -350,8 +354,9 @@ class Client {
 			'POST',
 			'/zones/' . $zone_id . '/workers/routes',
 			array(
-				'pattern' => $pattern,
-				'script'  => $script_name,
+				'pattern'      => $pattern,
+				'script'       => $script_name,
+				'failure_mode' => 'fail_open', // Bypass Worker on failure, proceed to WordPress.
 			)
 		);
 

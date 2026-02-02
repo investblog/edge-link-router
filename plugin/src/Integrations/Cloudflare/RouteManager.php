@@ -154,4 +154,62 @@ class RouteManager {
 
 		return null;
 	}
+
+	/**
+	 * Find any route with our worker name (regardless of pattern).
+	 * Used to detect pattern mismatches.
+	 *
+	 * @param string|null $zone_id Optional zone ID.
+	 * @return array|null Route data or null.
+	 */
+	public function find_worker_route( ?string $zone_id = null ): ?array {
+		if ( empty( $zone_id ) ) {
+			$zone_id = $this->state->get_zone_id();
+		}
+
+		if ( empty( $zone_id ) ) {
+			return null;
+		}
+
+		$routes = $this->client->list_routes( $zone_id );
+
+		if ( ! $routes ) {
+			return null;
+		}
+
+		foreach ( $routes as $route ) {
+			if ( ( $route['script'] ?? '' ) === IntegrationState::WORKER_NAME ) {
+				return $route;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Check if route pattern matches expected pattern.
+	 *
+	 * @param string|null $zone_id Optional zone ID.
+	 * @return array{match: bool, expected: string, actual: string|null}
+	 */
+	public function check_route_pattern( ?string $zone_id = null ): array {
+		$expected = $this->get_route_pattern();
+		$route    = $this->find_worker_route( $zone_id );
+
+		if ( ! $route ) {
+			return array(
+				'match'    => false,
+				'expected' => $expected,
+				'actual'   => null,
+			);
+		}
+
+		$actual = $route['pattern'] ?? '';
+
+		return array(
+			'match'    => $actual === $expected,
+			'expected' => $expected,
+			'actual'   => $actual,
+		);
+	}
 }

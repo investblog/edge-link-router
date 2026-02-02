@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-02-02
+
+### Added
+- Route pattern mismatch detection in health checks
+- Warning on Integrations page when CF route doesn't match expected pattern
+- "Fix Route Now" button to repair mismatched routes
+- Auto-update CF route when prefix changes in Settings
+
+### Fixed
+- Routes now created with `failure_mode: fail_open` for true fail-open design
+
 ## [1.0.2] - 2025-02-02
 
 ### Changed
@@ -88,7 +99,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/investblog/edge-link-router/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/investblog/edge-link-router/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/investblog/edge-link-router/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/investblog/edge-link-router/releases/tag/v1.0.0

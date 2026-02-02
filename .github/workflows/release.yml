@@ -51,8 +51,10 @@ jobs:
 
       - name: Build plugin ZIP
         run: |
-          cd plugin
-          zip -r ../edge-link-router-${{ steps.version.outputs.VERSION }}.zip . -x '*.DS_Store' -x '*.git*'
+          mkdir -p build/edge-link-router
+          cp -r plugin/* build/edge-link-router/
+          cd build
+          zip -r ../edge-link-router-${{ steps.version.outputs.VERSION }}.zip edge-link-router -x '*.DS_Store' -x '*.git*'
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1

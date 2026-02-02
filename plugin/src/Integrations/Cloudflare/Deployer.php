@@ -300,6 +300,106 @@ class Deployer {
 	}
 
 	/**
+	 * Fix route pattern mismatch.
+	 * Removes any existing route for our worker and creates a new one with correct pattern.
+	 *
+	 * @return bool
+	 */
+	public function fix_route(): bool {
+		if ( ! $this->state->is_edge_enabled() ) {
+			$this->last_error = __( 'Edge mode is not enabled.', 'edge-link-router' );
+			return false;
+		}
+
+		$zone_id = $this->state->get_zone_id();
+
+		if ( empty( $zone_id ) ) {
+			$this->last_error = __( 'Zone ID not configured.', 'edge-link-router' );
+			return false;
+		}
+
+		// Find any route with our worker (regardless of pattern).
+		$route_manager = new RouteManager();
+		$existing      = $route_manager->find_worker_route( $zone_id );
+
+		// Remove existing route if found.
+		if ( $existing ) {
+			$this->client->delete_route( $zone_id, $existing['id'] );
+			$this->state->set_route_id( null );
+		}
+
+		// Create new route with correct pattern.
+		if ( ! $this->create_route() ) {
+			return false;
+		}
+
+		$this->log_event( 'fix_route', __( 'Route pattern fixed successfully.', 'edge-link-router' ) );
+
+		return true;
+	}
+
+	/**
+	 * Update prefix: remove old route, republish worker, create new route.
+	 *
+	 * @param string $old_prefix Old prefix.
+	 * @param string $new_prefix New prefix.
+	 * @return bool
+	 */
+	public function update_prefix( string $old_prefix, string $new_prefix ): bool {
+		if ( ! $this->state->is_edge_enabled() ) {
+			return true; // Nothing to update.
+		}
+
+		$zone_id = $this->state->get_zone_id();
+
+		if ( empty( $zone_id ) ) {
+			$this->last_error = __( 'Zone ID not configured.', 'edge-link-router' );
+			return false;
+		}
+
+		// Step 1: Remove old route.
+		$old_pattern = $this->build_route_pattern( $old_prefix );
+		$old_route   = $this->find_existing_route( $zone_id, $old_pattern );
+
+		if ( $old_route && ( $old_route['script'] ?? '' ) === IntegrationState::WORKER_NAME ) {
+			$this->client->delete_route( $zone_id, $old_route['id'] );
+			$this->state->set_route_id( null );
+		}
+
+		// Step 2: Republish Worker with new prefix.
+		$repository = new WPLinkRepository();
+		$links      = $repository->get_snapshot_data();
+
+		if ( ! $this->publisher->publish( $links ) ) {
+			$this->last_error = $this->publisher->get_last_error();
+			return false;
+		}
+
+		// Step 3: Create new route.
+		if ( ! $this->create_route() ) {
+			return false;
+		}
+
+		$this->log_event(
+			'prefix_change',
+			sprintf( 'Route updated: /%s/* → /%s/*', $old_prefix, $new_prefix )
+		);
+
+		return true;
+	}
+
+	/**
+	 * Build route pattern for a given prefix.
+	 *
+	 * @param string $prefix URL prefix.
+	 * @return string Route pattern.
+	 */
+	private function build_route_pattern( string $prefix ): string {
+		$host = wp_parse_url( home_url(), PHP_URL_HOST );
+		return $host . '/' . $prefix . '/*';
+	}
+
+	/**
 	 * Find existing route by pattern.
 	 *
 	 * @param string $zone_id Zone ID.

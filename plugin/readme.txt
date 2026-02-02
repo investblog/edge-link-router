@@ -5,7 +5,7 @@ Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,18 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.3 =
+* Route pattern mismatch detection and warning
+* "Fix Route Now" button to repair mismatched routes
+* Auto-update CF route when prefix changes
+* Routes now use fail_open mode (true fail-open design)
+
+= 1.0.2 =
+* Simplified Cloudflare API token setup (Custom Token with 4 permissions)
+* Added edge mode notice on Stats page with link to Cloudflare metrics
+* Fixed Cloudflare Worker upload multipart format
+* Added Git Updater support
+
 = 1.0.0 =
 * Initial release
 * WP-only redirect handling
@@ -111,6 +123,12 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Route mismatch detection and fail-open mode for better reliability.
+
+= 1.0.2 =
+Improved Cloudflare setup instructions and edge statistics notice.
 
 = 1.0.0 =
 Initial release. Welcome to Edge Link Router!

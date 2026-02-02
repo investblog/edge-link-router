@@ -112,6 +112,42 @@ class IntegrationsPage {
 				</div>
 
 				<?php if ( $edge_enabled ) : ?>
+					<?php
+					// Check for route mismatch.
+					$route_mismatch = $this->health->get_route_mismatch();
+					?>
+					<?php if ( $route_mismatch ) : ?>
+						<!-- Route Mismatch Warning -->
+						<div class="cfelr-route-mismatch-warning" style="background: #fff3cd; border: 1px solid #ffc107; border-left: 4px solid #ffc107; padding: 12px 15px; margin: 15px 0; border-radius: 4px;">
+							<p style="margin: 0 0 10px 0;">
+								<span class="dashicons dashicons-warning" style="color: #856404;"></span>
+								<strong><?php esc_html_e( 'Route Pattern Mismatch Detected', 'edge-link-router' ); ?></strong>
+							</p>
+							<p style="margin: 0 0 8px 0;">
+								<?php esc_html_e( 'The Cloudflare route pattern does not match the expected pattern. Redirects may not work correctly.', 'edge-link-router' ); ?>
+							</p>
+							<table style="margin: 10px 0;">
+								<tr>
+									<td style="padding-right: 15px;"><strong><?php esc_html_e( 'Expected:', 'edge-link-router' ); ?></strong></td>
+									<td><code><?php echo esc_html( $route_mismatch['expected'] ); ?></code></td>
+								</tr>
+								<tr>
+									<td style="padding-right: 15px;"><strong><?php esc_html_e( 'Actual:', 'edge-link-router' ); ?></strong></td>
+									<td><code><?php echo esc_html( $route_mismatch['actual'] ); ?></code></td>
+								</tr>
+							</table>
+							<p style="margin: 10px 0 0 0;">
+								<form method="post" style="display: inline;">
+									<?php wp_nonce_field( 'cfelr_fix_route', 'cfelr_fix_route_nonce' ); ?>
+									<button type="submit" name="cfelr_fix_route" class="button button-primary">
+										<span class="dashicons dashicons-admin-tools" style="vertical-align: middle; margin-right: 4px;"></span>
+										<?php esc_html_e( 'Fix Route Now', 'edge-link-router' ); ?>
+									</button>
+								</form>
+							</p>
+						</div>
+					<?php endif; ?>
+
 					<!-- Edge Status Info -->
 					<div class="cfelr-subsection cfelr-edge-status">
 						<h3><?php esc_html_e( 'Edge Status', 'edge-link-router' ); ?></h3>
@@ -691,6 +727,24 @@ class IntegrationsPage {
 				add_settings_error( 'cfelr_edge_messages', 'republished', __( 'Snapshot republished successfully.', 'edge-link-router' ), 'success' );
 			} else {
 				add_settings_error( 'cfelr_edge_messages', 'republish_error', $deployer->get_last_error() ?: __( 'Failed to republish snapshot.', 'edge-link-router' ), 'error' );
+			}
+		}
+
+		// Fix route mismatch (no redirect needed).
+		if ( isset( $_POST['cfelr_fix_route'] ) ) {
+			if ( ! isset( $_POST['cfelr_fix_route_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cfelr_fix_route_nonce'] ) ), 'cfelr_fix_route' ) ) {
+				add_settings_error( 'cfelr_edge_messages', 'nonce_error', __( 'Security check failed.', 'edge-link-router' ), 'error' );
+				return;
+			}
+
+			$deployer = new Deployer();
+
+			if ( $deployer->fix_route() ) {
+				// Run health check to clear the mismatch.
+				$this->health->check();
+				add_settings_error( 'cfelr_edge_messages', 'route_fixed', __( 'Route fixed successfully.', 'edge-link-router' ), 'success' );
+			} else {
+				add_settings_error( 'cfelr_edge_messages', 'route_fix_error', $deployer->get_last_error() ?: __( 'Failed to fix route.', 'edge-link-router' ), 'error' );
 			}
 		}
 	}

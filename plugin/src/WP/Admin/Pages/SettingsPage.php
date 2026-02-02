@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\Integrations\Cloudflare\Deployer;
+use CFELR\Integrations\Cloudflare\IntegrationState;
+
 /**
  * Settings page.
  */
@@ -130,12 +133,46 @@ class SettingsPage {
 		$settings            = get_option( self::OPTION_NAME, array() );
 		$old_prefix          = $settings['prefix'] ?? self::DEFAULT_PREFIX;
 		$settings['prefix']  = $new_prefix;
+		$prefix_changed      = $old_prefix !== $new_prefix;
 
 		update_option( self::OPTION_NAME, $settings );
 
 		// Flush rewrite rules if prefix changed.
-		if ( $old_prefix !== $new_prefix ) {
+		if ( $prefix_changed ) {
 			flush_rewrite_rules();
+		}
+
+		// Handle edge mode if prefix changed.
+		if ( $prefix_changed ) {
+			$state = new IntegrationState();
+
+			if ( $state->is_edge_enabled() ) {
+				// Auto-update edge: republish worker with new prefix and update route.
+				$deployer = new Deployer();
+				$result   = $deployer->update_prefix( $old_prefix, $new_prefix );
+
+				if ( $result ) {
+					add_settings_error(
+						'cfelr_settings_messages',
+						'edge_updated',
+						__( 'Settings saved. Edge route updated to new prefix.', 'edge-link-router' ),
+						'success'
+					);
+					return;
+				} else {
+					add_settings_error(
+						'cfelr_settings_messages',
+						'edge_update_failed',
+						sprintf(
+							/* translators: %s: error message */
+							__( 'Settings saved, but edge route update failed: %s. Please republish manually.', 'edge-link-router' ),
+							$deployer->get_last_error()
+						),
+						'warning'
+					);
+					return;
+				}
+			}
 		}
 
 		add_settings_error( 'cfelr_settings_messages', 'saved', __( 'Settings saved.', 'edge-link-router' ), 'success' );

@@ -143,13 +143,29 @@ class Health implements HealthInterface {
 			return $status;
 		}
 
-		$route_exists = $this->route_manager->route_exists( $zone_id );
+		// Check route existence and pattern match.
+		$route_check = $this->route_manager->check_route_pattern( $zone_id );
 
-		if ( ! $route_exists ) {
+		if ( ! $route_check['actual'] ) {
 			$status = array(
 				'state'      => self::STATE_DEGRADED,
 				'message'    => __( 'Worker route not found. WP fallback active.', 'edge-link-router' ),
 				'last_check' => gmdate( 'c' ),
+			);
+			update_option( self::OPTION_KEY, $status );
+			return $status;
+		}
+
+		// Check for route pattern mismatch.
+		if ( ! $route_check['match'] ) {
+			$status = array(
+				'state'          => self::STATE_DEGRADED,
+				'message'        => __( 'Route pattern mismatch. Edge may not work correctly.', 'edge-link-router' ),
+				'last_check'     => gmdate( 'c' ),
+				'route_mismatch' => array(
+					'expected' => $route_check['expected'],
+					'actual'   => $route_check['actual'],
+				),
 			);
 			update_option( self::OPTION_KEY, $status );
 			return $status;
@@ -221,5 +237,24 @@ class Health implements HealthInterface {
 	public function is_degraded(): bool {
 		$status = $this->get_status();
 		return ( $status['state'] ?? '' ) === self::STATE_DEGRADED;
+	}
+
+	/**
+	 * Check if there's a route pattern mismatch.
+	 *
+	 * @return array|null Mismatch data (expected, actual) or null if no mismatch.
+	 */
+	public function get_route_mismatch(): ?array {
+		$status = $this->get_status();
+		return $status['route_mismatch'] ?? null;
+	}
+
+	/**
+	 * Check if there's a route pattern mismatch (boolean check).
+	 *
+	 * @return bool
+	 */
+	public function has_route_mismatch(): bool {
+		return $this->get_route_mismatch() !== null;
 	}
 }
