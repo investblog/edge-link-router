@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.7] - 2025-02-02
+
+### Security
+- Worker: slug length capped at 200 (matches WP Validator)
+- Worker: UTM key max 50 chars, value max 200 chars
+- Worker: removed 303 from status codes (not in WP UI)
+
+### Documentation
+- Added Edge Hardening Requirements in worker template header
+
 ## [1.0.6] - 2025-02-02
 
 ### Security
@@ -119,7 +129,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.7...HEAD
+[1.0.7]: https://github.com/investblog/edge-link-router/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/investblog/edge-link-router/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/investblog/edge-link-router/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/investblog/edge-link-router/compare/v1.0.3...v1.0.4
