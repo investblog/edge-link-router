@@ -569,9 +569,21 @@ class Client {
 		$url      = self::API_BASE . $endpoint;
 		$boundary = wp_generate_password( 24, false );
 
+		// Metadata part (required by Cloudflare API).
+		// ES modules format requires main_module specification.
+		$metadata = wp_json_encode(
+			array(
+				'main_module' => 'worker.js',
+			)
+		);
+
 		$body  = "--{$boundary}\r\n";
-		$body .= "Content-Disposition: form-data; name=\"script\"; filename=\"script.js\"\r\n";
-		$body .= "Content-Type: application/javascript\r\n\r\n";
+		$body .= "Content-Disposition: form-data; name=\"metadata\"\r\n";
+		$body .= "Content-Type: application/json\r\n\r\n";
+		$body .= $metadata . "\r\n";
+		$body .= "--{$boundary}\r\n";
+		$body .= "Content-Disposition: form-data; name=\"worker.js\"; filename=\"worker.js\"\r\n";
+		$body .= "Content-Type: application/javascript+module\r\n\r\n";
 		$body .= $script . "\r\n";
 		$body .= "--{$boundary}--\r\n";
 
