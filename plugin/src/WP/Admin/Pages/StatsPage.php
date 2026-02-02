@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use CFELR\Integrations\Cloudflare\IntegrationState;
 use CFELR\WP\Repository\WPLinkRepository;
 use CFELR\WP\Repository\WPStatsRepository;
 
@@ -77,6 +78,31 @@ class StatsPage {
 					</a>
 				<?php endforeach; ?>
 			</div>
+
+			<?php
+			// Show edge mode notice.
+			$state = new IntegrationState();
+			if ( $state->is_edge_enabled() ) :
+				$account_id = $state->get_account_id();
+				$cf_url     = $account_id
+					? 'https://dash.cloudflare.com/' . $account_id . '/workers/services/view/cfelr-edge-worker/production/metrics'
+					: 'https://dash.cloudflare.com/';
+				?>
+				<div class="notice notice-info inline" style="margin: 0 0 20px;">
+					<p>
+						<span class="dashicons dashicons-cloud" style="color: #72aee6;"></span>
+						<strong><?php esc_html_e( 'Edge Mode Active', 'edge-link-router' ); ?></strong>
+						&mdash;
+						<?php esc_html_e( 'Most redirects are handled by Cloudflare Worker and not counted here. Stats below show only WP fallback clicks.', 'edge-link-router' ); ?>
+					</p>
+					<p>
+						<a href="<?php echo esc_url( $cf_url ); ?>" target="_blank" rel="noopener noreferrer" class="button button-small">
+							<?php esc_html_e( 'View Edge Metrics in Cloudflare', 'edge-link-router' ); ?>
+							<span class="dashicons dashicons-external" style="font-size: 16px; line-height: 1.4;"></span>
+						</a>
+					</p>
+				</div>
+			<?php endif; ?>
 
 			<!-- Summary -->
 			<div class="cfelr-card">

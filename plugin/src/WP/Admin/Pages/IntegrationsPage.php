@@ -337,16 +337,24 @@ class IntegrationsPage {
 									?>
 								</li>
 								<li><?php esc_html_e( 'Click "Create Token"', 'edge-link-router' ); ?></li>
-								<li><?php esc_html_e( 'Find "Edit Cloudflare Workers" template and click "Use template"', 'edge-link-router' ); ?></li>
+								<li><?php esc_html_e( 'Scroll down and click "Create Custom Token"', 'edge-link-router' ); ?></li>
 								<li>
-									<?php esc_html_e( 'In "Zone Resources", select "Specific zone" → your domain', 'edge-link-router' ); ?>
+									<?php esc_html_e( 'Set token name (e.g., "Edge Link Router")', 'edge-link-router' ); ?>
 								</li>
 								<li>
-									<?php esc_html_e( 'Add two more permissions (click "+ Add more"):', 'edge-link-router' ); ?>
+									<?php esc_html_e( 'Add 4 permissions (click "+ Add more" after each):', 'edge-link-router' ); ?>
 									<ul style="list-style: disc; margin: 5px 0 5px 20px;">
+										<li><code><?php esc_html_e( 'Account / Workers Scripts / Edit', 'edge-link-router' ); ?></code></li>
+										<li><code><?php esc_html_e( 'Zone / Workers Routes / Edit', 'edge-link-router' ); ?></code></li>
 										<li><code><?php esc_html_e( 'Zone / Zone / Read', 'edge-link-router' ); ?></code></li>
 										<li><code><?php esc_html_e( 'Zone / DNS / Read', 'edge-link-router' ); ?></code></li>
 									</ul>
+								</li>
+								<li>
+									<?php esc_html_e( 'In "Account Resources": Include → Your account', 'edge-link-router' ); ?>
+								</li>
+								<li>
+									<?php esc_html_e( 'In "Zone Resources": Include → Specific zone → Your domain', 'edge-link-router' ); ?>
 								</li>
 								<li><?php esc_html_e( 'Click "Continue to summary" → "Create Token"', 'edge-link-router' ); ?></li>
 								<li><?php esc_html_e( 'Copy the token (it is shown only once!)', 'edge-link-router' ); ?></li>
