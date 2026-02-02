@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.8] - 2025-02-02
+
+### Changed
+- Worker: use dynamic prefix from SNAPSHOT instead of hardcoded regex
+- Worker: use startsWith() for faster path matching
+
+### Security
+- Worker: pre-decode length check (max 600 raw chars) to prevent DoS
+- Worker: UTM key charset validation (`/^[a-zA-Z0-9_]+$/`)
+- Worker: try-catch around `new URL(target)` with fail-open
+
 ## [1.0.7] - 2025-02-02
 
 ### Security
@@ -129,7 +140,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.7...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.8...HEAD
+[1.0.8]: https://github.com/investblog/edge-link-router/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/investblog/edge-link-router/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/investblog/edge-link-router/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/investblog/edge-link-router/compare/v1.0.4...v1.0.5

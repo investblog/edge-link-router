@@ -15,8 +15,10 @@
  * - Redirect codes allowed: 301, 302, 307, 308 (matches WP whitelist)
  * - Options must be object; otherwise treated as {}
  * - Malformed percent-encoding → fail-open to WP
- * - UTM values: strings only; key max 50, value max 200; drop invalid
- * - Slug length capped at 200 (else fail-open)
+ * - UTM keys: alphanumeric + underscore only; max 50 chars
+ * - UTM values: strings only; max 200 chars
+ * - Slug length capped at 200 (checked before decode)
+ * - Prefix read from SNAPSHOT (not hardcoded in regex)
  */
 
 // Ensure we're in the right context.
@@ -27,9 +29,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Default values if not provided.
 $links  = $links ?? array();
 $prefix = $prefix ?? 'go';
-
-// Escape prefix for regex.
-$escaped_prefix = preg_quote( $prefix, '/' );
 
 // Generate snapshot JSON.
 $snapshot = array(
@@ -60,30 +59,37 @@ const VALID_CODES = [301, 302, 307, 308];
 const MAX_SLUG_LENGTH = 200;
 const MAX_UTM_KEY_LENGTH = 50;
 const MAX_UTM_VALUE_LENGTH = 200;
+const UTM_KEY_PATTERN = /^[a-zA-Z0-9_]+$/;
 
 export default {
 	async fetch(request) {
 		try {
 			const url = new URL(request.url);
+			const prefix = `/${SNAPSHOT.prefix}/`;
 
-			// Match redirect pattern: /<prefix>/<slug>
-			const match = url.pathname.match(/^\/(<?php echo esc_js( $escaped_prefix ); ?>)\/([^\/]+)\/?$/);
-
-			if (!match) {
-				// Not our route, pass through to origin
+			// Quick path check (before any processing)
+			if (!url.pathname.startsWith(prefix)) {
 				return fetch(request);
 			}
 
-			// Decode and normalize slug (with error handling)
+			// Extract slug part (after prefix)
+			const slugRaw = url.pathname.slice(prefix.length).replace(/\/$/, '');
+
+			// Early length check BEFORE decode (prevent DoS via huge encoded string)
+			if (!slugRaw || slugRaw.length > MAX_SLUG_LENGTH * 3) {
+				return fetch(request);
+			}
+
+			// Decode and normalize slug
 			let slug;
 			try {
-				slug = decodeURIComponent(match[2]).trim().toLowerCase();
+				slug = decodeURIComponent(slugRaw).trim().toLowerCase();
 			} catch {
 				// Malformed percent-encoding, fail-open to WP
 				return fetch(request);
 			}
 
-			// Slug length check
+			// Post-decode length check
 			if (slug.length > MAX_SLUG_LENGTH) {
 				return fetch(request);
 			}
@@ -115,13 +121,20 @@ export default {
 
 			// Append UTM parameters (with validation)
 			if (options.append_utm && typeof options.append_utm === 'object' && !Array.isArray(options.append_utm)) {
-				const targetUrl = new URL(target);
+				let targetUrl;
+				try {
+					targetUrl = new URL(target);
+				} catch {
+					// Malformed target URL, fail-open to WP
+					return fetch(request);
+				}
+
 				for (const [key, value] of Object.entries(options.append_utm)) {
-					// Validate: string only, length limits
+					// Validate key: charset + length
 					if (
-						typeof key === 'string' &&
-						typeof value === 'string' &&
+						UTM_KEY_PATTERN.test(key) &&
 						key.length <= MAX_UTM_KEY_LENGTH &&
+						typeof value === 'string' &&
 						value.length <= MAX_UTM_VALUE_LENGTH
 					) {
 						targetUrl.searchParams.set(key, value);

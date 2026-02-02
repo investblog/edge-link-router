@@ -5,7 +5,7 @@ Tags: redirect, links, shortlinks, cloudflare, edge, 301, 302, utm
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,12 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.8 =
+* Worker: dynamic prefix from SNAPSHOT (not hardcoded in regex)
+* Worker: pre-decode length check to prevent DoS
+* Worker: UTM key charset validation (alphanumeric + underscore)
+* Worker: try-catch around new URL() for malformed targets
+
 = 1.0.7 =
 * Complete edge hardening: slug length limit, UTM validation, synced status codes with WP
 
@@ -136,6 +142,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.8 =
+Worker improvements: dynamic prefix, better validation.
 
 = 1.0.7 =
 Complete edge hardening with documented requirements.
