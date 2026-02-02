@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.6] - 2025-02-02
+
+### Security
+- Worker: validate target URL protocol (prevent open redirect)
+- Worker: whitelist redirect status codes (301, 302, 303, 307, 308)
+
+### Fixed
+- Worker: normalize options object (handle undefined/null/array)
+- Worker: try-catch around decodeURIComponent for malformed URLs
+
 ## [1.0.5] - 2025-02-02
 
 ### Fixed
@@ -109,7 +119,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.5...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.6...HEAD
+[1.0.6]: https://github.com/investblog/edge-link-router/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/investblog/edge-link-router/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/investblog/edge-link-router/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/investblog/edge-link-router/compare/v1.0.2...v1.0.3

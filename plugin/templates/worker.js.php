@@ -47,6 +47,9 @@ $snapshot_json = wp_json_encode( $snapshot, JSON_UNESCAPED_SLASHES | JSON_UNESCA
 
 const SNAPSHOT = <?php echo $snapshot_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
 
+// Valid redirect status codes whitelist
+const VALID_CODES = [301, 302, 303, 307, 308];
+
 export default {
 	async fetch(request) {
 		try {
@@ -60,8 +63,15 @@ export default {
 				return fetch(request);
 			}
 
-			// Decode and normalize slug
-			const slug = decodeURIComponent(match[2]).trim().toLowerCase();
+			// Decode and normalize slug (with error handling)
+			let slug;
+			try {
+				slug = decodeURIComponent(match[2]).trim().toLowerCase();
+			} catch {
+				// Malformed URL encoding, fall back to WP
+				return fetch(request);
+			}
+
 			const rule = SNAPSHOT.links[slug];
 
 			if (!rule) {
@@ -71,24 +81,39 @@ export default {
 
 			let target = rule.target_url;
 
+			// Validate target URL protocol (security: prevent open redirect)
+			if (!/^https?:\/\//i.test(target)) {
+				return fetch(request);
+			}
+
+			// Normalize options (handle undefined, null, or array)
+			const options = (rule.options && typeof rule.options === 'object' && !Array.isArray(rule.options))
+				? rule.options
+				: {};
+
 			// Passthrough query string
-			if (rule.options?.passthrough_query && url.search) {
+			if (options.passthrough_query && url.search) {
 				const sep = target.includes('?') ? '&' : '?';
 				target += sep + url.search.substring(1);
 			}
 
 			// Append UTM parameters
-			if (rule.options?.append_utm && Object.keys(rule.options.append_utm).length > 0) {
+			if (options.append_utm && typeof options.append_utm === 'object' && !Array.isArray(options.append_utm)) {
 				const targetUrl = new URL(target);
-				for (const [key, value] of Object.entries(rule.options.append_utm)) {
-					targetUrl.searchParams.set(key, value);
+				for (const [key, value] of Object.entries(options.append_utm)) {
+					if (typeof value === 'string') {
+						targetUrl.searchParams.set(key, value);
+					}
 				}
 				target = targetUrl.toString();
 			}
 
+			// Validate status code (whitelist only)
+			const statusCode = VALID_CODES.includes(Number(rule.status_code)) ? Number(rule.status_code) : 302;
+
 			// Return redirect response
 			return new Response(null, {
-				status: rule.status_code || 302,
+				status: statusCode,
 				headers: {
 					'Location': target,
 					'X-Handled-By': 'cfelr-edge',

@@ -3,7 +3,7 @@
  * Plugin Name:       Edge Link Router
  * Plugin URI:        https://github.com/investblog/edge-link-router
  * Description:       Simple redirect management with optional Cloudflare edge acceleration. Works immediately in WP-only mode, edge is optional.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            301.st
