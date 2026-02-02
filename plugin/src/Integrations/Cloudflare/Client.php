@@ -354,9 +354,9 @@ class Client {
 			'POST',
 			'/zones/' . $zone_id . '/workers/routes',
 			array(
-				'pattern'      => $pattern,
-				'script'       => $script_name,
-				'failure_mode' => 'fail_open', // Bypass Worker on failure, proceed to WordPress.
+				'pattern'                 => $pattern,
+				'script'                  => $script_name,
+				'request_limit_fail_open' => true, // Bypass Worker on failure, proceed to WordPress.
 			)
 		);
 

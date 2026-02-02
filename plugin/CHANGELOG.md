@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-02-02
+
+### Fixed
+- Correct API parameter for fail-open mode (`request_limit_fail_open` instead of `failure_mode`)
+
 ## [1.0.4] - 2025-02-02
 
 ### Fixed
@@ -104,7 +109,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/investblog/edge-link-router/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/investblog/edge-link-router/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/investblog/edge-link-router/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/investblog/edge-link-router/compare/v1.0.1...v1.0.2
