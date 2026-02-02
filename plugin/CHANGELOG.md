@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Nothing yet
+### Fixed
+- Cloudflare Worker upload now uses correct multipart format for ES modules
 
 ## [1.0.0] - 2025-01-XX
 
