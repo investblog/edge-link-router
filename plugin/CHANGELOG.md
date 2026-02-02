@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.12] - 2025-02-03
+
+### Changed
+- Updated "Tested up to" to WordPress 6.9
+
 ## [1.0.11] - 2025-02-02
 
 ### Changed
@@ -162,7 +167,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.11...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.12...HEAD
+[1.0.12]: https://github.com/investblog/edge-link-router/compare/v1.0.11...v1.0.12
 [1.0.11]: https://github.com/investblog/edge-link-router/compare/v1.0.10...v1.0.11
 [1.0.10]: https://github.com/investblog/edge-link-router/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/investblog/edge-link-router/compare/v1.0.8...v1.0.9
