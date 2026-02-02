@@ -53,6 +53,8 @@ jobs:
         run: |
           mkdir -p build/edge-link-router
           cp -r plugin/* build/edge-link-router/
+          # Remove wporg assets (for SVN only, not plugin ZIP)
+          rm -rf build/edge-link-router/assets/wporg
           cd build
           zip -r ../edge-link-router-${{ steps.version.outputs.VERSION }}.zip edge-link-router -x '*.DS_Store' -x '*.git*'
 
