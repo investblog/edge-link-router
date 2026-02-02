@@ -12,8 +12,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// Define constants needed for cleanup.
-define( 'CFELR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+// Define constants needed for cleanup (if not already defined).
+if ( ! defined( 'CFELR_PLUGIN_DIR' ) ) {
+	define( 'CFELR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
 
 // Load autoloader.
 spl_autoload_register(
