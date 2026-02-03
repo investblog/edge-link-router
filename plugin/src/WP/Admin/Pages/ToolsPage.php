@@ -52,15 +52,15 @@ class ToolsPage {
 
 				<form method="post" action="">
 					<?php wp_nonce_field( 'cfelr_test_redirect', 'cfelr_test_nonce' ); ?>
-					<p>
-						<label>
+					<div class="cfelr-inline-form">
+						<label for="cfelr-test-slug">
 							<strong><?php echo esc_html( home_url( '/' . $prefix . '/' ) ); ?></strong>
-							<input type="text" name="test_slug" value="" class="regular-text" placeholder="your-slug" style="width: 200px;">
 						</label>
+						<input type="text" name="test_slug" id="cfelr-test-slug" value="" class="regular-text" placeholder="your-slug" style="width: 200px;">
 						<button type="submit" name="cfelr_test_redirect" class="button button-secondary">
 							<?php esc_html_e( 'Test', 'edge-link-router' ); ?>
 						</button>
-					</p>
+					</div>
 				</form>
 
 				<?php $this->handle_test_redirect(); ?>

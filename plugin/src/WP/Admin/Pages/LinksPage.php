@@ -318,25 +318,26 @@ class LinksPage {
 		$list_table->prepare_items();
 		?>
 		<div class="wrap cfelr-admin">
-			<h1 class="wp-heading-inline"><?php esc_html_e( 'Links', 'edge-link-router' ); ?></h1>
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=edge-link-router&action=add' ) ); ?>" class="page-title-action">
-				<?php esc_html_e( 'Add New', 'edge-link-router' ); ?>
-			</a>
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=edge-link-router&action=import' ) ); ?>" class="page-title-action">
-				<?php esc_html_e( 'Import', 'edge-link-router' ); ?>
-			</a>
-			<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=edge-link-router&action=export' ), 'cfelr_export' ) ); ?>" class="page-title-action">
-				<?php esc_html_e( 'Export', 'edge-link-router' ); ?>
-			</a>
-			<hr class="wp-header-end">
+			<h1><?php esc_html_e( 'Links', 'edge-link-router' ); ?></h1>
 
 			<?php $this->render_notices(); ?>
 
 			<form method="post" id="cfelr-links-form">
-				<?php
-				$list_table->search_box( __( 'Search Links', 'edge-link-router' ), 'cfelr-search' );
-				$list_table->display();
-				?>
+				<div class="cfelr-toolbar">
+					<div class="cfelr-toolbar__actions">
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=edge-link-router&action=add' ) ); ?>" class="button button-primary">
+							<?php esc_html_e( 'Add New', 'edge-link-router' ); ?>
+						</a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=edge-link-router&action=import' ) ); ?>" class="button">
+							<?php esc_html_e( 'Import', 'edge-link-router' ); ?>
+						</a>
+						<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=edge-link-router&action=export' ), 'cfelr_export' ) ); ?>" class="button">
+							<?php esc_html_e( 'Export', 'edge-link-router' ); ?>
+						</a>
+					</div>
+					<?php $list_table->search_box( __( 'Search Links', 'edge-link-router' ), 'cfelr-search' ); ?>
+				</div>
+				<?php $list_table->display(); ?>
 			</form>
 		</div>
 		<?php

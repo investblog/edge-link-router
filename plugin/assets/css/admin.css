@@ -307,6 +307,64 @@
 	--cfelr-focus: var(--wp-admin-theme-color, #2271b1);
 }
 
+/* ----------------------------------------
+   Inline form (label + input + button)
+   ---------------------------------------- */
+.cfelr-admin .cfelr-inline-form {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.cfelr-admin .cfelr-inline-form input[type="text"],
+.cfelr-admin .cfelr-inline-form input[type="search"] {
+	height: 30px;
+	margin: 0;
+}
+
+.cfelr-admin .cfelr-inline-form .button {
+	height: 30px;
+	line-height: 28px;
+	margin: 0;
+}
+
+/* ----------------------------------------
+   Links toolbar (actions + search)
+   ---------------------------------------- */
+.cfelr-admin .cfelr-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 8px 0 12px;
+}
+
+.cfelr-admin .cfelr-toolbar__actions {
+	display: flex;
+	gap: 6px;
+}
+
+.cfelr-admin .cfelr-toolbar .search-box {
+	float: none;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.cfelr-admin .cfelr-toolbar .search-box input[type="search"] {
+	height: 30px;
+	margin: 0;
+}
+
+.cfelr-admin .cfelr-toolbar .search-box .button {
+	height: 30px;
+	line-height: 28px;
+	margin: 0;
+}
+
 /* Table baseline */
 .cfelr-admin .wp-list-table.cfelr-links-table {
 	border: 1px solid var(--cfelr-border);
@@ -660,6 +718,13 @@
 /* ========================================
    Responsive
    ======================================== */
+
+@media screen and (max-width: 1199px) {
+	.cfelr-links-table .column-target_url,
+	.cfelr-links-table th.column-target_url {
+		display: none;
+	}
+}
 
 @media screen and (max-width: 782px) {
 	/* Cards */
