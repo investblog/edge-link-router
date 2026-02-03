@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.14] - 2026-02-03
+
+### Changed
+- UI: move Links action buttons to toolbar row alongside search
+- UI: hide Target URL column on screens narrower than 1200px
+- UI: align inline form inputs and buttons to consistent height
+
+### Fixed
+- CI: build ZIP with correct directory structure for WordPress installer
+
 ## [1.0.13] - 2025-02-03
 
 ### Changed
@@ -171,7 +181,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.13...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.14...HEAD
+[1.0.14]: https://github.com/investblog/edge-link-router/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/investblog/edge-link-router/compare/v1.0.11...v1.0.13
 [1.0.11]: https://github.com/investblog/edge-link-router/compare/v1.0.10...v1.0.11
 [1.0.10]: https://github.com/investblog/edge-link-router/compare/v1.0.9...v1.0.10

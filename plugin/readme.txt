@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.13
+Stable tag: 1.0.14
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,12 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.14 =
+* UI: hide Target URL column on narrow screens (< 1200px)
+* UI: move action buttons to toolbar row with search
+* UI: align inline form inputs with buttons
+* Fix: CI build ZIP structure for WordPress installer
+
 = 1.0.13 =
 * Updated "Tested up to" to WordPress 6.9
 * Fixed Plugin Check errors (fopen/fclose, variable prefixes)
@@ -146,6 +152,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.14 =
+UI polish: responsive table, toolbar layout, form alignment.
 
 = 1.0.13 =
 WordPress 6.9 compatible, Plugin Check fixes.
