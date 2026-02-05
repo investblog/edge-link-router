@@ -1,6 +1,6 @@
-# Edge Link Router
+![Edge Link Router](plugin/assets/wporg/banner-1544x500.png)
 
-![Banner](plugin/assets/wporg/banner-1544x500.png)
+# Edge Link Router
 
 Simple redirect management with optional Cloudflare edge acceleration. Create `/go/your-slug` redirects — works immediately, no setup required.
 
