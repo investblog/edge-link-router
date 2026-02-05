@@ -3,7 +3,7 @@
  * Plugin Name:       Edge Link Router
  * Plugin URI:        https://github.com/investblog/edge-link-router
  * Description:       Simple redirect management with optional Cloudflare edge acceleration. Works immediately in WP-only mode, edge is optional.
- * Version:           1.0.15
+ * Version:           1.0.16
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            301.st
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'CFELR_VERSION', '1.0.15' );
+define( 'CFELR_VERSION', '1.0.16' );
 define( 'CFELR_DB_VERSION', 1 );
 define( 'CFELR_PLUGIN_FILE', __FILE__ );
 define( 'CFELR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -90,6 +90,9 @@ function cfelr_activate() {
 
 	// Create sample link on first activation.
 	cfelr_maybe_create_sample_link();
+
+	// Clear health cache so next page load triggers fresh check.
+	delete_option( 'cfelr_cf_health' );
 }
 register_activation_hook( __FILE__, __NAMESPACE__ . '\\cfelr_activate' );
 
@@ -158,6 +161,13 @@ register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\cfelr_deactivate' );
  */
 function cfelr_init() {
 	// Note: load_plugin_textdomain() not needed since WP 4.6 for WordPress.org hosted plugins.
+
+	// Clear health cache on plugin update.
+	$stored_version = get_option( 'cfelr_plugin_version', '' );
+	if ( $stored_version !== CFELR_VERSION ) {
+		delete_option( 'cfelr_cf_health' );
+		update_option( 'cfelr_plugin_version', CFELR_VERSION );
+	}
 
 	// Check and run migrations if needed.
 	$migration = new WP\Migration();

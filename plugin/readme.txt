@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.16 =
+* Fix: Clear health status cache on plugin update to prevent stale "Edge Degraded" status
+
 = 1.0.15 =
 * Fix: Edge health check now correctly detects worker (use /settings API endpoint)
 
@@ -155,6 +158,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.16 =
+Clear cached health status on plugin update.
 
 = 1.0.15 =
 Fix false "Edge Degraded" status when worker is actually running.

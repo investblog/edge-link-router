@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.16] - 2026-02-05
+
+### Fixed
+- Clear health status cache on plugin update to prevent stale "Edge Degraded" status
+
 ## [1.0.15] - 2026-02-05
 
 ### Fixed
@@ -186,7 +191,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.15...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.16...HEAD
+[1.0.16]: https://github.com/investblog/edge-link-router/compare/v1.0.15...v1.0.16
 [1.0.15]: https://github.com/investblog/edge-link-router/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/investblog/edge-link-router/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/investblog/edge-link-router/compare/v1.0.11...v1.0.13
