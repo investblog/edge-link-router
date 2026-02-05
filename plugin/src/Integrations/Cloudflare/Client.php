@@ -406,7 +406,8 @@ class Client {
 	 * @return array|null Script info or null.
 	 */
 	public function get_worker( string $account_id, string $script_name ): ?array {
-		$response = $this->request( 'GET', '/accounts/' . $account_id . '/workers/scripts/' . $script_name );
+		// Use /settings endpoint which returns JSON metadata (not script content).
+		$response = $this->request( 'GET', '/accounts/' . $account_id . '/workers/scripts/' . $script_name . '/settings' );
 
 		if ( ! $response || ! isset( $response['result'] ) ) {
 			return null;
