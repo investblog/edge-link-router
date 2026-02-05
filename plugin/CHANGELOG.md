@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.15] - 2026-02-05
+
+### Fixed
+- Edge health check: use /settings API endpoint to detect worker (was returning script content instead of JSON)
+
 ## [1.0.14] - 2026-02-03
 
 ### Changed
@@ -181,7 +186,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.14...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.15...HEAD
+[1.0.15]: https://github.com/investblog/edge-link-router/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/investblog/edge-link-router/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/investblog/edge-link-router/compare/v1.0.11...v1.0.13
 [1.0.11]: https://github.com/investblog/edge-link-router/compare/v1.0.10...v1.0.11
