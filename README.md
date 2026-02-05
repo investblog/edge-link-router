@@ -1,5 +1,7 @@
 # Edge Link Router
 
+![Banner](plugin/assets/wporg/banner-1544x500.png)
+
 Simple redirect management with optional Cloudflare edge acceleration. Create `/go/your-slug` redirects — works immediately, no setup required.
 
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org/)
