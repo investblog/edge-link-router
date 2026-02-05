@@ -1,90 +1,71 @@
 # Edge Link Router
 
-Simple redirect management WordPress plugin with optional Cloudflare edge acceleration.
+Simple redirect management with optional Cloudflare edge acceleration. Create `/go/your-slug` redirects — works immediately, no setup required.
 
-**[Home](https://301.st)** · **[WordPress Plugin](https://wordpress.org/plugins/edge-link-router/)** · **[Chrome Extension](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)**
+[![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org/)
+[![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net/)
+[![License](https://img.shields.io/badge/License-GPL%20v2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Features
 
-- **WP-only mode** — Works immediately without external services
-- **Custom redirects** — Create short links with 301/302/307/308 status codes
-- **UTM tracking** — Automatically append UTM parameters to target URLs
-- **Click statistics** — Track clicks with 30-day retention
-- **CSV import/export** — Bulk manage your redirects
+- **Instant redirects** — Works right after activation, no configuration needed
+- **Full control** — 301/302/307/308 status codes, UTM auto-append, query passthrough
+- **Click statistics** — Aggregated daily stats (privacy-first, no PII)
+- **CSV import/export** — Migrate links between sites in seconds
 - **Dashboard widget** — Quick stats at a glance
-- **REST API** — Programmatic access to all features
-- **Cloudflare Workers** — Optional edge-level redirects for maximum performance
+- **Edge acceleration** — Optional Cloudflare Workers for sub-millisecond redirects
+- **Fail-open design** — If edge fails, WordPress takes over seamlessly
+
+## Quick Start
+
+```bash
+# 1. Install from Releases
+Download ZIP → Plugins → Add New → Upload
+
+# 2. Create a redirect
+Link Router → Add New
+Slug: promo
+Target: https://example.com/landing
+
+# 3. Done
+https://yoursite.com/go/promo → redirects instantly
+```
 
 ## Requirements
 
 - WordPress 6.0+
 - PHP 8.0+
+- Cloudflare account (optional, for edge mode)
 
-## Installation
+## Edge Mode
 
-### From GitHub
+Enable Cloudflare Workers for edge-level redirects:
 
-1. Download the latest release ZIP from [Releases](https://github.com/investblog/edge-link-router/releases)
-2. Go to **Plugins → Add New → Upload Plugin**
-3. Upload the ZIP file and activate
+1. Go to **Link Router → Integrations**
+2. Enter your Cloudflare API token
+3. Click **Enable Edge Mode**
 
-### From WordPress.org
+Redirects now happen at Cloudflare's edge — before requests reach WordPress.
 
-1. Go to **Plugins → Add New**
-2. Search for "Edge Link Router"
-3. Click **Install Now** and then **Activate**
+## Testing
 
-## Usage
-
-After activation, find **Link Router** in your admin menu.
-
-### Creating a redirect
-
-1. Go to **Link Router → Add New**
-2. Enter a slug (e.g., `promo`)
-3. Enter the target URL
-4. Choose redirect type (301 permanent or 302 temporary)
-5. Optionally add UTM parameters
-6. Save
-
-Your redirect will be available at `https://yoursite.com/go/promo`
-
-### Changing the prefix
-
-By default, redirects use the `/go/` prefix. Change it in **Link Router → Settings**.
-
-### Testing redirects
-
-Use [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to verify your redirects are working correctly and see the full redirect chain.
+Use [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg) Chrome extension to verify redirects and see the full chain.
 
 ## Development
 
 ```bash
-# Clone the repo
 git clone https://github.com/investblog/edge-link-router.git
 cd edge-link-router
-
-# Install dependencies
-npm install
 composer install
-
-# Start local WordPress environment
-npm run env:start
-
-# Run linting
-npm run lint:php
-
-# Build release ZIP
-npm run build
+npm install
+npm run env:start   # Local WP environment
+npm run lint:php    # PHPCS
 ```
-
-## Links
-
-- **Project Home:** [301.st](https://301.st)
-- **WordPress.org:** [Plugin Page](https://wordpress.org/plugins/edge-link-router/)
-- **Chrome Extension:** [Redirect Inspector](https://chromewebstore.google.com/detail/redirect-inspector/jkeijlkbgkdnhmejgofbbapdbhjljdgg)
-- **Author:** [301st on WordPress.org](https://profiles.wordpress.org/301st/)
 
 ## License
 
 GPL-2.0+
+
+---
+
+Built by [301.st](https://301.st) with [Claude](https://claude.ai)
