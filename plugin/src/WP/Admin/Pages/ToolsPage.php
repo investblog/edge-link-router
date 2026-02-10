@@ -184,11 +184,11 @@ class ToolsPage {
 			echo '<table class="widefat striped" style="max-width: 600px;">';
 			echo '<tr><th>' . esc_html__( 'Handler', 'edge-link-router' ) . '</th><td>';
 			if ( $edge_enabled ) {
-				echo '<span class="dashicons dashicons-cloud-saved" style="color: #4caf50;"></span> ';
-				echo '<strong style="color: #4caf50;">' . esc_html__( 'Edge (Cloudflare Worker)', 'edge-link-router' ) . '</strong>';
+				echo '<span class="dashicons dashicons-cloud-saved cfelr-handler-edge"></span> ';
+				echo '<strong class="cfelr-handler-edge">' . esc_html__( 'Edge (Cloudflare Worker)', 'edge-link-router' ) . '</strong>';
 				echo '<br><small class="description">' . esc_html__( 'WP serves as fallback if edge fails', 'edge-link-router' ) . '</small>';
 			} else {
-				echo '<span class="dashicons dashicons-wordpress" style="color: #666;"></span> ';
+				echo '<span class="dashicons dashicons-wordpress cfelr-handler-wp"></span> ';
 				echo '<strong>' . esc_html__( 'WordPress Only', 'edge-link-router' ) . '</strong>';
 			}
 			echo '</td></tr>';

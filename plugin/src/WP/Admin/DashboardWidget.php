@@ -41,6 +41,26 @@ class DashboardWidget {
 	 */
 	public function init(): void {
 		add_action( 'wp_dashboard_setup', array( $this, 'register_widget' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+	}
+
+	/**
+	 * Enqueue styles on the dashboard page.
+	 *
+	 * @param string $hook Current admin page hook.
+	 * @return void
+	 */
+	public function enqueue_styles( string $hook ): void {
+		if ( 'index.php' !== $hook ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'cfelr-admin',
+			CFELR_PLUGIN_URL . 'assets/css/admin.css',
+			array(),
+			CFELR_VERSION
+		);
 	}
 
 	/**
@@ -143,61 +163,6 @@ class DashboardWidget {
 				</a>
 			</div>
 		</div>
-
-		<style>
-			.cfelr-dashboard-widget {
-				margin: -12px;
-			}
-			.cfelr-widget-row {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 10px 12px;
-				border-bottom: 1px solid #f0f0f1;
-			}
-			.cfelr-widget-row:last-of-type {
-				border-bottom: none;
-			}
-			.cfelr-widget-label {
-				color: #646970;
-				font-size: 13px;
-			}
-			.cfelr-widget-value {
-				text-align: right;
-			}
-			.cfelr-widget-meta {
-				font-size: 12px;
-				color: #8c8f94;
-				flex-wrap: wrap;
-				gap: 8px;
-			}
-			.cfelr-widget-actions {
-				display: flex;
-				gap: 8px;
-				padding: 12px;
-				background: #f6f7f7;
-				margin-top: 0;
-			}
-			.cfelr-status-badge {
-				display: inline-block;
-				padding: 2px 8px;
-				border-radius: 3px;
-				font-size: 12px;
-				font-weight: 500;
-			}
-			.cfelr-status-badge.wp-only {
-				background: #dcdcde;
-				color: #50575e;
-			}
-			.cfelr-status-badge.active {
-				background: #d4edda;
-				color: #155724;
-			}
-			.cfelr-status-badge.degraded {
-				background: #fff3cd;
-				color: #856404;
-			}
-		</style>
 		<?php
 	}
 
@@ -247,8 +212,7 @@ class DashboardWidget {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$counts = $wpdb->get_row(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
-			"SELECT COUNT(*) as total, SUM(CASE WHEN enabled = 1 THEN 1 ELSE 0 END) as enabled FROM {$links_table}"
+			$wpdb->prepare( 'SELECT COUNT(*) as total, SUM(CASE WHEN enabled = 1 THEN 1 ELSE 0 END) as enabled FROM %i', $links_table )
 		);
 
 		// Query 2: Get today's clicks.
@@ -257,8 +221,7 @@ class DashboardWidget {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$today_clicks = $wpdb->get_var(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
-			$wpdb->prepare( "SELECT COALESCE(SUM(clicks), 0) FROM {$clicks_table} WHERE day = %s", $today )
+			$wpdb->prepare( 'SELECT COALESCE(SUM(clicks), 0) FROM %i WHERE day = %s', $clicks_table, $today )
 		);
 
 		// Get cached health status (no SQL/HTTP).

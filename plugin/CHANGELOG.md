@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.17] - 2026-02-10
+
+### Changed
+- Move inline `<style>` blocks to enqueued admin.css (DashboardWidget, StatsPage, LogsPage, IntegrationsPage)
+- Extract repeating inline styles to CSS classes with rem/em units
+- Migrate all SQL queries to use `%i` identifier placeholder (WP 6.2+)
+- Bump "Requires at least" from 6.0 to 6.2
+- Replace banner assets with optimized JPG
+
+### Fixed
+- Plugin Check: zero errors and zero warnings
+- Checkbox column styling now uses default WordPress table styles
+- Clicks column alignment (left instead of right)
+
 ## [1.0.16] - 2026-02-05
 
 ### Fixed

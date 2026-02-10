@@ -34,22 +34,6 @@ class LogsPage {
 	);
 
 	/**
-	 * Log type styles.
-	 *
-	 * @var array
-	 */
-	private const TYPE_COLORS = array(
-		'reconcile'     => '#2271b1',
-		'stats_cleanup' => '#666',
-		'publish'       => '#00a32a',
-		'republish'     => '#00a32a',
-		'enable'        => '#00a32a',
-		'disable'       => '#666',
-		'warning'       => '#dba617',
-		'error'         => '#d63638',
-	);
-
-	/**
 	 * Render the page.
 	 *
 	 * @return void
@@ -152,9 +136,8 @@ class LogsPage {
 									<?php
 									$type       = $log['type'] ?? 'info';
 									$type_label = self::TYPE_LABELS[ $type ] ?? ucfirst( $type );
-									$type_color = self::TYPE_COLORS[ $type ] ?? '#666';
 									?>
-									<span class="cfelr-log-type" style="background: <?php echo esc_attr( $type_color ); ?>;">
+									<span class="cfelr-log-type cfelr-log-type-<?php echo esc_attr( $type ); ?>">
 										<?php echo esc_html( $type_label ); ?>
 									</span>
 								</td>
@@ -169,24 +152,12 @@ class LogsPage {
 				<form method="post" action="" style="margin-top: 20px;">
 					<?php wp_nonce_field( 'cfelr_clear_logs', 'cfelr_clear_logs_nonce' ); ?>
 					<button type="submit" name="cfelr_clear_logs" class="button button-secondary cfelr-clear-logs">
-						<span class="dashicons dashicons-trash" style="vertical-align: middle; margin-right: 4px;"></span>
+						<span class="dashicons dashicons-trash cfelr-btn-icon"></span>
 						<?php esc_html_e( 'Clear Logs', 'edge-link-router' ); ?>
 					</button>
 				</form>
 			<?php endif; ?>
 		</div>
-
-		<style>
-			.cfelr-log-type {
-				display: inline-block;
-				padding: 2px 8px;
-				border-radius: 3px;
-				font-size: 11px;
-				font-weight: 600;
-				color: #fff;
-				text-transform: uppercase;
-			}
-		</style>
 		<?php
 	}
 

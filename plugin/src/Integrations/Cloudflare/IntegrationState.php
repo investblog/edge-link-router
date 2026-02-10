@@ -59,8 +59,7 @@ class IntegrationState {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$row = $wpdb->get_row(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
-			$wpdb->prepare( "SELECT state_json FROM {$table} WHERE provider = %s", 'cloudflare' )
+			$wpdb->prepare( 'SELECT state_json FROM %i WHERE provider = %s', $table, 'cloudflare' )
 		);
 
 		if ( ! $row || empty( $row->state_json ) ) {
@@ -126,8 +125,7 @@ class IntegrationState {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$existing = $wpdb->get_var(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is safe
-			$wpdb->prepare( "SELECT id FROM {$table} WHERE provider = %s", 'cloudflare' )
+			$wpdb->prepare( 'SELECT id FROM %i WHERE provider = %s', $table, 'cloudflare' )
 		);
 
 		if ( $existing ) {

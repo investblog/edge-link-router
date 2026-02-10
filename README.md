@@ -1,4 +1,4 @@
-![Edge Link Router](plugin/assets/wporg/banner-1544x500.png)
+![Edge Link Router](plugin/assets/wporg/banner-1544x500.jpg)
 
 # Edge Link Router
 

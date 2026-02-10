@@ -48,10 +48,11 @@ class WPLinkRepository implements LinkRepositoryInterface {
 
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$row = $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE id = %d",
+				'SELECT * FROM %i WHERE id = %d',
+				$table,
 				$id
 			)
 		);
@@ -74,10 +75,11 @@ class WPLinkRepository implements LinkRepositoryInterface {
 
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$row = $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE slug = %s",
+				'SELECT * FROM %i WHERE slug = %s',
+				$table,
 				$slug
 			)
 		);
@@ -111,36 +113,36 @@ class WPLinkRepository implements LinkRepositoryInterface {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$where = array( '1=1' );
-		$values = array();
+		// Build SQL by concatenation to avoid interpolation warnings.
+		$sql            = 'SELECT * FROM %i WHERE 1=1';
+		$prepare_values = array( $table );
 
 		if ( $args['enabled'] !== null ) {
-			$where[]  = 'enabled = %d';
-			$values[] = $args['enabled'] ? 1 : 0;
+			$sql             .= ' AND enabled = %d';
+			$prepare_values[] = $args['enabled'] ? 1 : 0;
 		}
 
 		if ( ! empty( $args['search'] ) ) {
-			$search   = '%' . $wpdb->esc_like( $args['search'] ) . '%';
-			$where[]  = '(slug LIKE %s OR target_url LIKE %s)';
-			$values[] = $search;
-			$values[] = $search;
+			$search           = '%' . $wpdb->esc_like( $args['search'] ) . '%';
+			$sql             .= ' AND (slug LIKE %s OR target_url LIKE %s)';
+			$prepare_values[] = $search;
+			$prepare_values[] = $search;
 		}
-
-		$where_clause = implode( ' AND ', $where );
 
 		$allowed_orderby = array( 'id', 'slug', 'target_url', 'status_code', 'enabled', 'created_at', 'updated_at' );
 		$orderby         = in_array( $args['orderby'], $allowed_orderby, true ) ? $args['orderby'] : 'created_at';
-		$order           = strtoupper( $args['order'] ) === 'ASC' ? 'ASC' : 'DESC';
 
-		$values[] = $args['limit'];
-		$values[] = $args['offset'];
+		$sql             .= ' ORDER BY %i';
+		$prepare_values[] = $orderby;
+		$sql             .= strtoupper( $args['order'] ) === 'ASC' ? ' ASC' : ' DESC';
+		$sql             .= ' LIMIT %d OFFSET %d';
+		$prepare_values[] = (int) $args['limit'];
+		$prepare_values[] = (int) $args['offset'];
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$rows = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE {$where_clause} ORDER BY {$orderby} {$order} LIMIT %d OFFSET %d",
-				$values
-			)
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+			$wpdb->prepare( $sql, $prepare_values )
 		);
 
 		return array_map( fn( $row ) => Link::from_db( $row ), $rows ?: array() );
@@ -157,35 +159,26 @@ class WPLinkRepository implements LinkRepositoryInterface {
 
 		$table = $this->table();
 
-		$where  = array( '1=1' );
-		$values = array();
+		$sql            = 'SELECT COUNT(*) FROM %i WHERE 1=1';
+		$prepare_values = array( $table );
 
 		if ( isset( $args['enabled'] ) ) {
-			$where[]  = 'enabled = %d';
-			$values[] = $args['enabled'] ? 1 : 0;
+			$sql             .= ' AND enabled = %d';
+			$prepare_values[] = $args['enabled'] ? 1 : 0;
 		}
 
 		if ( ! empty( $args['search'] ) ) {
-			$search   = '%' . $wpdb->esc_like( $args['search'] ) . '%';
-			$where[]  = '(slug LIKE %s OR target_url LIKE %s)';
-			$values[] = $search;
-			$values[] = $search;
+			$search           = '%' . $wpdb->esc_like( $args['search'] ) . '%';
+			$sql             .= ' AND (slug LIKE %s OR target_url LIKE %s)';
+			$prepare_values[] = $search;
+			$prepare_values[] = $search;
 		}
 
-		$where_clause = implode( ' AND ', $where );
-
-		if ( ! empty( $values ) ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-			$count = $wpdb->get_var(
-				$wpdb->prepare(
-					"SELECT COUNT(*) FROM {$table} WHERE {$where_clause}",
-					$values
-				)
-			);
-		} else {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-			$count = $wpdb->get_var( "SELECT COUNT(*) FROM {$table} WHERE {$where_clause}" );
-		}
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$count = $wpdb->get_var(
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+			$wpdb->prepare( $sql, $prepare_values )
+		);
 
 		return (int) $count;
 	}
@@ -275,8 +268,8 @@ class WPLinkRepository implements LinkRepositoryInterface {
 
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$rows = $wpdb->get_results( "SELECT * FROM {$table} WHERE enabled = 1" );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE enabled = 1', $table ) );
 
 		$snapshot = array();
 

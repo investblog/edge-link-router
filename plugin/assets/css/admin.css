@@ -100,6 +100,7 @@
 }
 
 /* Success - green */
+.cfelr-admin .cfelr-log-type-enable,
 .cfelr-admin .cfelr-log-type-publish,
 .cfelr-admin .cfelr-log-type-republish,
 .cfelr-admin .cfelr-log-type-enable_edge {
@@ -108,7 +109,15 @@
 	color: #008a20;
 }
 
+/* Warning - amber */
+.cfelr-admin .cfelr-log-type-warning {
+	background: rgba(219, 166, 23, 0.1);
+	border-color: rgba(219, 166, 23, 0.3);
+	color: #996800;
+}
+
 /* Warning/removal - red */
+.cfelr-admin .cfelr-log-type-disable,
 .cfelr-admin .cfelr-log-type-disable_edge,
 .cfelr-admin .cfelr-log-type-error {
 	background: rgba(214, 54, 56, 0.1);
@@ -410,13 +419,6 @@
 	background: #f0f6fc;
 }
 
-/* Checkbox column */
-.cfelr-admin .wp-list-table.cfelr-links-table th.check-column,
-.cfelr-admin .wp-list-table.cfelr-links-table td.check-column {
-	width: 42px;
-	padding-left: 12px;
-	padding-right: 8px;
-}
 
 /* Column widths */
 .cfelr-admin .wp-list-table.cfelr-links-table .column-slug {
@@ -435,7 +437,7 @@
 
 .cfelr-admin .wp-list-table.cfelr-links-table .column-clicks {
 	width: 100px;
-	text-align: right;
+	text-align: left;
 }
 
 .cfelr-admin .wp-list-table.cfelr-links-table .column-created_at {
@@ -713,6 +715,276 @@
 
 .cfelr-admin .cfelr-empty-state .button {
 	margin-top: 5px;
+}
+
+/* ========================================
+   Button icon — dashicon inside buttons/links
+   ======================================== */
+
+.cfelr-admin .cfelr-btn-icon {
+	vertical-align: middle;
+	margin-right: 0.25em;
+}
+
+.cfelr-admin .cfelr-btn-icon--after {
+	vertical-align: middle;
+	margin-left: 0.25em;
+}
+
+/* Smaller dashicon variant (16px) */
+.cfelr-admin .cfelr-btn-icon--sm {
+	vertical-align: middle;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+/* ========================================
+   Route mismatch warning
+   ======================================== */
+
+.cfelr-admin .cfelr-route-mismatch-warning {
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-left: 4px solid #ffc107;
+	padding: 0.75rem 1rem;
+	margin: 1rem 0;
+	border-radius: 0.25rem;
+}
+
+.cfelr-admin .cfelr-route-mismatch-warning p {
+	margin: 0 0 0.5rem;
+}
+
+.cfelr-admin .cfelr-route-mismatch-warning p:last-child {
+	margin-bottom: 0;
+}
+
+.cfelr-admin .cfelr-route-mismatch-warning .dashicons {
+	color: #856404;
+}
+
+.cfelr-admin .cfelr-route-mismatch-warning table {
+	margin: 0.5rem 0;
+}
+
+.cfelr-admin .cfelr-route-mismatch-warning td {
+	padding-right: 1rem;
+}
+
+/* ========================================
+   Test result — handler badges (ToolsPage)
+   ======================================== */
+
+.cfelr-admin .cfelr-handler-edge {
+	color: #4caf50;
+}
+
+.cfelr-admin .cfelr-handler-wp {
+	color: #666;
+}
+
+/* ========================================
+   Dashboard Widget
+   ======================================== */
+
+.cfelr-dashboard-widget {
+	margin: -0.75rem;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.625rem 0.75rem;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-row:last-of-type {
+	border-bottom: none;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-label {
+	color: #646970;
+	font-size: 13px;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-value {
+	text-align: right;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-meta {
+	font-size: 12px;
+	color: #8c8f94;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.cfelr-dashboard-widget .cfelr-widget-actions {
+	display: flex;
+	gap: 0.5rem;
+	padding: 0.75rem;
+	background: #f6f7f7;
+	margin-top: 0;
+}
+
+.cfelr-dashboard-widget .cfelr-status-badge {
+	display: inline-block;
+	padding: 0.125rem 0.5rem;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.cfelr-dashboard-widget .cfelr-status-badge.wp-only {
+	background: #dcdcde;
+	color: #50575e;
+}
+
+.cfelr-dashboard-widget .cfelr-status-badge.active {
+	background: #d4edda;
+	color: #155724;
+}
+
+.cfelr-dashboard-widget .cfelr-status-badge.degraded {
+	background: #fff3cd;
+	color: #856404;
+}
+
+/* ========================================
+   Stats Bar Chart
+   ======================================== */
+
+.cfelr-admin .cfelr-bar-chart {
+	max-width: 600px;
+}
+
+.cfelr-admin .cfelr-bar-row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}
+
+.cfelr-admin .cfelr-bar-label {
+	width: 7.5rem;
+	flex-shrink: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.cfelr-admin .cfelr-bar-container {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+.cfelr-admin .cfelr-bar {
+	height: 1.5rem;
+	background: linear-gradient(90deg, #0073aa 0%, #00a0d2 100%);
+	border-radius: 3px;
+	min-width: 2px;
+}
+
+.cfelr-admin .cfelr-bar-value {
+	font-size: 12px;
+	color: #646970;
+	min-width: 3.125rem;
+}
+
+/* ========================================
+   Integrations Page
+   ======================================== */
+
+.cfelr-admin .cfelr-brand-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	vertical-align: middle;
+	margin-right: 0.5rem;
+}
+
+.cfelr-admin .cfelr-subsection {
+	margin: 1.5rem 0;
+	padding: 1.25rem;
+	background: #f9f9f9;
+	border-radius: 0.25rem;
+}
+
+.cfelr-admin .cfelr-subsection h3 {
+	margin-top: 0;
+	padding-bottom: 0.625rem;
+	border-bottom: 1px solid #ddd;
+}
+
+.cfelr-admin .cfelr-diagnostics-results {
+	margin: 1rem 0;
+}
+
+.cfelr-admin .cfelr-overall-status {
+	padding: 0.625rem 1rem;
+	border-radius: 0.25rem;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+
+.cfelr-admin .cfelr-overall-ok {
+	background: #d4edda;
+	color: #155724;
+}
+
+.cfelr-admin .cfelr-overall-warn {
+	background: #fff3cd;
+	color: #856404;
+}
+
+.cfelr-admin .cfelr-overall-fail {
+	background: #f8d7da;
+	color: #721c24;
+}
+
+.cfelr-admin .cfelr-token-status {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.cfelr-admin .cfelr-token-configured {
+	color: #00a32a;
+}
+
+.cfelr-admin .cfelr-token-configured .dashicons {
+	color: #00a32a;
+}
+
+.cfelr-admin .cfelr-edge-status {
+	background: #e8f5e9;
+	border-left: 4px solid #4caf50;
+}
+
+.cfelr-admin .cfelr-status-ok .dashicons {
+	color: #00a32a;
+}
+
+.cfelr-admin .cfelr-token-instructions {
+	background: #f0f6fc;
+	border: 1px solid #c3d9ed;
+	border-radius: 0.25rem;
+	padding: 1rem 1.25rem;
+	margin-bottom: 1.25rem;
+}
+
+.cfelr-admin .cfelr-token-instructions ol {
+	margin: 0.625rem 0 0 1.25rem;
+}
+
+.cfelr-admin .cfelr-token-instructions li {
+	margin-bottom: 0.5rem;
+}
+
+.cfelr-admin .cfelr-token-instructions code {
+	background: #e8e8e8;
+	padding: 0.125rem 0.375rem;
+	border-radius: 3px;
 }
 
 /* ========================================

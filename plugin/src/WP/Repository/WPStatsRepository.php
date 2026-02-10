@@ -53,10 +53,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$table = $this->table();
 
 		// Atomic upsert: INSERT ... ON DUPLICATE KEY UPDATE.
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$result = $wpdb->query(
 			$wpdb->prepare(
-				"INSERT INTO {$table} (day, link_id, clicks) VALUES (%s, %d, 1) ON DUPLICATE KEY UPDATE clicks = clicks + 1",
+				'INSERT INTO %i (day, link_id, clicks) VALUES (%s, %d, 1) ON DUPLICATE KEY UPDATE clicks = clicks + 1',
+				$table,
 				$date,
 				$link_id
 			)
@@ -78,10 +79,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$since = gmdate( 'Y-m-d', strtotime( "-{$days} days" ) );
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$clicks = $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT SUM(clicks) FROM {$table} WHERE link_id = %d AND day >= %s",
+				'SELECT SUM(clicks) FROM %i WHERE link_id = %d AND day >= %s',
+				$table,
 				$link_id,
 				$since
 			)
@@ -103,10 +105,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$since = gmdate( 'Y-m-d', strtotime( "-{$days} days" ) );
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT link_id, SUM(clicks) as total_clicks FROM {$table} WHERE day >= %s GROUP BY link_id ORDER BY total_clicks DESC LIMIT %d",
+				'SELECT link_id, SUM(clicks) as total_clicks FROM %i WHERE day >= %s GROUP BY link_id ORDER BY total_clicks DESC LIMIT %d',
+				$table,
 				$since,
 				$limit
 			),
@@ -135,10 +138,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$since = gmdate( 'Y-m-d', strtotime( "-{$days} days" ) );
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT day, clicks FROM {$table} WHERE link_id = %d AND day >= %s ORDER BY day ASC",
+				'SELECT day, clicks FROM %i WHERE link_id = %d AND day >= %s ORDER BY day ASC',
+				$table,
 				$link_id,
 				$since
 			),
@@ -166,10 +170,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$before = gmdate( 'Y-m-d', strtotime( "-{$retention_days} days" ) );
 		$table  = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$deleted = $wpdb->query(
 			$wpdb->prepare(
-				"DELETE FROM {$table} WHERE day < %s",
+				'DELETE FROM %i WHERE day < %s',
+				$table,
 				$before
 			)
 		);
@@ -188,10 +193,11 @@ class WPStatsRepository implements StatsSinkInterface {
 
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$deleted = $wpdb->query(
 			$wpdb->prepare(
-				"DELETE FROM {$table} WHERE link_id = %d",
+				'DELETE FROM %i WHERE link_id = %d',
+				$table,
 				$link_id
 			)
 		);
@@ -211,10 +217,11 @@ class WPStatsRepository implements StatsSinkInterface {
 		$since = gmdate( 'Y-m-d', strtotime( "-{$days} days" ) );
 		$table = $this->table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$clicks = $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT SUM(clicks) FROM {$table} WHERE day >= %s",
+				'SELECT SUM(clicks) FROM %i WHERE day >= %s',
+				$table,
 				$since
 			)
 		);

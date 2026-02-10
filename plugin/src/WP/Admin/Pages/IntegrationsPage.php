@@ -118,29 +118,29 @@ class IntegrationsPage {
 					?>
 					<?php if ( $route_mismatch ) : ?>
 						<!-- Route Mismatch Warning -->
-						<div class="cfelr-route-mismatch-warning" style="background: #fff3cd; border: 1px solid #ffc107; border-left: 4px solid #ffc107; padding: 12px 15px; margin: 15px 0; border-radius: 4px;">
-							<p style="margin: 0 0 10px 0;">
-								<span class="dashicons dashicons-warning" style="color: #856404;"></span>
+						<div class="cfelr-route-mismatch-warning">
+							<p>
+								<span class="dashicons dashicons-warning"></span>
 								<strong><?php esc_html_e( 'Route Pattern Mismatch Detected', 'edge-link-router' ); ?></strong>
 							</p>
-							<p style="margin: 0 0 8px 0;">
+							<p>
 								<?php esc_html_e( 'The Cloudflare route pattern does not match the expected pattern. Redirects may not work correctly.', 'edge-link-router' ); ?>
 							</p>
-							<table style="margin: 10px 0;">
+							<table>
 								<tr>
-									<td style="padding-right: 15px;"><strong><?php esc_html_e( 'Expected:', 'edge-link-router' ); ?></strong></td>
+									<td><strong><?php esc_html_e( 'Expected:', 'edge-link-router' ); ?></strong></td>
 									<td><code><?php echo esc_html( $route_mismatch['expected'] ); ?></code></td>
 								</tr>
 								<tr>
-									<td style="padding-right: 15px;"><strong><?php esc_html_e( 'Actual:', 'edge-link-router' ); ?></strong></td>
+									<td><strong><?php esc_html_e( 'Actual:', 'edge-link-router' ); ?></strong></td>
 									<td><code><?php echo esc_html( $route_mismatch['actual'] ); ?></code></td>
 								</tr>
 							</table>
-							<p style="margin: 10px 0 0 0;">
+							<p>
 								<form method="post" style="display: inline;">
 									<?php wp_nonce_field( 'cfelr_fix_route', 'cfelr_fix_route_nonce' ); ?>
 									<button type="submit" name="cfelr_fix_route" class="button button-primary">
-										<span class="dashicons dashicons-admin-tools" style="vertical-align: middle; margin-right: 4px;"></span>
+										<span class="dashicons dashicons-admin-tools cfelr-btn-icon"></span>
 										<?php esc_html_e( 'Fix Route Now', 'edge-link-router' ); ?>
 									</button>
 								</form>
@@ -190,7 +190,7 @@ class IntegrationsPage {
 							<form method="post" style="display: inline;">
 								<?php wp_nonce_field( 'cfelr_republish', 'cfelr_republish_nonce' ); ?>
 								<button type="submit" name="cfelr_republish" class="button button-secondary">
-									<span class="dashicons dashicons-update" style="vertical-align: middle; margin-right: 4px;"></span>
+									<span class="dashicons dashicons-update cfelr-btn-icon"></span>
 									<?php esc_html_e( 'Republish Snapshot', 'edge-link-router' ); ?>
 								</button>
 							</form>
@@ -198,7 +198,7 @@ class IntegrationsPage {
 							<form method="post" style="display: inline; margin-left: 10px;">
 								<?php wp_nonce_field( 'cfelr_disable_edge', 'cfelr_disable_edge_nonce' ); ?>
 								<button type="submit" name="cfelr_disable_edge" class="button button-secondary" onclick="return confirm('<?php echo esc_js( __( 'Are you sure you want to disable edge mode?', 'edge-link-router' ) ); ?>');">
-									<span class="dashicons dashicons-no" style="vertical-align: middle; margin-right: 4px;"></span>
+									<span class="dashicons dashicons-no cfelr-btn-icon"></span>
 									<?php esc_html_e( 'Disable Edge', 'edge-link-router' ); ?>
 								</button>
 							</form>
@@ -281,7 +281,7 @@ class IntegrationsPage {
 
 					<p style="margin-top: 15px;">
 						<a href="<?php echo esc_url( add_query_arg( 'run_diagnostics', '1' ) ); ?>" class="button button-secondary">
-							<span class="dashicons dashicons-search" style="vertical-align: middle; margin-right: 4px;"></span>
+							<span class="dashicons dashicons-search cfelr-btn-icon"></span>
 							<?php echo $public_checks ? esc_html__( 'Run Again', 'edge-link-router' ) : esc_html__( 'Run Diagnostics', 'edge-link-router' ); ?>
 						</a>
 					</p>
@@ -343,7 +343,7 @@ class IntegrationsPage {
 
 						<p style="margin-top: 15px;">
 							<a href="<?php echo esc_url( add_query_arg( 'run_auth_diagnostics', '1' ) ); ?>" class="button button-secondary">
-								<span class="dashicons dashicons-cloud" style="vertical-align: middle; margin-right: 4px;"></span>
+								<span class="dashicons dashicons-cloud cfelr-btn-icon"></span>
 								<?php echo $auth_checks ? esc_html__( 'Re-check API', 'edge-link-router' ) : esc_html__( 'Check API Connection', 'edge-link-router' ); ?>
 							</a>
 						</p>
@@ -435,7 +435,7 @@ class IntegrationsPage {
 						<p>
 							<a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener noreferrer" class="button button-secondary">
 								<?php esc_html_e( 'Open Cloudflare Dashboard', 'edge-link-router' ); ?>
-								<span class="dashicons dashicons-external" style="vertical-align: middle; margin-left: 4px;"></span>
+								<span class="dashicons dashicons-external cfelr-btn-icon--after"></span>
 							</a>
 						</p>
 
@@ -502,7 +502,7 @@ class IntegrationsPage {
 					<form method="post" style="margin-top: 15px;">
 						<?php wp_nonce_field( 'cfelr_enable_edge', 'cfelr_enable_edge_nonce' ); ?>
 						<button type="submit" name="cfelr_enable_edge" class="button button-primary" <?php disabled( ! $can_enable ); ?>>
-							<span class="dashicons dashicons-cloud-saved" style="vertical-align: middle; margin-right: 4px;"></span>
+							<span class="dashicons dashicons-cloud-saved cfelr-btn-icon"></span>
 							<?php esc_html_e( 'Enable Edge Mode', 'edge-link-router' ); ?>
 						</button>
 					</form>
@@ -513,7 +513,7 @@ class IntegrationsPage {
 			<!-- 301.st Section -->
 			<div class="cfelr-card">
 				<h2>
-					<svg class="cfelr-brand-icon" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M13.295 18.57c-.013 1.026-.074 2.047-.438 3.026-.681 1.828-2.003 2.903-3.893 3.284a8.3 8.3 0 0 1-1.56.146c-2.42.024-4.839.025-7.259.034H0v-5.454h.214c2.22.01 4.442.017 6.662.003a4 4 0 0 0 1.058-.16 1.66 1.66 0 0 0 1.22-1.546c.034-.746.052-1.494.031-2.24-.028-1.03-.769-1.766-1.8-1.803-.854-.03-1.71-.032-2.565-.035-1.536-.005-3.072 0-4.607-.008H0V9.5h.196c2.104 0 4.208.005 6.313-.007.307-.002.628-.053.917-.154.608-.212.98-.81.986-1.5q.003-.573 0-1.146c-.002-.878-.595-1.475-1.467-1.475H.034V.936h.172C3.289.947 6.37.943 9.454.95c.638.001 1.283.03 1.86.35.68.38 1.116.956 1.157 1.743.049.917.039 1.837.04 2.755.001.645-.004 1.29-.036 1.934-.045.886-.27 1.72-.849 2.42-.472.573-1.058.98-1.794 1.146-.01.002-.016.014-.041.036.089.018.167.031.243.05 1.595.404 2.635 1.372 2.984 3.001.128.598.203 1.213.24 1.824.047.785.048 1.574.037 2.361m8.421.051c-.002 1.014-.14 2.011-.596 2.933-.86 1.734-2.254 2.807-4.108 3.298-.848.224-1.712.225-2.59.2v-4.318h.156c.718.012 1.44-.004 2.15-.155.848-.181 1.402-.752 1.545-1.607.075-.45.088-.91.092-1.365.007-.85-.025-1.7-.052-2.55a2.42 2.42 0 0 0-.728-1.644c-.449-.441-.995-.7-1.627-.757a14 14 0 0 0-1.536-.047v-4.24c.938-.03 1.87-.006 2.778.248 1.857.52 3.098 1.627 3.75 3.42.306.844.446 1.72.513 2.612.074.978.1 1.959.05 2.938a9.4 9.4 0 0 1-.172 1.325c.107.004.198.01.289.01 1.75.002 3.5.003 5.249.002h.216v4.317h-.212c-1.733 0-3.465-.002-5.198.003-.134 0-.17-.041-.165-.17.016-.507.007-1.014.007-1.52v-.933z" fill="#7c3aed"/></svg>
+					<svg class="cfelr-brand-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M16.363 22.856c-.016 1.262-.091 2.519-.54 3.723-.837 2.251-2.464 3.573-4.79 4.043-.627.126-1.28.173-1.92.18-2.978.028-5.956.03-8.934.04H0V24.13h.264c2.733.013 5.466.021 8.199.004a4.8 4.8 0 0 0 1.301-.197 2.04 2.04 0 0 0 1.501-1.903 36 36 0 0 0 .04-2.757c-.035-1.268-.947-2.173-2.215-2.219-1.052-.037-2.105-.039-3.158-.042-1.89-.006-3.78-.002-5.67-.01H0v-5.313h.24c2.59 0 5.18.007 7.77-.008a3.6 3.6 0 0 0 1.13-.19c.748-.26 1.205-.997 1.213-1.846q.005-.705 0-1.41c-.002-1.08-.732-1.815-1.805-1.816H.042v-5.27h.211c3.794.012 7.588.008 11.383.016.785.002 1.578.036 2.289.432.838.466 1.373 1.175 1.425 2.144.059 1.129.047 2.26.048 3.39.002.794-.005 1.589-.045 2.38-.055 1.092-.332 2.119-1.044 2.98-.582.705-1.303 1.205-2.208 1.41-.011.003-.02.018-.051.045.11.022.206.038.3.061 1.962.497 3.243 1.688 3.672 3.694.158.736.25 1.493.296 2.244.057.967.058 1.938.045 2.906m10.365.063c-.003 1.248-.172 2.475-.735 3.61-1.059 2.134-2.773 3.455-5.056 4.06-1.043.275-2.107.276-3.187.246v-5.028c.326-.023.65-.032.97-.071 1.36-.167 2.24-.955 2.755-2.191.341-.82.487-1.691.505-2.57.047-2.265.065-4.53.078-6.794a74 74 0 0 0-.043-3.13c-.036-.984-.157-1.958-.537-2.883-.53-1.29-1.545-1.99-2.938-2.004-.527-.005-1.054 0-1.591 0V1.174c.022-.008.04-.022.06-.022.954.013 1.914-.028 2.863.053a7.3 7.3 0 0 1 4.446 1.97 7.3 7.3 0 0 1 2.285 4.19c.08.466.128.944.129 1.417q.012 7.222-.004 14.446zM32 1.181v29.646c-.067.004-.127.012-.187.012q-1.423.004-2.845.001-.179-.001-.353-.041a.46.46 0 0 1-.38-.4c-.021-.138-.02-.28-.02-.42-.002-9.344 0-18.687-.008-28.031 0-.542.228-.761.762-.764.773-.005 1.546-.002 2.319-.003z" fill="#f6821f"/></svg>
 					<?php esc_html_e( '301.st Integration', 'edge-link-router' ); ?>
 				</h2>
 				<p><?php esc_html_e( 'Advanced routing features: geo-targeting, A/B testing, multi-domain management, and detailed analytics.', 'edge-link-router' ); ?></p>
@@ -529,92 +529,12 @@ class IntegrationsPage {
 					<p>
 						<a href="https://301.st" target="_blank" rel="noopener noreferrer" class="button">
 							<?php esc_html_e( 'Learn more about 301.st', 'edge-link-router' ); ?>
-							<span class="dashicons dashicons-external" style="vertical-align: middle; margin-left: 4px;"></span>
+							<span class="dashicons dashicons-external cfelr-btn-icon--after"></span>
 						</a>
 					</p>
 				</div>
 			</div>
 		</div>
-
-		<style>
-			.cfelr-brand-icon {
-				width: 24px;
-				height: 24px;
-				vertical-align: middle;
-				margin-right: 8px;
-			}
-			.cfelr-subsection {
-				margin: 25px 0;
-				padding: 20px;
-				background: #f9f9f9;
-				border-radius: 4px;
-			}
-			.cfelr-subsection h3 {
-				margin-top: 0;
-				padding-bottom: 10px;
-				border-bottom: 1px solid #ddd;
-			}
-			.cfelr-diagnostics-results {
-				margin: 15px 0;
-			}
-			.cfelr-overall-status {
-				padding: 10px 15px;
-				border-radius: 4px;
-				font-weight: 500;
-				margin-bottom: 15px;
-			}
-			.cfelr-overall-ok {
-				background: #d4edda;
-				color: #155724;
-			}
-			.cfelr-overall-warn {
-				background: #fff3cd;
-				color: #856404;
-			}
-			.cfelr-overall-fail {
-				background: #f8d7da;
-				color: #721c24;
-			}
-			.cfelr-token-status {
-				display: flex;
-				align-items: center;
-				gap: 8px;
-			}
-			.cfelr-token-configured {
-				color: #00a32a;
-			}
-			.cfelr-token-configured .dashicons {
-				color: #00a32a;
-			}
-			.cfelr-edge-status {
-				background: #e8f5e9;
-				border-left: 4px solid #4caf50;
-			}
-			.cfelr-status-ok {
-				color: #00a32a;
-			}
-			.cfelr-status-ok .dashicons {
-				color: #00a32a;
-			}
-			.cfelr-token-instructions {
-				background: #f0f6fc;
-				border: 1px solid #c3d9ed;
-				border-radius: 4px;
-				padding: 15px 20px;
-				margin-bottom: 20px;
-			}
-			.cfelr-token-instructions ol {
-				margin: 10px 0 0 20px;
-			}
-			.cfelr-token-instructions li {
-				margin-bottom: 8px;
-			}
-			.cfelr-token-instructions code {
-				background: #e8e8e8;
-				padding: 2px 6px;
-				border-radius: 3px;
-			}
-		</style>
 		<?php
 	}
 

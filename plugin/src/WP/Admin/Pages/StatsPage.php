@@ -98,7 +98,7 @@ class StatsPage {
 					<p>
 						<a href="<?php echo esc_url( $cf_url ); ?>" target="_blank" rel="noopener noreferrer" class="button button-small">
 							<?php esc_html_e( 'View Edge Metrics in Cloudflare', 'edge-link-router' ); ?>
-							<span class="dashicons dashicons-external" style="font-size: 16px; line-height: 1.4;"></span>
+							<span class="dashicons dashicons-external cfelr-btn-icon--sm"></span>
 						</a>
 					</p>
 				</div>
@@ -148,8 +148,8 @@ class StatsPage {
 								<th><?php esc_html_e( 'Rank', 'edge-link-router' ); ?></th>
 								<th><?php esc_html_e( 'Slug', 'edge-link-router' ); ?></th>
 								<th><?php esc_html_e( 'Target URL', 'edge-link-router' ); ?></th>
-								<th style="text-align: right;"><?php esc_html_e( 'Clicks', 'edge-link-router' ); ?></th>
-								<th style="text-align: right;"><?php esc_html_e( 'Share', 'edge-link-router' ); ?></th>
+								<th><?php esc_html_e( 'Clicks', 'edge-link-router' ); ?></th>
+								<th><?php esc_html_e( 'Share', 'edge-link-router' ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -190,10 +190,10 @@ class StatsPage {
 											<?php echo esc_html( $display_url ); ?>
 										</a>
 									</td>
-									<td style="text-align: right;">
+									<td>
 										<strong><?php echo esc_html( number_format_i18n( $item['clicks'] ) ); ?></strong>
 									</td>
-									<td style="text-align: right;">
+									<td>
 										<?php echo esc_html( number_format_i18n( $share, 1 ) ); ?>%
 									</td>
 								</tr>
@@ -233,41 +233,6 @@ class StatsPage {
 			</div>
 			<?php endif; ?>
 		</div>
-
-		<style>
-			.cfelr-bar-chart {
-				max-width: 600px;
-			}
-			.cfelr-bar-row {
-				display: flex;
-				align-items: center;
-				margin-bottom: 8px;
-			}
-			.cfelr-bar-label {
-				width: 120px;
-				flex-shrink: 0;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-			.cfelr-bar-container {
-				flex-grow: 1;
-				display: flex;
-				align-items: center;
-				gap: 10px;
-			}
-			.cfelr-bar {
-				height: 24px;
-				background: linear-gradient(90deg, #0073aa 0%, #00a0d2 100%);
-				border-radius: 3px;
-				min-width: 2px;
-			}
-			.cfelr-bar-value {
-				font-size: 12px;
-				color: #646970;
-				min-width: 50px;
-			}
-		</style>
 		<?php
 	}
 }
