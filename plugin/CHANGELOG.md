@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.19] - 2026-02-10
+
+### Fixed
+- Uninstall: delete `cfelr_plugin_version` option (was left orphaned)
+
 ## [1.0.18] - 2026-02-10
 
 ### Fixed
@@ -215,7 +220,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.18...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.19...HEAD
+[1.0.19]: https://github.com/investblog/edge-link-router/compare/v1.0.18...v1.0.19
 [1.0.18]: https://github.com/investblog/edge-link-router/compare/v1.0.17...v1.0.18
 [1.0.17]: https://github.com/investblog/edge-link-router/compare/v1.0.16...v1.0.17
 [1.0.16]: https://github.com/investblog/edge-link-router/compare/v1.0.15...v1.0.16

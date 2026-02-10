@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.18
+Stable tag: 1.0.19
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 5. Cloudflare integration
 
 == Changelog ==
+
+= 1.0.19 =
+* Fix: Clean up cfelr_plugin_version option on uninstall
 
 = 1.0.18 =
 * Fix: Edge mode detection after plugin update (no longer shows "WP Only" when edge is active)
@@ -170,6 +173,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.19 =
+Complete uninstall cleanup — no orphan options left.
 
 = 1.0.18 =
 Fix edge mode showing "WP Only" after plugin update. Diagnostics now check worker and route.

@@ -138,6 +138,7 @@ class Migration {
 		delete_option( 'cfelr_last_publish' );
 		delete_option( 'cfelr_cf_route_id' );
 		delete_option( 'cfelr_sample_link_created' );
+		delete_option( 'cfelr_plugin_version' );
 		delete_transient( 'cfelr_edge_publish_debounce' );
 	}
 }
