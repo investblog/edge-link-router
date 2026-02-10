@@ -65,6 +65,15 @@ class Health implements HealthInterface {
 		$status = get_option( self::OPTION_KEY );
 
 		if ( ! is_array( $status ) ) {
+			// If edge is enabled but cache is empty, show pending state instead of wp-only.
+			if ( get_option( IntegrationState::EDGE_ENABLED_KEY, false ) ) {
+				return array(
+					'state'      => self::STATE_DEGRADED,
+					'message'    => __( 'Health check pending. Status will update shortly.', 'edge-link-router' ),
+					'last_check' => null,
+				);
+			}
+
 			return array(
 				'state'      => self::STATE_WP_ONLY,
 				'message'    => __( 'Edge mode not configured.', 'edge-link-router' ),

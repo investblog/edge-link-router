@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,11 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Changelog ==
 
+= 1.0.18 =
+* Fix: Edge mode detection after plugin update (no longer shows "WP Only" when edge is active)
+* Add worker deployment and route existence checks to diagnostics
+* Smart health cache: schedule immediate re-check on update instead of clearing cache
+
 = 1.0.17 =
 * Move inline styles to enqueued admin.css (review compliance)
 * Migrate SQL queries to %i identifier placeholder (WP 6.2+)
@@ -165,6 +170,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.18 =
+Fix edge mode showing "WP Only" after plugin update. Diagnostics now check worker and route.
 
 = 1.0.16 =
 Clear cached health status on plugin update.

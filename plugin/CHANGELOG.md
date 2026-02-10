@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.18] - 2026-02-10
+
+### Fixed
+- Edge mode detection: show "Health check pending" instead of "WP Only" when edge is enabled but cache is empty
+- Smart cache invalidation on plugin update: schedule immediate health re-check instead of clearing cache
+
+### Added
+- Diagnostics: worker deployment check (verifies Worker script exists in Cloudflare)
+- Diagnostics: route existence check (verifies route pattern points to correct worker)
+
 ## [1.0.17] - 2026-02-10
 
 ### Changed
@@ -205,7 +215,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.16...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.18...HEAD
+[1.0.18]: https://github.com/investblog/edge-link-router/compare/v1.0.17...v1.0.18
+[1.0.17]: https://github.com/investblog/edge-link-router/compare/v1.0.16...v1.0.17
 [1.0.16]: https://github.com/investblog/edge-link-router/compare/v1.0.15...v1.0.16
 [1.0.15]: https://github.com/investblog/edge-link-router/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/investblog/edge-link-router/compare/v1.0.13...v1.0.14

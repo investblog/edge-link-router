@@ -143,12 +143,21 @@ class Diagnostics {
 		$zone_data = $zone_check['_zone_data'] ?? null;
 
 		// Run remaining checks with zone data.
-		return array(
+		$checks = array(
 			$perm_check,
 			$zone_check,
 			$this->check_proxied_dns( $client, $host, $zone_data ),
 			$this->check_route_conflict_authorized( $client, $zone_data ),
 		);
+
+		// Add edge-specific checks when edge mode is enabled.
+		$state = new IntegrationState();
+		if ( $state->is_edge_enabled() && $zone_data ) {
+			$checks[] = $this->check_worker_deployed( $client, $zone_data );
+			$checks[] = $this->check_route_exists( $client, $zone_data );
+		}
+
+		return $checks;
 	}
 
 	/**
@@ -695,6 +704,108 @@ class Diagnostics {
 				__( 'Route pattern "%s" is available.', 'edge-link-router' ),
 				$pattern
 			);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Check if Worker script is deployed.
+	 *
+	 * @param Client $client    Cloudflare client.
+	 * @param array  $zone_data Zone data.
+	 * @return array
+	 */
+	private function check_worker_deployed( Client $client, array $zone_data ): array {
+		$result = array(
+			'name'     => 'worker_deployed',
+			'label'    => __( 'Worker Script Deployed', 'edge-link-router' ),
+			'status'   => self::STATUS_FAIL,
+			'message'  => '',
+			'fix_hint' => null,
+		);
+
+		$account_id = $zone_data['account_id'] ?? '';
+		if ( empty( $account_id ) ) {
+			$result['status']  = self::STATUS_WARN;
+			$result['message'] = __( 'Account ID not available. Cannot verify worker.', 'edge-link-router' );
+			return $result;
+		}
+
+		$worker = $client->get_worker( $account_id, IntegrationState::WORKER_NAME );
+
+		if ( $worker ) {
+			$result['status']  = self::STATUS_OK;
+			$result['message'] = sprintf(
+				/* translators: %s: worker script name */
+				__( 'Worker script "%s" is deployed.', 'edge-link-router' ),
+				IntegrationState::WORKER_NAME
+			);
+		} else {
+			$result['message']  = __( 'Worker script not found in Cloudflare.', 'edge-link-router' );
+			$result['fix_hint'] = __( 'Try disabling and re-enabling edge mode, or use "Force Re-publish" on the Tools page.', 'edge-link-router' );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Check if Worker route exists and points to our worker.
+	 *
+	 * @param Client $client    Cloudflare client.
+	 * @param array  $zone_data Zone data.
+	 * @return array
+	 */
+	private function check_route_exists( Client $client, array $zone_data ): array {
+		$result = array(
+			'name'     => 'route_active',
+			'label'    => __( 'Worker Route Active', 'edge-link-router' ),
+			'status'   => self::STATUS_FAIL,
+			'message'  => '',
+			'fix_hint' => null,
+		);
+
+		$zone_id = $zone_data['zone_id'] ?? '';
+		if ( empty( $zone_id ) ) {
+			$result['status']  = self::STATUS_WARN;
+			$result['message'] = __( 'Zone ID not available. Cannot verify route.', 'edge-link-router' );
+			return $result;
+		}
+
+		$host    = wp_parse_url( home_url(), PHP_URL_HOST );
+		$pattern = $host . '/' . $this->prefix . '/*';
+
+		$conflict = $client->check_route_conflict( $zone_id, $pattern );
+
+		if ( ! $conflict['has_conflict'] ) {
+			$result['message']  = sprintf(
+				/* translators: %s: route pattern */
+				__( 'No active route found for "%s".', 'edge-link-router' ),
+				$pattern
+			);
+			$result['fix_hint'] = __( 'Try disabling and re-enabling edge mode to recreate the route.', 'edge-link-router' );
+			return $result;
+		}
+
+		$existing = $conflict['conflicts'][0] ?? array();
+		$script   = $existing['script'] ?? '';
+
+		if ( $script === IntegrationState::WORKER_NAME ) {
+			$result['status']  = self::STATUS_OK;
+			$result['message'] = sprintf(
+				/* translators: %s: route pattern */
+				__( 'Route "%s" is active and points to the correct worker.', 'edge-link-router' ),
+				$pattern
+			);
+		} else {
+			$result['status']   = self::STATUS_WARN;
+			$result['message']  = sprintf(
+				/* translators: %1$s: route pattern, %2$s: script name */
+				__( 'Route "%1$s" exists but points to "%2$s" instead of the expected worker.', 'edge-link-router' ),
+				$pattern,
+				$script ?: __( 'unknown', 'edge-link-router' )
+			);
+			$result['fix_hint'] = __( 'Try disabling and re-enabling edge mode to fix the route assignment.', 'edge-link-router' );
 		}
 
 		return $result;
