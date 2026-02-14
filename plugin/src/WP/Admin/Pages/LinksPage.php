@@ -293,9 +293,34 @@ class LinksPage {
 			exit;
 		}
 
+		// Validate upload error code.
+		$upload_error = isset( $_FILES['csv_file']['error'] ) ? (int) $_FILES['csv_file']['error'] : UPLOAD_ERR_NO_FILE;
+		if ( UPLOAD_ERR_OK !== $upload_error ) {
+			set_transient( 'cfelr_import_error', __( 'File upload failed. Please try again.', 'edge-link-router' ), 60 );
+			wp_safe_redirect( admin_url( 'admin.php?page=edge-link-router&action=import' ) );
+			exit;
+		}
+
+		// Sanitize and validate file name and type.
+		$file_name = isset( $_FILES['csv_file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['csv_file']['name'] ) ) : '';
+		$file_type = wp_check_filetype( $file_name, array( 'csv' => 'text/csv' ) );
+
+		if ( ! $file_type['ext'] ) {
+			set_transient( 'cfelr_import_error', __( 'Please upload a CSV file.', 'edge-link-router' ), 60 );
+			wp_safe_redirect( admin_url( 'admin.php?page=edge-link-router&action=import' ) );
+			exit;
+		}
+
+		// Validate tmp_name is an actual uploaded file.
+		$tmp_name = isset( $_FILES['csv_file']['tmp_name'] ) ? sanitize_text_field( $_FILES['csv_file']['tmp_name'] ) : '';
+		if ( empty( $tmp_name ) || ! is_uploaded_file( $tmp_name ) ) {
+			set_transient( 'cfelr_import_error', __( 'Invalid file upload.', 'edge-link-router' ), 60 );
+			wp_safe_redirect( admin_url( 'admin.php?page=edge-link-router&action=import' ) );
+			exit;
+		}
+
 		$importer = new Importer();
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- file upload array, validated in importer
-		$results  = $importer->import_uploaded( $_FILES['csv_file'] );
+		$results  = $importer->import( $tmp_name );
 
 		set_transient( 'cfelr_import_results', $results, 60 );
 

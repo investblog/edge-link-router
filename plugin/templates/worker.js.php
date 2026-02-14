@@ -38,7 +38,7 @@ $cfelr_snapshot = array(
 	'links'      => $cfelr_links,
 );
 
-$cfelr_snapshot_json = wp_json_encode( $cfelr_snapshot, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+$cfelr_snapshot_json = wp_json_encode( $cfelr_snapshot );
 ?>
 /**
  * Edge Link Router - Cloudflare Worker
@@ -52,7 +52,7 @@ $cfelr_snapshot_json = wp_json_encode( $cfelr_snapshot, JSON_UNESCAPED_SLASHES |
  * If a rule is not found or an error occurs, it falls back to the origin (WP).
  */
 
-const SNAPSHOT = <?php echo $cfelr_snapshot_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
+const SNAPSHOT = <?php echo $cfelr_snapshot_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_json_encode is the recommended escaping for JSON output ?>;
 
 // Hardening constants (must match WP Validator)
 const VALID_CODES = [301, 302, 307, 308];

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.20] - 2026-02-14
+
+### Added
+- `== External services ==` section in readme.txt documenting Cloudflare API usage (WP.org review)
+
+### Fixed
+- Sanitize and validate CSV file upload (`$_FILES`) before passing to importer (WP.org review)
+- Remove `JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE` flags from `wp_json_encode()` (WP.org review)
+- ZIP filename in release workflow: `edge-link-router.zip` instead of versioned name (WP.org review)
+
+### Changed
+- Sample link target from `https://301.st` to `https://wordpress.org`
+
 ## [1.0.19] - 2026-02-10
 
 ### Fixed

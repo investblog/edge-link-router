@@ -34,12 +34,12 @@ jobs:
           # Remove wporg assets (for SVN only, not plugin ZIP)
           rm -rf build/edge-link-router/assets/wporg
           cd build
-          zip -r ../edge-link-router-${{ steps.version.outputs.VERSION }}.zip edge-link-router -x '*.DS_Store' -x '*.git*'
+          zip -r ../edge-link-router.zip edge-link-router -x '*.DS_Store' -x '*.git*'
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: edge-link-router-${{ steps.version.outputs.VERSION }}.zip
+          files: edge-link-router.zip
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(github.ref, '-beta') || contains(github.ref, '-alpha') || contains(github.ref, '-rc') }}

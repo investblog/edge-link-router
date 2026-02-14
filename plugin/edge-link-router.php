@@ -3,7 +3,7 @@
  * Plugin Name:       Edge Link Router
  * Plugin URI:        https://github.com/investblog/edge-link-router
  * Description:       Simple redirect management with optional Cloudflare edge acceleration. Works immediately in WP-only mode, edge is optional.
- * Version:           1.0.19
+ * Version:           1.0.20
  * Requires at least: 6.2
  * Requires PHP:      8.0
  * Author:            301.st
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'CFELR_VERSION', '1.0.19' );
+define( 'CFELR_VERSION', '1.0.20' );
 define( 'CFELR_DB_VERSION', 1 );
 define( 'CFELR_PLUGIN_FILE', __FILE__ );
 define( 'CFELR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -108,15 +108,15 @@ function cfelr_maybe_create_sample_link() {
 	$repository = new WP\Repository\WPLinkRepository();
 
 	// Check if sample slug already exists.
-	if ( $repository->find_by_slug( '301st' ) ) {
+	if ( $repository->find_by_slug( 'example' ) ) {
 		update_option( 'cfelr_sample_link_created', true );
 		return;
 	}
 
-	// Create sample link to 301.st.
+	// Create sample link.
 	$link             = new Core\Models\Link();
-	$link->slug       = '301st';
-	$link->target_url = 'https://301.st';
+	$link->slug       = 'example';
+	$link->target_url = 'https://wordpress.org';
 	$link->status_code = 302;
 	$link->enabled    = true;
 	$link->options    = array(

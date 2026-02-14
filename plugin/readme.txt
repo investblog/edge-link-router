@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.19
+Stable tag: 1.0.20
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,13 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 5. Cloudflare integration
 
 == Changelog ==
+
+= 1.0.20 =
+* Add External services section to readme (WP.org review)
+* Fix: Sanitize and validate CSV file upload before import
+* Fix: Remove wp_json_encode flags per review feedback
+* Fix: ZIP filename now matches WP.org expectation (no version suffix)
+* Change sample link from 301.st to wordpress.org
 
 = 1.0.19 =
 * Fix: Clean up cfelr_plugin_version option on uninstall
@@ -174,6 +181,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 
 == Upgrade Notice ==
 
+= 1.0.20 =
+WP.org review fixes: external services docs, file upload sanitization, JSON escaping, ZIP filename.
+
 = 1.0.19 =
 Complete uninstall cleanup — no orphan options left.
 
@@ -225,29 +235,26 @@ Improved Cloudflare setup instructions and edge statistics notice.
 = 1.0.0 =
 Initial release. Welcome to Edge Link Router!
 
-== Privacy Policy ==
+== External services ==
 
-This plugin does not collect, store, or transmit any personal data. Click statistics are aggregated daily totals only — no IP addresses, cookies, user agents, or personal data are recorded. No consent banner is required.
+This plugin optionally connects to the Cloudflare API when the user explicitly enables "Edge Mode" in the Integrations settings page. This feature is entirely opt-in and the plugin works fully without it.
 
-= Third-Party Service: Cloudflare API =
+= Cloudflare API =
 
-This plugin **optionally** connects to the [Cloudflare API](https://api.cloudflare.com/) when the user explicitly enables "Edge Mode" in the Integrations settings page. This feature is entirely opt-in and the plugin works fully without it.
+Cloudflare is a web infrastructure and security company that provides CDN, DNS, and edge computing services. This plugin uses the Cloudflare API to deploy a Worker script that handles redirects at the network edge (before requests reach your WordPress server), resulting in faster redirect responses.
 
-**What the service is:** Cloudflare is a web infrastructure and security company that provides CDN, DNS, and edge computing services.
+Data sent to Cloudflare (only when edge mode is enabled by the user):
 
-**What it is used for:** When edge mode is enabled, the plugin deploys a Cloudflare Worker script that handles redirects at the network edge (before requests reach your WordPress server), resulting in faster redirect responses.
+* API token (provided by the user) — sent with each API request for authentication.
+* Redirect rules (slugs, target URLs, status codes, UTM parameters) — sent when publishing or updating the Worker snapshot.
+* Worker JavaScript code — uploaded once during edge mode setup.
 
-**What data is sent and when:**
-
-* **API token** (provided by the user) — sent with each API request for authentication
-* **Redirect rules** (slugs, target URLs, status codes, UTM parameters) — sent when publishing or updating the Worker snapshot
-* **Worker JavaScript code** — uploaded once during edge mode setup
-* **Diagnostic HTTP requests** — sent to your own site domain to verify Cloudflare configuration (not to Cloudflare API)
-
-No visitor data, IP addresses, cookies, or personal information is ever sent to Cloudflare by this plugin. The API token is stored encrypted using libsodium (AES-256) in the WordPress database.
-
-**Service links:**
+No visitor data, IP addresses, cookies, or personal information is ever sent to Cloudflare by this plugin.
 
 * [Cloudflare Terms of Service](https://www.cloudflare.com/terms/)
 * [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)
 * [Cloudflare API Documentation](https://developers.cloudflare.com/api/)
+
+== Privacy Policy ==
+
+This plugin does not collect, store, or transmit any personal data. Click statistics are aggregated daily totals only — no IP addresses, cookies, user agents, or personal data are recorded. No consent banner is required.
