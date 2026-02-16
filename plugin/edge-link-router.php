@@ -193,6 +193,23 @@ function cfelr_init() {
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\cfelr_init' );
 
 /**
+ * Add Settings link on the Plugins page.
+ *
+ * @param array $links Existing plugin action links.
+ * @return array
+ */
+function cfelr_plugin_action_links( $links ) {
+	$settings_link = sprintf(
+		'<a href="%s">%s</a>',
+		admin_url( 'admin.php?page=edge-link-router-settings' ),
+		__( 'Settings', 'edge-link-router' )
+	);
+	array_unshift( $links, $settings_link );
+	return $links;
+}
+add_filter( 'plugin_action_links_' . CFELR_PLUGIN_BASENAME, __NAMESPACE__ . '\\cfelr_plugin_action_links' );
+
+/**
  * Initialize admin functionality.
  */
 function cfelr_admin_init() {
