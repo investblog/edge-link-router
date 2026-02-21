@@ -46,7 +46,7 @@ jobs:
         run: npm install
 
       - name: Start WordPress environment
-        run: npx wp-env start
+        run: GIT_CLONE_PROTECTION_ACTIVE=false npx wp-env start
 
       - name: Run Plugin Check
         run: npm run check:plugin
