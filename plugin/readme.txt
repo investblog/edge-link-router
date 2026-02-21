@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ Built by [301.st](https://301.st) — your redirect management experts.
 
 * **Instant redirects** — Works right after activation. No setup, no external services needed.
 * **Full control** — 301/302/307/308 codes, UTM auto-append, query passthrough.
+* **404 catch-all** — Redirect all 404 pages to your homepage or any URL (WP-only).
 * **CSV import/export** — Migrate affiliate links between sites in seconds.
 
 = How It Works =
@@ -86,6 +87,11 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 5. Cloudflare integration
 
 == Changelog ==
+
+= 1.0.21 =
+* New: 404 Catch-All Redirect — automatically redirect all 404 pages to a specified URL
+* New: Settings link on the Plugins page
+* CI: Plugin Check added as pre-release gate
 
 = 1.0.20 =
 * Add External services section to readme (WP.org review)
@@ -180,6 +186,9 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.21 =
+New feature: redirect all 404 pages to homepage or custom URL. Settings link on Plugins page.
 
 = 1.0.20 =
 WP.org review fixes: external services docs, file upload sanitization, JSON escaping, ZIP filename.

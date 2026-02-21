@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.21] - 2026-02-21
+
+### Added
+- 404 Catch-All Redirect: automatically redirect all 404 pages to a specified URL or homepage
+- Settings UI for catch-all: enable/disable toggle, target URL, status code (301/302)
+- "WP Only" badge on catch-all card (feature runs on WordPress only, not edge-accelerated)
+- Settings link on the Plugins page
+- Plugin Check added to CI pipeline
+
 ## [1.0.20] - 2026-02-14
 
 ### Added
@@ -233,7 +242,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database tables: `cfelr_links`, `cfelr_clicks_daily`, `cfelr_integrations`
 - Rewrite handler with fallback for subdirectory installs
 
-[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.19...HEAD
+[Unreleased]: https://github.com/investblog/edge-link-router/compare/v1.0.21...HEAD
+[1.0.21]: https://github.com/investblog/edge-link-router/compare/v1.0.20...v1.0.21
+[1.0.20]: https://github.com/investblog/edge-link-router/compare/v1.0.19...v1.0.20
 [1.0.19]: https://github.com/investblog/edge-link-router/compare/v1.0.18...v1.0.19
 [1.0.18]: https://github.com/investblog/edge-link-router/compare/v1.0.17...v1.0.18
 [1.0.17]: https://github.com/investblog/edge-link-router/compare/v1.0.16...v1.0.17
