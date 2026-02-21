@@ -32,6 +32,8 @@ jobs:
     name: Plugin Check
     runs-on: ubuntu-latest
     needs: lint
+    env:
+      GIT_CLONE_PROTECTION_ACTIVE: false
     steps:
       - uses: actions/checkout@v4
 
