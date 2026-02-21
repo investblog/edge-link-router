@@ -13,7 +13,8 @@
     "wp:db:reset": "wp-env run cli wp db reset --yes",
     "wp:db:export": "wp-env run cli wp db export /var/www/html/wp-content/plugins/edge-link-router/dump.sql",
     "lint:php": "composer run phpcs",
-    "lint:php:fix": "composer run phpcbf"
+    "lint:php:fix": "composer run phpcbf",
+    "check:plugin": "wp-env run cli wp plugin check plugin --slug=edge-link-router --exclude-directories=build --fields=file,line,column,type,code,message"
   },
   "devDependencies": {
     "@wordpress/env": "^10.0.0"

@@ -3,7 +3,7 @@
   "phpVersion": "8.2",
   "port": 8888,
   "testsPort": 8889,
-  "plugins": ["./plugin"],
+  "plugins": ["./plugin", "https://downloads.wordpress.org/plugin/plugin-check.latest-stable.zip"],
   "themes": [],
   "config": {
     "WP_DEBUG": true,

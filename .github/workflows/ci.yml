@@ -28,10 +28,31 @@ jobs:
       - name: Run PHPCS
         run: composer run phpcs
 
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start WordPress environment
+        run: npx wp-env start
+
+      - name: Run Plugin Check
+        run: npm run check:plugin
+
   build:
     name: Build ZIP
     runs-on: ubuntu-latest
-    needs: lint
+    needs: [lint, plugin-check]
     steps:
       - uses: actions/checkout@v4
 

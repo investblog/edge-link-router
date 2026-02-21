@@ -91,6 +91,21 @@ class SettingsPage {
 	}
 
 	/**
+	 * Get 404 catch-all redirect settings.
+	 *
+	 * @return array{enabled: bool, url: string, status_code: int}
+	 */
+	public static function get_catch_all_settings(): array {
+		$settings = get_option( self::OPTION_NAME, array() );
+
+		return array(
+			'enabled'     => ! empty( $settings['catch_all_404_enabled'] ),
+			'url'         => $settings['catch_all_404_url'] ?? '',
+			'status_code' => (int) ( $settings['catch_all_404_status'] ?? 301 ),
+		);
+	}
+
+	/**
 	 * Handle early form actions.
 	 *
 	 * @return void
@@ -105,36 +120,38 @@ class SettingsPage {
 			return;
 		}
 
-		// Check if locked.
-		if ( self::is_prefix_locked() ) {
-			add_settings_error( 'cfelr_settings_messages', 'locked', __( 'Prefix is locked by CFELR_PREFIX constant.', 'edge-link-router' ), 'error' );
-			return;
-		}
+		$settings       = get_option( self::OPTION_NAME, array() );
+		$prefix_changed = false;
 
-		// Get and sanitize prefix.
-		$new_prefix = isset( $_POST['cfelr_prefix'] ) ? sanitize_title( wp_unslash( $_POST['cfelr_prefix'] ) ) : '';
+		// --- Prefix section (skip validation if locked). ---
+		if ( ! self::is_prefix_locked() ) {
+			$new_prefix = isset( $_POST['cfelr_prefix'] ) ? sanitize_title( wp_unslash( $_POST['cfelr_prefix'] ) ) : '';
 
-		if ( empty( $new_prefix ) ) {
-			add_settings_error( 'cfelr_settings_messages', 'empty_prefix', __( 'Prefix cannot be empty.', 'edge-link-router' ), 'error' );
-			return;
-		}
-
-		// Validate prefix.
-		$errors = $this->validate_prefix( $new_prefix );
-
-		if ( ! empty( $errors ) ) {
-			foreach ( $errors as $error ) {
-				add_settings_error( 'cfelr_settings_messages', 'prefix_error', $error, 'error' );
+			if ( empty( $new_prefix ) ) {
+				add_settings_error( 'cfelr_settings_messages', 'empty_prefix', __( 'Prefix cannot be empty.', 'edge-link-router' ), 'error' );
+				return;
 			}
-			return;
+
+			$errors = $this->validate_prefix( $new_prefix );
+
+			if ( ! empty( $errors ) ) {
+				foreach ( $errors as $error ) {
+					add_settings_error( 'cfelr_settings_messages', 'prefix_error', $error, 'error' );
+				}
+				return;
+			}
+
+			$old_prefix          = $settings['prefix'] ?? self::DEFAULT_PREFIX;
+			$settings['prefix']  = $new_prefix;
+			$prefix_changed      = $old_prefix !== $new_prefix;
 		}
+
+		// --- 404 catch-all section. ---
+		$settings['catch_all_404_enabled'] = ! empty( $_POST['cfelr_catch_all_404_enabled'] );
+		$settings['catch_all_404_url']     = isset( $_POST['cfelr_catch_all_404_url'] ) ? esc_url_raw( wp_unslash( $_POST['cfelr_catch_all_404_url'] ) ) : '';
+		$settings['catch_all_404_status']  = isset( $_POST['cfelr_catch_all_404_status'] ) && (int) $_POST['cfelr_catch_all_404_status'] === 302 ? 302 : 301;
 
 		// Save settings.
-		$settings            = get_option( self::OPTION_NAME, array() );
-		$old_prefix          = $settings['prefix'] ?? self::DEFAULT_PREFIX;
-		$settings['prefix']  = $new_prefix;
-		$prefix_changed      = $old_prefix !== $new_prefix;
-
 		update_option( self::OPTION_NAME, $settings );
 
 		// Flush rewrite rules if prefix changed.
@@ -147,7 +164,6 @@ class SettingsPage {
 			$state = new IntegrationState();
 
 			if ( $state->is_edge_enabled() ) {
-				// Auto-update edge: republish worker with new prefix and update route.
 				$deployer = new Deployer();
 				$result   = $deployer->update_prefix( $old_prefix, $new_prefix );
 
@@ -255,24 +271,25 @@ class SettingsPage {
 		$current_prefix = self::get_prefix();
 		$is_locked      = self::is_prefix_locked();
 
-		// Get UI value (may differ from effective if filter is applied).
-		$settings  = get_option( self::OPTION_NAME, array() );
-		$ui_prefix = $settings['prefix'] ?? self::DEFAULT_PREFIX;
+		// Get UI values.
+		$settings   = get_option( self::OPTION_NAME, array() );
+		$ui_prefix  = $settings['prefix'] ?? self::DEFAULT_PREFIX;
+		$catch_all  = self::get_catch_all_settings();
 		?>
 		<div class="wrap cfelr-admin">
 			<h1><?php esc_html_e( 'Settings', 'edge-link-router' ); ?></h1>
 
 			<?php settings_errors( 'cfelr_settings_messages' ); ?>
 
-			<div class="cfelr-card">
-				<h2><?php esc_html_e( 'Redirect Prefix', 'edge-link-router' ); ?></h2>
+			<form method="post" action="">
+				<?php wp_nonce_field( 'cfelr_save_settings', 'cfelr_settings_nonce' ); ?>
 
-				<p class="description">
-					<?php esc_html_e( 'The URL prefix used for all redirect links. Default is "go".', 'edge-link-router' ); ?>
-				</p>
+				<div class="cfelr-card">
+					<h2><?php esc_html_e( 'Redirect Prefix', 'edge-link-router' ); ?></h2>
 
-				<form method="post" action="">
-					<?php wp_nonce_field( 'cfelr_save_settings', 'cfelr_settings_nonce' ); ?>
+					<p class="description">
+						<?php esc_html_e( 'The URL prefix used for all redirect links. Default is "go".', 'edge-link-router' ); ?>
+					</p>
 
 					<table class="form-table">
 						<tr>
@@ -320,16 +337,74 @@ class SettingsPage {
 							</td>
 						</tr>
 					</table>
+				</div>
 
-					<?php if ( ! $is_locked ) : ?>
-						<p class="submit">
-							<button type="submit" name="cfelr_save_settings" class="button button-primary">
-								<?php esc_html_e( 'Save Settings', 'edge-link-router' ); ?>
-							</button>
-						</p>
-					<?php endif; ?>
-				</form>
-			</div>
+				<div class="cfelr-card" style="margin-top: 20px;">
+					<h2>
+						<?php esc_html_e( '404 Catch-All Redirect', 'edge-link-router' ); ?>
+						<span class="cfelr-health-badge cfelr-health-wp-only" style="font-size: 12px; font-weight: normal; vertical-align: middle; margin-left: 8px;">
+							<span class="dashicons dashicons-wordpress"></span>
+							<?php esc_html_e( 'WP Only', 'edge-link-router' ); ?>
+						</span>
+					</h2>
+
+					<p class="description">
+						<?php esc_html_e( 'Automatically redirect all 404 (Not Found) pages to a specified URL. This feature runs on WordPress only and is not accelerated by Cloudflare edge.', 'edge-link-router' ); ?>
+					</p>
+
+					<table class="form-table">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Enable', 'edge-link-router' ); ?></th>
+							<td>
+								<label>
+									<input
+										type="checkbox"
+										name="cfelr_catch_all_404_enabled"
+										value="1"
+										<?php checked( $catch_all['enabled'] ); ?>
+									>
+									<?php esc_html_e( 'Redirect all 404 pages', 'edge-link-router' ); ?>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<label for="cfelr_catch_all_404_url"><?php esc_html_e( 'Target URL', 'edge-link-router' ); ?></label>
+							</th>
+							<td>
+								<input
+									type="url"
+									id="cfelr_catch_all_404_url"
+									name="cfelr_catch_all_404_url"
+									value="<?php echo esc_attr( $catch_all['url'] ); ?>"
+									class="regular-text"
+									placeholder="<?php echo esc_attr( home_url( '/' ) ); ?>"
+								>
+								<p class="description">
+									<?php esc_html_e( 'Leave empty to redirect to the homepage.', 'edge-link-router' ); ?>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<label for="cfelr_catch_all_404_status"><?php esc_html_e( 'Status Code', 'edge-link-router' ); ?></label>
+							</th>
+							<td>
+								<select id="cfelr_catch_all_404_status" name="cfelr_catch_all_404_status">
+									<option value="301" <?php selected( $catch_all['status_code'], 301 ); ?>>301 (Permanent)</option>
+									<option value="302" <?php selected( $catch_all['status_code'], 302 ); ?>>302 (Temporary)</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<p class="submit">
+					<button type="submit" name="cfelr_save_settings" class="button button-primary">
+						<?php esc_html_e( 'Save Settings', 'edge-link-router' ); ?>
+					</button>
+				</p>
+			</form>
 
 			<!-- Info about priority -->
 			<div class="cfelr-card" style="margin-top: 20px;">

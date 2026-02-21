@@ -186,6 +186,10 @@ function cfelr_init() {
 	$fallback_handler = new WP\FallbackHandler();
 	$fallback_handler->init();
 
+	// Initialize 404 catch-all handler.
+	$not_found_handler = new WP\NotFoundHandler();
+	$not_found_handler->init();
+
 	// Initialize cron.
 	$cron = new WP\Cron();
 	$cron->init();
