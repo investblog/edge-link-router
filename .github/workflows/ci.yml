@@ -35,10 +35,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
       - name: Run Plugin Check
         uses: wordpress/plugin-check-action@v1
-        env:
-          GIT_CLONE_PROTECTION_ACTIVE: "false"
         with:
           build-dir: ./plugin
           wp-version: latest
