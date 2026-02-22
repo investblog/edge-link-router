@@ -91,6 +91,42 @@ class SettingsPage {
 	}
 
 	/**
+	 * Default tracking parameters to strip.
+	 *
+	 * @var array
+	 */
+	private const DEFAULT_STRIP_PARAMS = array(
+		'ysclid',
+		'fbclid',
+		'gclid',
+		'gbraid',
+		'wbraid',
+		'msclkid',
+		'twclid',
+		'li_fat_id',
+	);
+
+	/**
+	 * Get strip tracking parameters settings.
+	 *
+	 * @return array{enabled: bool, params: string[]}
+	 */
+	public static function get_strip_tracking_settings(): array {
+		$settings = get_option( self::OPTION_NAME, array() );
+
+		$params = self::DEFAULT_STRIP_PARAMS;
+		if ( isset( $settings['strip_tracking_params'] ) && is_string( $settings['strip_tracking_params'] ) ) {
+			$lines  = array_map( 'trim', explode( "\n", $settings['strip_tracking_params'] ) );
+			$params = array_values( array_filter( $lines, fn( $line ) => '' !== $line ) );
+		}
+
+		return array(
+			'enabled' => ! empty( $settings['strip_tracking_enabled'] ),
+			'params'  => $params,
+		);
+	}
+
+	/**
 	 * Get 404 catch-all redirect settings.
 	 *
 	 * @return array{enabled: bool, url: string, status_code: int}
@@ -150,6 +186,12 @@ class SettingsPage {
 		$settings['catch_all_404_enabled'] = ! empty( $_POST['cfelr_catch_all_404_enabled'] );
 		$settings['catch_all_404_url']     = isset( $_POST['cfelr_catch_all_404_url'] ) ? esc_url_raw( wp_unslash( $_POST['cfelr_catch_all_404_url'] ) ) : '';
 		$settings['catch_all_404_status']  = isset( $_POST['cfelr_catch_all_404_status'] ) && (int) $_POST['cfelr_catch_all_404_status'] === 302 ? 302 : 301;
+
+		// --- Strip tracking parameters section. ---
+		$settings['strip_tracking_enabled'] = ! empty( $_POST['cfelr_strip_tracking_enabled'] );
+		$settings['strip_tracking_params']  = isset( $_POST['cfelr_strip_tracking_params'] )
+			? sanitize_textarea_field( wp_unslash( $_POST['cfelr_strip_tracking_params'] ) )
+			: implode( "\n", self::DEFAULT_STRIP_PARAMS );
 
 		// Save settings.
 		update_option( self::OPTION_NAME, $settings );
@@ -274,7 +316,9 @@ class SettingsPage {
 		// Get UI values.
 		$settings   = get_option( self::OPTION_NAME, array() );
 		$ui_prefix  = $settings['prefix'] ?? self::DEFAULT_PREFIX;
-		$catch_all  = self::get_catch_all_settings();
+		$catch_all       = self::get_catch_all_settings();
+		$strip_tracking  = self::get_strip_tracking_settings();
+		$strip_params_ui = $settings['strip_tracking_params'] ?? implode( "\n", self::DEFAULT_STRIP_PARAMS );
 		?>
 		<div class="wrap cfelr-admin">
 			<h1><?php esc_html_e( 'Settings', 'edge-link-router' ); ?></h1>
@@ -394,6 +438,63 @@ class SettingsPage {
 									<option value="301" <?php selected( $catch_all['status_code'], 301 ); ?>>301 (Permanent)</option>
 									<option value="302" <?php selected( $catch_all['status_code'], 302 ); ?>>302 (Temporary)</option>
 								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="cfelr-card" style="margin-top: 20px;">
+					<h2>
+						<?php esc_html_e( 'Strip Tracking Parameters', 'edge-link-router' ); ?>
+						<span class="cfelr-health-badge cfelr-health-wp-only" style="font-size: 12px; font-weight: normal; vertical-align: middle; margin-left: 8px;">
+							<span class="dashicons dashicons-wordpress"></span>
+							<?php esc_html_e( 'WP Only', 'edge-link-router' ); ?>
+						</span>
+					</h2>
+
+					<p class="description">
+						<?php esc_html_e( 'Automatically strip ad-platform click ID parameters from all page URLs and 301-redirect to the clean URL. Prevents duplicate pages in search indexes caused by tracking parameters like ?ysclid=, ?fbclid=, ?gclid= etc.', 'edge-link-router' ); ?>
+					</p>
+
+					<table class="form-table">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Enable', 'edge-link-router' ); ?></th>
+							<td>
+								<label>
+									<input
+										type="checkbox"
+										name="cfelr_strip_tracking_enabled"
+										value="1"
+										<?php checked( $strip_tracking['enabled'] ); ?>
+									>
+									<?php esc_html_e( 'Strip tracking parameters from URLs', 'edge-link-router' ); ?>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<label for="cfelr_strip_tracking_params"><?php esc_html_e( 'Parameters', 'edge-link-router' ); ?></label>
+							</th>
+							<td>
+								<textarea
+									id="cfelr_strip_tracking_params"
+									name="cfelr_strip_tracking_params"
+									rows="10"
+									class="regular-text"
+									style="font-family: monospace;"
+								><?php echo esc_textarea( $strip_params_ui ); ?></textarea>
+								<p class="description">
+									<?php esc_html_e( 'One parameter name per line. Default parameters:', 'edge-link-router' ); ?>
+								</p>
+								<ul style="margin-top: 4px; list-style: disc; padding-left: 20px;">
+									<li><code>ysclid</code> — Yandex</li>
+									<li><code>fbclid</code> — Facebook</li>
+									<li><code>gclid</code> — Google Ads</li>
+									<li><code>gbraid</code>, <code>wbraid</code> — Google Ads (iOS)</li>
+									<li><code>msclkid</code> — Microsoft Ads</li>
+									<li><code>twclid</code> — Twitter/X</li>
+									<li><code>li_fat_id</code> — LinkedIn</li>
+								</ul>
 							</td>
 						</tr>
 					</table>
