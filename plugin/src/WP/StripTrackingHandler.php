@@ -79,7 +79,7 @@ class StripTrackingHandler {
 		}
 
 		// Build clean URL.
-		$clean_url = home_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) );
+		$clean_url = home_url( sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) ) );
 
 		// Remove existing query string from the URL.
 		$clean_url = strtok( $clean_url, '?' );
