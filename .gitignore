@@ -40,3 +40,7 @@ package-lock.json
 # Misc
 cookies.txt
 plan.md.txt
+nul
+test-import.csv
+take-screenshots.mjs
+temp/

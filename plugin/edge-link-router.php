@@ -3,7 +3,7 @@
  * Plugin Name:       Edge Link Router
  * Plugin URI:        https://github.com/investblog/edge-link-router
  * Description:       Simple redirect management with optional Cloudflare edge acceleration. Works immediately in WP-only mode, edge is optional.
- * Version:           1.0.22
+ * Version:           1.0.23
  * Requires at least: 6.2
  * Requires PHP:      8.0
  * Author:            301.st
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'CFELR_VERSION', '1.0.22' );
+define( 'CFELR_VERSION', '1.0.23' );
 define( 'CFELR_DB_VERSION', 1 );
 define( 'CFELR_PLUGIN_FILE', __FILE__ );
 define( 'CFELR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -177,6 +177,10 @@ function cfelr_init() {
 	// Check and run migrations if needed.
 	$migration = new WP\Migration();
 	$migration->maybe_upgrade();
+
+	// Initialize URL normalization handler (before everything else).
+	$normalize_handler = new WP\NormalizeUrlHandler();
+	$normalize_handler->init();
 
 	// Initialize strip tracking handler (before rewrite handler).
 	$strip_handler = new WP\StripTrackingHandler();

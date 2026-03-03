@@ -5,7 +5,7 @@ Tags: redirect, shortlinks, cloudflare, 301, utm
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.21
+Stable tag: 1.0.23
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,9 +84,19 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 2. Edit link with UTM parameters
 3. Click statistics dashboard
 4. Settings page
-5. Cloudflare integration
+5. Cloudflare Edge integration — Edge Active status
+6. Cloudflare diagnostics — all checks passed
+7. Cloudflare Workers metrics dashboard
 
 == Changelog ==
+
+= 1.0.23 =
+* New: URL Normalization — 301-redirect uppercase paths, duplicate slashes, and trailing slash mismatches to canonical form
+* Bump stable tag to 1.0.23
+
+= 1.0.22 =
+* New: Strip Tracking Parameters — remove ad-platform click IDs (fbclid, gclid, etc.) from URLs
+* Internal cleanup and version bump
 
 = 1.0.21 =
 * New: 404 Catch-All Redirect — automatically redirect all 404 pages to a specified URL
@@ -186,6 +196,12 @@ Use our free [Redirect Inspector](https://chromewebstore.google.com/detail/redir
 * REST API
 
 == Upgrade Notice ==
+
+= 1.0.23 =
+New feature: URL Normalization — automatically fix uppercase paths, duplicate slashes, and trailing slash mismatches.
+
+= 1.0.22 =
+New feature: strip tracking parameters from URLs to prevent duplicate pages in search indexes.
 
 = 1.0.21 =
 New feature: redirect all 404 pages to homepage or custom URL. Settings link on Plugins page.

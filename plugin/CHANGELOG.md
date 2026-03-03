@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.23] - 2026-03-03
+
+### Added
+- URL Normalization: 301-redirect uppercase paths, duplicate slashes, and trailing slash mismatches to canonical form
+- Settings UI for URL normalization: enable/disable toggle with "WP Only" badge
+
+## [1.0.22] - 2026-03-01
+
+### Added
+- Strip Tracking Parameters: remove ad-platform click IDs (ysclid, fbclid, gclid, etc.) from URLs via 301 redirect
+- Settings UI for tracking parameter stripping: enable/disable toggle, configurable parameter list
+
 ## [1.0.21] - 2026-02-21
 
 ### Added

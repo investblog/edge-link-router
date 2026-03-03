@@ -114,15 +114,22 @@ class SettingsPage {
 	public static function get_strip_tracking_settings(): array {
 		$settings = get_option( self::OPTION_NAME, array() );
 
-		$params = self::DEFAULT_STRIP_PARAMS;
-		if ( isset( $settings['strip_tracking_params'] ) && is_string( $settings['strip_tracking_params'] ) ) {
-			$lines  = array_map( 'trim', explode( "\n", $settings['strip_tracking_params'] ) );
-			$params = array_values( array_filter( $lines, fn( $line ) => '' !== $line ) );
-		}
-
 		return array(
 			'enabled' => ! empty( $settings['strip_tracking_enabled'] ),
-			'params'  => $params,
+			'params'  => self::DEFAULT_STRIP_PARAMS,
+		);
+	}
+
+	/**
+	 * Get URL normalization settings.
+	 *
+	 * @return array{enabled: bool}
+	 */
+	public static function get_url_normalization_settings(): array {
+		$settings = get_option( self::OPTION_NAME, array() );
+
+		return array(
+			'enabled' => ! empty( $settings['url_normalization_enabled'] ),
 		);
 	}
 
@@ -189,9 +196,9 @@ class SettingsPage {
 
 		// --- Strip tracking parameters section. ---
 		$settings['strip_tracking_enabled'] = ! empty( $_POST['cfelr_strip_tracking_enabled'] );
-		$settings['strip_tracking_params']  = isset( $_POST['cfelr_strip_tracking_params'] )
-			? sanitize_textarea_field( wp_unslash( $_POST['cfelr_strip_tracking_params'] ) )
-			: implode( "\n", self::DEFAULT_STRIP_PARAMS );
+
+		// --- URL normalization section. ---
+		$settings['url_normalization_enabled'] = ! empty( $_POST['cfelr_url_normalization_enabled'] );
 
 		// Save settings.
 		update_option( self::OPTION_NAME, $settings );
@@ -316,9 +323,9 @@ class SettingsPage {
 		// Get UI values.
 		$settings   = get_option( self::OPTION_NAME, array() );
 		$ui_prefix  = $settings['prefix'] ?? self::DEFAULT_PREFIX;
-		$catch_all       = self::get_catch_all_settings();
-		$strip_tracking  = self::get_strip_tracking_settings();
-		$strip_params_ui = $settings['strip_tracking_params'] ?? implode( "\n", self::DEFAULT_STRIP_PARAMS );
+		$url_normalization = self::get_url_normalization_settings();
+		$catch_all         = self::get_catch_all_settings();
+		$strip_tracking    = self::get_strip_tracking_settings();
 		?>
 		<div class="wrap cfelr-admin">
 			<h1><?php esc_html_e( 'Settings', 'edge-link-router' ); ?></h1>
@@ -378,6 +385,37 @@ class SettingsPage {
 									<?php esc_html_e( 'Current redirect URL format:', 'edge-link-router' ); ?>
 									<code><?php echo esc_html( home_url( '/' . $current_prefix . '/your-slug' ) ); ?></code>
 								</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="cfelr-card" style="margin-top: 20px;">
+					<h2>
+						<?php esc_html_e( 'URL Normalization', 'edge-link-router' ); ?>
+						<span class="cfelr-health-badge cfelr-health-wp-only" style="font-size: 12px; font-weight: normal; vertical-align: middle; margin-left: 8px;">
+							<span class="dashicons dashicons-wordpress"></span>
+							<?php esc_html_e( 'WP Only', 'edge-link-router' ); ?>
+						</span>
+					</h2>
+
+					<p class="description">
+						<?php esc_html_e( 'Automatically fix common URL issues and 301-redirect to the canonical form. Normalizes uppercase paths to lowercase, removes duplicate slashes, and enforces your WordPress trailing slash setting.', 'edge-link-router' ); ?>
+					</p>
+
+					<table class="form-table">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Enable', 'edge-link-router' ); ?></th>
+							<td>
+								<label>
+									<input
+										type="checkbox"
+										name="cfelr_url_normalization_enabled"
+										value="1"
+										<?php checked( $url_normalization['enabled'] ); ?>
+									>
+									<?php esc_html_e( 'Normalize URLs (lowercase, trailing slash, duplicate slashes)', 'edge-link-router' ); ?>
+								</label>
 							</td>
 						</tr>
 					</table>
@@ -453,7 +491,7 @@ class SettingsPage {
 					</h2>
 
 					<p class="description">
-						<?php esc_html_e( 'Automatically strip ad-platform click ID parameters from all page URLs and 301-redirect to the clean URL. Prevents duplicate pages in search indexes caused by tracking parameters like ?ysclid=, ?fbclid=, ?gclid= etc.', 'edge-link-router' ); ?>
+						<?php esc_html_e( 'Strip ad-platform tracking parameters (fbclid, gclid, ysclid, etc.) from page URLs and 301-redirect to the clean version. Prevents duplicate pages in search engine indexes.', 'edge-link-router' ); ?>
 					</p>
 
 					<table class="form-table">
@@ -469,32 +507,6 @@ class SettingsPage {
 									>
 									<?php esc_html_e( 'Strip tracking parameters from URLs', 'edge-link-router' ); ?>
 								</label>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								<label for="cfelr_strip_tracking_params"><?php esc_html_e( 'Parameters', 'edge-link-router' ); ?></label>
-							</th>
-							<td>
-								<textarea
-									id="cfelr_strip_tracking_params"
-									name="cfelr_strip_tracking_params"
-									rows="10"
-									class="regular-text"
-									style="font-family: monospace;"
-								><?php echo esc_textarea( $strip_params_ui ); ?></textarea>
-								<p class="description">
-									<?php esc_html_e( 'One parameter name per line. Default parameters:', 'edge-link-router' ); ?>
-								</p>
-								<ul style="margin-top: 4px; list-style: disc; padding-left: 20px;">
-									<li><code>ysclid</code> — Yandex</li>
-									<li><code>fbclid</code> — Facebook</li>
-									<li><code>gclid</code> — Google Ads</li>
-									<li><code>gbraid</code>, <code>wbraid</code> — Google Ads (iOS)</li>
-									<li><code>msclkid</code> — Microsoft Ads</li>
-									<li><code>twclid</code> — Twitter/X</li>
-									<li><code>li_fat_id</code> — LinkedIn</li>
-								</ul>
 							</td>
 						</tr>
 					</table>
